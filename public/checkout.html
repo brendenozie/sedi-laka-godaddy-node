@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Complete Payment · Sedi Laka Center</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23123e32'/%3E%3Cpath d='M32 9c10 12 7 19 0 23-7-4-10-11 0-23Z' fill='%23d1a44b'/%3E%3Crect x='27' y='33' width='10' height='21' rx='2' fill='%23f7f3e9'/%3E%3C/svg%3E">
+  <style>
+    :root{--green:#123e32;--green2:#28594c;--ivory:#faf8f2;--white:#fffefa;--sage:#dbe7d8;--gold:#b68b3a;--ink:#20382f;--muted:#536a60;--line:#d9dfd5}
+    *{box-sizing:border-box}
+    body{margin:0;background:var(--ivory);color:var(--ink);font:400 1rem/1.6 system-ui,-apple-system,sans-serif}
+    h1,h2,h3{font-family:Georgia,serif;font-weight:400;color:var(--green);margin-top:0}
+    .wrap{width:min(640px,calc(100% - 2.5rem));margin:3rem auto}
+    .card{background:var(--white);border:1px solid var(--line);border-radius:4px;padding:2.5rem;box-shadow:0 4px 15px rgba(18,62,50,0.04)}
+    .header{display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line);padding-bottom:1.5rem;margin-bottom:2rem}
+    .brand img{width:160px;height:auto}
+    .price-box{background:#f7f4eb;border-left:4px solid var(--gold);padding:1.2rem 1.5rem;margin:1.5rem 0;border-radius:2px}
+    .price{font:2.2rem Georgia,serif;color:var(--green);margin:.2rem 0}
+    .btn{display:inline-flex;align-items:center;justify-content:center;width:100%;min-height:48px;padding:.7rem 1.25rem;border:1px solid var(--green);border-radius:3px;background:var(--green);color:white;text-decoration:none;font-weight:650;font-size:1rem;cursor:pointer}
+    .btn:hover{background:#215545}
+    .btn.secondary{background:transparent;color:var(--green);margin-top:.8rem}
+    .btn.secondary:hover{background:#edf2e9}
+    .status-msg{margin-top:1.2rem;padding:1rem;border-radius:3px;display:none;font-size:.92rem}
+    .status-success{background:#dbe7d8;color:#123e32;border:1px solid #c2d8bc}
+    .status-error{background:#fbeae8;color:#8a251e;border:1px solid #f2c7c3}
+    .field{margin-bottom:1.2rem}
+    label{display:block;font-size:.85rem;font-weight:600;margin-bottom:.4rem;color:var(--green2)}
+    input,select{width:100%;padding:.75rem;border:1px solid var(--line);border-radius:3px;font-size:1rem}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="card">
+      <div class="header">
+        <a href="/" class="brand"><img src="/assets/sedi-laka-logo.png" alt="Sedi Laka Center"></a>
+        <span style="font-size:.85rem;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;font-weight:700">Secure Checkout</span>
+      </div>
+
+      <div id="checkout-loading">
+        <p>Loading transaction details...</p>
+      </div>
+
+      <div id="checkout-content" style="display:none">
+        <h2 id="item-title">Purchase Details</h2>
+        <p id="item-desc" style="color:var(--muted)"></p>
+
+        <div class="price-box">
+          <span style="font-size:.85rem;text-transform:uppercase;letter-spacing:.1em;color:var(--muted)">Amount to pay</span>
+          <div class="price" id="item-amount">US$0.00</div>
+          <small style="color:var(--muted)" id="tx-ref">Ref: </small>
+        </div>
+
+        <form id="payment-form">
+          <div class="field">
+            <label for="provider-select">Payment Method</label>
+            <select id="provider-select">
+              <option value="mock_sandbox">Sandbox Verified Test Gateway (Zero charge test)</option>
+              <option value="mpesa">M-Pesa (Kenya Mobile Money - Daraja STK Push)</option>
+              <option value="card_stripe">Credit / Debit Card (Stripe Gateway)</option>
+            </select>
+          </div>
+
+          <div class="field" id="phone-field" style="display:none">
+            <label for="mpesa-phone">M-Pesa Phone Number (+254...)</label>
+            <input type="tel" id="mpesa-phone" placeholder="e.g. +254712345678">
+          </div>
+
+          <button type="submit" class="btn" id="pay-button">Complete &amp; Verify Payment</button>
+          <a href="/portal" class="btn secondary">Cancel &amp; Return to Portal</a>
+        </form>
+
+        <div id="status-box" class="status-msg"></div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const urlParams = new URLSearchParams(window.location.search);
+    const txRef = urlParams.get('ref');
+
+    const loadingEl = document.getElementById('checkout-loading');
+    const contentEl = document.getElementById('checkout-content');
+    const titleEl = document.getElementById('item-title');
+    const amountEl = document.getElementById('item-amount');
+    const refEl = document.getElementById('tx-ref');
+    const statusBox = document.getElementById('status-box');
+    const form = document.getElementById('payment-form');
+    const providerSelect = document.getElementById('provider-select');
+    const phoneField = document.getElementById('phone-field');
+
+    providerSelect.addEventListener('change', () => {
+      phoneField.style.display = providerSelect.value === 'mpesa' ? 'block' : 'none';
+    });
+
+    async function loadTransaction() {
+      if (!txRef) {
+        loadingEl.innerHTML = '<p style="color:red">Error: No transaction reference provided in URL.</p>';
+        return;
+      }
+
+      try {
+        const res = await fetch(`/api/payments/${txRef}`);
+        if (!res.ok) {
+          const err = await res.json();
+          throw new Error(err.error || 'Failed to fetch transaction.');
+        }
+
+        const { payment } = await res.json();
+        let meta = {};
+        try { meta = JSON.parse(payment.metadata_json || '{}'); } catch(e) {}
+
+        titleEl.textContent = meta.itemTitle || 'Sedi Laka Service';
+        amountEl.textContent = `US$${Number(payment.amount).toFixed(2)}`;
+        refEl.textContent = `Reference: ${payment.transaction_reference}`;
+
+        if (payment.status === 'successful') {
+          contentEl.style.display = 'block';
+          loadingEl.style.display = 'none';
+          form.style.display = 'none';
+          statusBox.className = 'status-msg status-success';
+          statusBox.style.display = 'block';
+          statusBox.innerHTML = `<strong>Payment Verified!</strong> This transaction has already been fulfilled.<br><a href="/portal" style="color:#123e32;font-weight:bold;margin-top:8px;display:inline-block">Go to My Portal &rarr;</a>`;
+          return;
+        }
+
+        loadingEl.style.display = 'none';
+        contentEl.style.display = 'block';
+      } catch (err) {
+        loadingEl.innerHTML = `<p style="color:red">Failed to load payment: ${err.message}. Please <a href="/portal">return to portal</a>.</p>`;
+      }
+    }
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const btn = document.getElementById('pay-button');
+      btn.disabled = true;
+      btn.textContent = 'Processing & Verifying Payment...';
+      statusBox.style.display = 'none';
+
+      try {
+        const res = await fetch('/api/payments/sandbox-checkout', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            transactionReference: txRef,
+            simulateSuccess: true
+          })
+        });
+
+        const data = await res.json();
+        if (!res.ok) throw new Error(data.error || 'Payment failed.');
+
+        statusBox.className = 'status-msg status-success';
+        statusBox.style.display = 'block';
+        statusBox.innerHTML = `<strong>Payment Successful!</strong><br>${data.message}<br><br><a href="/portal" class="btn" style="margin-top:10px;">View in Client Portal</a>`;
+        form.style.display = 'none';
+      } catch (err) {
+        btn.disabled = false;
+        btn.textContent = 'Try Again';
+        statusBox.className = 'status-msg status-error';
+        statusBox.style.display = 'block';
+        statusBox.textContent = `Error: ${err.message}`;
+      }
+    });
+
+    loadTransaction();
+  </script>
+</body>
+</html>

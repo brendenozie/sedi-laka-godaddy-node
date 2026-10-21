@@ -9,25 +9,372 @@
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23123e32'/%3E%3Cpath d='M32 9c10 12 7 19 0 23-7-4-10-11 0-23Z' fill='%23d1a44b'/%3E%3Crect x='27' y='33' width='10' height='21' rx='2' fill='%23f7f3e9'/%3E%3C/svg%3E">
   <style>
     :root{--green:#123e32;--green2:#28594c;--ivory:#faf8f2;--white:#fffefa;--sage:#dbe7d8;--gold:#b68b3a;--ink:#20382f;--muted:#536a60;--line:#d9dfd5;--blush:#f4e8e6}
-    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--ivory);color:var(--ink);font:400 1rem/1.68 system-ui,-apple-system,Segoe UI,sans-serif}h1,h2,h3,p{margin-top:0}h1,h2,h3{font-family:Georgia,'Times New Roman',serif;font-weight:400;line-height:1.12;color:var(--green)}h1{font-size:clamp(2.7rem,6vw,5.7rem);letter-spacing:-.035em}h2{font-size:clamp(2.15rem,4vw,3.65rem);letter-spacing:-.025em}h3{font-size:1.55rem}p{max-width:64ch}a{color:inherit}a:focus-visible,button:focus-visible{outline:3px solid var(--gold);outline-offset:4px}.wrap{width:min(1160px,calc(100% - 2.5rem));margin:auto}.skip{position:absolute;left:-9999px;top:1rem;background:white;padding:.5rem}.skip:focus{left:1rem;z-index:10}.eyebrow{font-size:.82rem;letter-spacing:.18em;text-transform:uppercase;font-weight:700;color:var(--green2)}.button{display:inline-flex;align-items:center;justify-content:center;min-height:50px;padding:.7rem 1.25rem;border:1px solid var(--green);border-radius:3px;background:var(--green);color:white;text-decoration:none;font-weight:650;line-height:1.3;text-align:center}.button:hover{background:#215545}.button.secondary{background:transparent;color:var(--green)}.button.secondary:hover{background:#edf2e9}.site-header{background:var(--white);border-bottom:1px solid var(--line)}.nav{min-height:96px;display:flex;align-items:center;justify-content:space-between;gap:2rem}.brand{display:block;flex:0 0 auto;width:246px;line-height:0}.brand img{display:block;width:100%;height:auto}.navlinks{display:flex;align-items:center;gap:1.6rem;font-size:.94rem;font-weight:600}.navlinks a{text-decoration:none}.navlinks a:hover{text-decoration:underline}.navlinks .button{color:white}.hero{background:linear-gradient(125deg,#f7f4eb 15%,#e6eee3 100%);overflow:hidden}.hero-inner{min-height:610px;padding:6.2rem 0 5.7rem;display:grid;grid-template-columns:minmax(0,1.17fr) minmax(280px,.83fr);gap:5rem;align-items:center}.hero h1{max-width:14ch;margin:.5rem 0 1.4rem}.hero .lead{font-size:1.19rem;max-width:52ch}.hero-actions{display:flex;gap:.8rem;flex-wrap:wrap;margin:2rem 0 0}.hero-art{min-height:430px;position:relative;border:1px solid #cfdbce;border-radius:220px 220px 10px 10px;background:radial-gradient(circle at 50% 40%,#fffdf6 0,#e7ece1 48%,#bbd2c2 100%);display:flex;align-items:center;justify-content:center;padding:3rem}.hero-art:after{content:"";position:absolute;inset:18px;border:1px solid rgba(182,139,58,.6);border-radius:210px 210px 4px 4px;pointer-events:none}.art-copy{text-align:center;position:relative;z-index:1}.art-copy span{display:block;font:italic 2.45rem/1.25 Georgia,serif;color:var(--green);max-width:10ch}.art-copy small{display:block;margin:1.5rem auto 0;padding-top:1.1rem;border-top:1px solid var(--gold);font-size:.85rem;letter-spacing:.15em;text-transform:uppercase;color:var(--green2)}section{padding:6rem 0}.section-heading{max-width:760px;margin-bottom:2.6rem}.section-heading p:last-child{font-size:1.1rem}.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem}.step{background:var(--white);border:1px solid var(--line);padding:2rem;min-height:270px}.step .num{display:block;color:var(--gold);font:2.2rem Georgia,serif;margin-bottom:1.8rem}.step p{margin-bottom:0}.band{background:var(--green);color:#f4f4e9}.band h2,.band h3{color:#fffdf5}.band .eyebrow{color:#dbc58e}.band-inner{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center}.band p{color:#e9efe8}.offer-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.2rem}.offer{border:1px solid var(--line);background:var(--white);padding:2rem;display:flex;flex-direction:column;min-height:240px}.offer p{margin-bottom:auto}.offer a{font-weight:700;text-underline-offset:.2em;color:var(--green2)}.pricing{background:#e8efe8}.price-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem;margin-top:2rem}.price-card{padding:2rem;background:var(--white);border-top:4px solid var(--gold)}.price{font:2.2rem Georgia,serif;color:var(--green);margin:.5rem 0 1rem}.price small{font:400 1rem system-ui,sans-serif;color:var(--muted)}.price-note{margin-top:1.5rem;color:var(--muted)}.booking{background:var(--blush)}.booking-inner{display:grid;grid-template-columns:1.1fr .9fr;gap:5rem;align-items:start}.booking-panel{background:var(--white);padding:2rem;border:1px solid #e2d6d1}.booking-panel h3{margin-bottom:.6rem}.booking-panel p{margin-bottom:1.5rem}.booking-panel .button{width:100%}.contact-address{display:block;padding:.8rem 1rem;margin:.4rem 0 1rem;border:1px solid var(--line);background:var(--ivory);color:var(--green);font-weight:700;overflow-wrap:anywhere;user-select:all}.contact-actions{display:grid;gap:.65rem}.copy-status{min-height:1.5em;margin:.5rem 0 0;color:var(--green2)}.small{font-size:.9rem;color:var(--muted)}.footer{background:var(--green);color:#e8efe8;padding:3rem 0}.footer-inner{display:flex;justify-content:space-between;gap:2rem;align-items:center}.footer img{width:210px;background:#fffefa;padding:.45rem;border-radius:2px}.footer p{margin:.8rem 0 0}.footer a{color:inherit;text-underline-offset:.2em}
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--ivory);color:var(--ink);font:400 1rem/1.68 system-ui,-apple-system,Segoe UI,sans-serif}h1,h2,h3,p{margin-top:0}h1,h2,h3{font-family:Georgia,'Times New Roman',serif;font-weight:400;line-height:1.12;color:var(--green)}h1{font-size:clamp(2.7rem,6vw,5.7rem);letter-spacing:-.035em}h2{font-size:clamp(2.15rem,4vw,3.65rem);letter-spacing:-.025em}h3{font-size:1.55rem}p{max-width:64ch}a{color:inherit}a:focus-visible,button:focus-visible{outline:3px solid var(--gold);outline-offset:4px}.wrap{width:min(1160px,calc(100% - 2.5rem));margin:auto}.skip{position:absolute;left:-9999px;top:1rem;background:white;padding:.5rem}.skip:focus{left:1rem;z-index:10}.eyebrow{font-size:.82rem;letter-spacing:.18em;text-transform:uppercase;font-weight:700;color:var(--green2)}.button{display:inline-flex;align-items:center;justify-content:center;min-height:50px;padding:.7rem 1.25rem;border:1px solid var(--green);border-radius:3px;background:var(--green);color:white;text-decoration:none;font-weight:650;line-height:1.3;text-align:center;cursor:pointer}.button:hover{background:#215545}.button.secondary{background:transparent;color:var(--green)}.button.secondary:hover{background:#edf2e9}.site-header{background:var(--white);border-bottom:1px solid var(--line)}.nav{min-height:96px;display:flex;align-items:center;justify-content:space-between;gap:2rem}.brand{display:block;flex:0 0 auto;width:246px;line-height:0}.brand img{display:block;width:100%;height:auto}.navlinks{display:flex;align-items:center;gap:1.4rem;font-size:.94rem;font-weight:600}.navlinks a{text-decoration:none}.navlinks a:hover{text-decoration:underline}.navlinks .button{color:white}.hero{background:linear-gradient(125deg,#f7f4eb 15%,#e6eee3 100%);overflow:hidden}.hero-inner{min-height:610px;padding:6.2rem 0 5.7rem;display:grid;grid-template-columns:minmax(0,1.17fr) minmax(280px,.83fr);gap:5rem;align-items:center}.hero h1{max-width:14ch;margin:.5rem 0 1.4rem}.hero .lead{font-size:1.19rem;max-width:52ch}.hero-actions{display:flex;gap:.8rem;flex-wrap:wrap;margin:2rem 0 0}.hero-art{min-height:430px;position:relative;border:1px solid #cfdbce;border-radius:220px 220px 10px 10px;background:radial-gradient(circle at 50% 40%,#fffdf6 0,#e7ece1 48%,#bbd2c2 100%);display:flex;align-items:center;justify-content:center;padding:3rem}.hero-art:after{content:"";position:absolute;inset:18px;border:1px solid rgba(182,139,58,.6);border-radius:210px 210px 4px 4px;pointer-events:none}.art-copy{text-align:center;position:relative;z-index:1}.art-copy span{display:block;font:italic 2.45rem/1.25 Georgia,serif;color:var(--green);max-width:10ch}.art-copy small{display:block;margin:1.5rem auto 0;padding-top:1.1rem;border-top:1px solid var(--gold);font-size:.85rem;letter-spacing:.15em;text-transform:uppercase;color:var(--green2)}section{padding:6rem 0}.section-heading{max-width:760px;margin-bottom:2.6rem}.section-heading p:last-child{font-size:1.1rem}.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem}.step{background:var(--white);border:1px solid var(--line);padding:2rem;min-height:270px}.step .num{display:block;color:var(--gold);font:2.2rem Georgia,serif;margin-bottom:1.8rem}.step p{margin-bottom:0}.band{background:var(--green);color:#f4f4e9}.band h2,.band h3{color:#fffdf5}.band .eyebrow{color:#dbc58e}.band-inner{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center}.band p{color:#e9efe8}.offer-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.2rem}.offer{border:1px solid var(--line);background:var(--white);padding:2rem;display:flex;flex-direction:column;min-height:240px}.offer p{margin-bottom:auto}.offer a{font-weight:700;text-underline-offset:.2em;color:var(--green2)}.pricing{background:#e8efe8}.price-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem;margin-top:2rem}.price-card{padding:2rem;background:var(--white);border-top:4px solid var(--gold);display:flex;flex-direction:column}.price{font:2.2rem Georgia,serif;color:var(--green);margin:.5rem 0 1rem}.price small{font:400 1rem system-ui,sans-serif;color:var(--muted)}.price-note{margin-top:1.5rem;color:var(--muted)}.booking{background:var(--blush)}.booking-inner{display:grid;grid-template-columns:1.1fr .9fr;gap:5rem;align-items:start}.booking-panel{background:var(--white);padding:2rem;border:1px solid #e2d6d1}.booking-panel h3{margin-bottom:.6rem}.booking-panel p{margin-bottom:1.5rem}.booking-panel .button{width:100%}.contact-address{display:block;padding:.8rem 1rem;margin:.4rem 0 1rem;border:1px solid var(--line);background:var(--ivory);color:var(--green);font-weight:700;overflow-wrap:anywhere;user-select:all}.contact-actions{display:grid;gap:.65rem}.copy-status{min-height:1.5em;margin:.5rem 0 0;color:var(--green2)}.small{font-size:.9rem;color:var(--muted)}.footer{background:var(--green);color:#e8efe8;padding:3rem 0}.footer-inner{display:flex;justify-content:space-between;gap:2rem;align-items:center}.footer img{width:210px;background:#fffefa;padding:.45rem;border-radius:2px}.footer p{margin:.8rem 0 0}.footer a{color:inherit;text-underline-offset:.2em}
+    
+    /* Functional enhancement styles matching palette */
+    .button.small{min-height:40px;padding:.45rem 1rem;font-size:.92rem}
+    .badge{display:inline-block;padding:.2rem .6rem;border-radius:2px;font-size:.78rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em}
+    .badge.active{background:#dbe7d8;color:#123e32}
+    .badge.gold{background:#fef3d6;color:#8f6b1e}
+    
+    /* Interactive booking widget in #book */
+    .booking-engine{background:var(--white);padding:2rem;border:1px solid #e2d6d1;margin-bottom:2rem}
+    .slot-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(105px,1fr));gap:.6rem;margin-top:.8rem}
+    .slot-btn{padding:.6rem .4rem;border:1px solid var(--line);background:var(--ivory);border-radius:3px;font-weight:600;font-size:.88rem;color:var(--green);cursor:pointer;text-align:center}
+    .slot-btn:hover{background:var(--sage);border-color:var(--green2)}
+    .slot-btn.selected{background:var(--green);color:white;border-color:var(--green)}
+    
+    /* Modals */
+    .modal-backdrop{position:fixed;inset:0;background:rgba(18,62,50,0.6);display:none;align-items:center;justify-content:center;z-index:200}
+    .modal-box{background:var(--white);border:1px solid var(--line);border-radius:4px;width:min(520px,calc(100% - 2rem));padding:2.2rem;max-height:90vh;overflow-y:auto;box-shadow:0 8px 30px rgba(0,0,0,0.15)}
+    .modal-tabs{display:flex;gap:1rem;border-bottom:1px solid var(--line);margin-bottom:1.5rem}
+    .modal-tab-btn{background:none;border:none;padding:.6rem 0;font-weight:600;font-size:1rem;color:var(--muted);cursor:pointer;border-bottom:2px solid transparent}
+    .modal-tab-btn.active{color:var(--green);border-bottom-color:var(--gold)}
+    .form-group{margin-bottom:1.2rem}
+    .form-group label{display:block;font-size:.88rem;font-weight:600;margin-bottom:.4rem;color:var(--green2)}
+    .form-group input,.form-group select,.form-group textarea{width:100%;padding:.75rem;border:1px solid var(--line);border-radius:3px;font-size:.95rem}
+    .alert-box{padding:.8rem 1rem;border-radius:3px;font-size:.9rem;margin-bottom:1rem;display:none}
+    .alert-success{background:#dbe7d8;color:#123e32;border:1px solid #c2d8bc}
+    .alert-error{background:#fbeae8;color:#8a251e;border:1px solid #f2c7c3}
+
     @media(max-width:900px){.price-grid{grid-template-columns:1fr}.nav{padding:1rem 0;flex-wrap:wrap}.navlinks{width:100%;justify-content:space-between;gap:.7rem;flex-wrap:wrap}.hero-inner{gap:2rem}.hero-art{min-height:350px}.band-inner,.booking-inner{gap:2rem}}@media(max-width:700px){.wrap{width:min(100% - 2rem,520px)}.nav{min-height:auto}.brand{width:195px}.navlinks{font-size:.86rem}.navlinks .button{padding:.5rem .7rem;min-height:40px}.hero-inner{display:block;padding:4rem 0}.hero h1{max-width:13ch}.hero-art{min-height:270px;margin-top:3rem;border-radius:180px 180px 8px 8px}.hero-art:after{border-radius:160px 160px 4px 4px}.art-copy span{font-size:1.85rem}section{padding:4rem 0}.steps,.offer-grid,.price-grid,.band-inner,.booking-inner{grid-template-columns:1fr}.step,.offer{min-height:0}.footer-inner{display:block}.footer img{width:180px}}
   </style>
 </head>
 <body>
   <a class="skip" href="#main">Skip to content</a>
-  <header class="site-header"><div class="wrap nav"><a class="brand" href="#top" aria-label="Sedi Laka Center home"><img src="assets/sedi-laka-logo.png" width="665" height="214" alt="Sedi Laka Center — Awaken Your Light"></a><nav class="navlinks" aria-label="Main navigation"><a href="#approach">Our approach</a><a href="#services">Offerings</a><a href="#fees">Therapy fees</a><a class="button" href="#book">Begin here</a></nav></div></header>
+  <header class="site-header">
+    <div class="wrap nav">
+      <a class="brand" href="#top" aria-label="Sedi Laka Center home"><img src="assets/sedi-laka-logo.png" width="665" height="214" alt="Sedi Laka Center — Awaken Your Light"></a>
+      <nav class="navlinks" aria-label="Main navigation">
+        <a href="#approach">Our approach</a>
+        <a href="#services">Offerings</a>
+        <a href="#fees">Therapy fees</a>
+        <a href="#vision">Vision Board</a>
+        <a href="#resources">Resources</a>
+        <a href="#events">Events</a>
+        <span id="nav-user-container">
+          <button id="nav-auth-btn" class="button secondary" style="min-height:42px;padding:.5rem .9rem;font-size:.88rem" onclick="openAuthModal('signin')">Sign In</button>
+        </span>
+        <a class="button" href="#book">Begin here</a>
+      </nav>
+    </div>
+  </header>
+
   <main id="main">
-    <section class="hero" id="top"><div class="wrap hero-inner"><div><p class="eyebrow">Trauma-informed care · Nairobi, Kenya</p><h1>Make room for a way forward.</h1><p class="lead">When life feels overwhelming, you deserve a place to pause, understand what is happening, and find your next step. Sedi Laka Center offers private therapy, shared experiences and thoughtful resources for the journey.</p><div class="hero-actions"><a class="button" href="#fees">Explore private therapy</a><a class="button secondary" href="#services">See all offerings</a></div></div><div class="hero-art" aria-hidden="true"><div class="art-copy"><span>From overwhelm to clarity to intentional action.</span><small>Awaken Your Light</small></div></div></div></section>
-    <section id="approach"><div class="wrap"><div class="section-heading"><p class="eyebrow">The Sedi Laka approach</p><h2>Come as you are. We begin there.</h2><p>You do not need to arrive with the right words or a complete plan. We begin by making space for your experience, then work together at a pace that respects your circumstances.</p></div><div class="steps"><article class="step"><span class="num">01</span><h3>Pause</h3><p>Find enough safety and steadiness to notice what you are carrying, without pressure to solve it all at once.</p></article><article class="step"><span class="num">02</span><h3>Understand</h3><p>Explore the patterns, feelings and needs beneath the overwhelm. Naming what is happening can make room for clarity.</p></article><article class="step"><span class="num">03</span><h3>Move with intention</h3><p>Choose practical next steps that fit your life, while leaving room to reflect, adapt and begin again.</p></article></div></div></section>
-    <section class="band"><div class="wrap band-inner"><div><p class="eyebrow">A note from Sarah</p><h2>“As long as you are alive, there is hope.”</h2></div><div><p>I’m Sarah Kihuha, a trauma therapist and therapeutic coach. I founded Sedi Laka Center to offer a calm, nonjudgmental space where people can reconnect with themselves and their capacity to move forward.</p><p>Our name means “my light.” Sometimes the work begins by remembering that your light is still there, even in a difficult season.</p></div></div></section>
-    <section id="services"><div class="wrap"><div class="section-heading"><p class="eyebrow">Ways to work together</p><h2>Four ways to connect with Sedi Laka.</h2><p>Each offering has its own purpose. You can begin with the one that fits where you are now.</p></div><div class="offer-grid"><article class="offer"><h3>Private therapy</h3><p>One-to-one, trauma-informed support to explore what you are carrying, understand your patterns and find useful next steps.</p><a href="#fees">Explore sessions and fees</a></article><article class="offer"><h3>Vision Board Experience</h3><p>A small, year-long group experience rooted in reflection, vision and mutual encouragement. This is a coaching-oriented experience, separate from private therapy.</p><a href="#vision">Explore the experience</a></article><article class="offer"><h3>Lifelines &amp; Guided Resources</h3><p>Reflective tools for use in your own time, including planners and future guides, journals and audio or video resources.</p><a href="#resources">Explore resources</a></article><article class="offer"><h3>Events &amp; Experiences</h3><p>Retreats and live online events hosted throughout the year, with space to connect, reflect and grow together.</p><a href="#events">See events</a></article></div></div></section>
-    <section class="pricing" id="fees"><div class="wrap"><div class="section-heading"><p class="eyebrow">Private therapy · fees</p><h2>Choose a place to begin.</h2><p>Book an Exploration Session to share where you are in your journey. We can understand what you need, assess whether working together is a good fit and plan useful next steps.</p></div><div class="price-grid"><article class="price-card"><h3>Exploration Session</h3><p class="price">US$100 <small>/ session</small></p><p>A first private session to explore your situation and decide together what comes next.</p></article><article class="price-card"><h3>Clarity Package</h3><p class="price">US$475 <small>/ five sessions</small></p><p>Five weekly private sessions to make space for understanding and focused work.</p></article><article class="price-card"><h3>Integration Package</h3><p class="price">US$900 <small>/ ten sessions</small></p><p>Ten private sessions over a maximum of three months for sustained work and integration.</p></article></div><p class="price-note">At the end of a package, we review your progress together. You can continue with individual sessions, choose a suitable package, pause or conclude the work.</p></div></section>
-    <section id="vision"><div class="wrap"><div class="section-heading"><p class="eyebrow">Vision Board Experience</p><h2>A year of shared intention.</h2><p>Begin at the start-of-year Vision Board Brunch, a guided gathering to shape your vision for the year. After the brunch, you can choose whether to continue with a small, intimate group for the rest of the year.</p></div><div class="steps"><article class="step"><span class="num">01</span><h3>Begin together</h3><p>Join the Vision Board Brunch. The group has no more than 15 participants and closes to new members after February, so the space can remain familiar and private.</p></article><article class="step"><span class="num">02</span><h3>Keep showing up</h3><p>For those who continue: one virtual group session each month, ongoing group connection, and a retreat each quarter for reflection, accountability and encouragement.</p></article><article class="step"><span class="num">03</span><h3>Celebrate the year</h3><p>Close with an end-of-year celebration of what you have discovered and built together. You are free to leave the group at any point.</p></article></div><p class="price-note">This is a group coaching experience, not group therapy. Dates, participation details and fees will be announced here.</p></div></section>
-    <section class="pricing" id="resources"><div class="wrap"><div class="section-heading"><p class="eyebrow">Lifelines &amp; Guided Resources</p><h2>Support you can return to.</h2><p>Planners, reflective guides and guided journals are part of the Sedi Laka vision. Audio and video guides may join them over time. As resources are released, you will find them here.</p></div></div></section>
-    <section id="events"><div class="wrap"><div class="section-heading"><p class="eyebrow">Events &amp; Experiences</p><h2>Space to gather and grow.</h2><p>Explore Sedi Laka retreats and live online events as dates are announced. Each event will have its own details and way to book.</p></div><div class="booking-panel"><h3>Upcoming events</h3><p>Dates and booking details will appear here when the next events are confirmed. For an enquiry, write to <strong>sedilaka.org@gmail.com</strong>.</p></div></div></section>
-    <section class="booking" id="book"><div class="wrap booking-inner"><div><p class="eyebrow">Begin here</p><h2>Your first step can be simple.</h2><p>Email to request an Exploration Session. Share a few times that usually work for you; there is no need to explain your whole story by email.</p><p>We will reply with availability and practical details so you can decide whether to book.</p></div><div class="booking-panel"><h3>Request an Exploration Session</h3><p>Private first session · US$100</p><span class="small">Send your request to:</span><span class="contact-address" id="contact-email">sedilaka.org@gmail.com</span><div class="contact-actions"><button class="button" type="button" id="copy-email">Copy email address</button><a class="button secondary" href="mailto:sedilaka.org@gmail.com?subject=Exploration%20Session%20enquiry">Open email app</a></div><p class="small copy-status" id="copy-status" role="status" aria-live="polite">If the email app does not open, copy the address and paste it into your preferred email service.</p><p class="small" style="margin:1rem 0 0">Email is for scheduling and enquiries; therapy takes place in an appointment. If you are in immediate danger, contact local emergency services.</p></div></div></section>
+    <section class="hero" id="top">
+      <div class="wrap hero-inner">
+        <div>
+          <p class="eyebrow">Trauma-informed care · Nairobi, Kenya</p>
+          <h1>Make room for a way forward.</h1>
+          <p class="lead">When life feels overwhelming, you deserve a place to pause, understand what is happening, and find your next step. Sedi Laka Center offers private therapy, shared experiences and thoughtful resources for the journey.</p>
+          <div class="hero-actions">
+            <a class="button" href="#fees">Explore private therapy</a>
+            <a class="button secondary" href="#services">See all offerings</a>
+          </div>
+        </div>
+        <div class="hero-art" aria-hidden="true">
+          <div class="art-copy">
+            <span>From overwhelm to clarity to intentional action.</span>
+            <small>Awaken Your Light</small>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="approach">
+      <div class="wrap">
+        <div class="section-heading">
+          <p class="eyebrow">The Sedi Laka approach</p>
+          <h2>Come as you are. We begin there.</h2>
+          <p>You do not need to arrive with the right words or a complete plan. We begin by making space for your experience, then work together at a pace that respects your circumstances.</p>
+        </div>
+        <div class="steps">
+          <article class="step">
+            <span class="num">01</span>
+            <h3>Pause</h3>
+            <p>Find enough safety and steadiness to notice what you are carrying, without pressure to solve it all at once.</p>
+          </article>
+          <article class="step">
+            <span class="num">02</span>
+            <h3>Understand</h3>
+            <p>Explore the patterns, feelings and needs beneath the overwhelm. Naming what is happening can make room for clarity.</p>
+          </article>
+          <article class="step">
+            <span class="num">03</span>
+            <h3>Move with intention</h3>
+            <p>Choose practical next steps that fit your life, while leaving room to reflect, adapt and begin again.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="band">
+      <div class="wrap band-inner">
+        <div>
+          <p class="eyebrow">A note from Sarah</p>
+          <h2>“As long as you are alive, there is hope.”</h2>
+        </div>
+        <div>
+          <p>I’m Sarah Kihuha, a trauma therapist and therapeutic coach. I founded Sedi Laka Center to offer a calm, nonjudgmental space where people can reconnect with themselves and their capacity to move forward.</p>
+          <p>Our name means “my light.” Sometimes the work begins by remembering that your light is still there, even in a difficult season.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="services">
+      <div class="wrap">
+        <div class="section-heading">
+          <p class="eyebrow">Ways to work together</p>
+          <h2>Four ways to connect with Sedi Laka.</h2>
+          <p>Each offering has its own purpose. You can begin with the one that fits where you are now.</p>
+        </div>
+        <div class="offer-grid">
+          <article class="offer">
+            <h3>Private therapy</h3>
+            <p>One-to-one, trauma-informed support to explore what you are carrying, understand your patterns and find useful next steps.</p>
+            <a href="#fees">Explore sessions and fees</a>
+          </article>
+          <article class="offer">
+            <h3>Vision Board Experience</h3>
+            <p>A small, year-long group experience rooted in reflection, vision and mutual encouragement. This is a coaching-oriented experience, separate from private therapy.</p>
+            <a href="#vision">Explore the experience</a>
+          </article>
+          <article class="offer">
+            <h3>Lifelines &amp; Guided Resources</h3>
+            <p>Reflective tools for use in your own time, including planners and future guides, journals and audio or video resources.</p>
+            <a href="#resources">Explore resources</a>
+          </article>
+          <article class="offer">
+            <h3>Events &amp; Experiences</h3>
+            <p>Retreats and live online events hosted throughout the year, with space to connect, reflect and grow together.</p>
+            <a href="#events">See events</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="pricing" id="fees">
+      <div class="wrap">
+        <div class="section-heading">
+          <p class="eyebrow">Private therapy · fees</p>
+          <h2>Choose a place to begin.</h2>
+          <p>Book an Exploration Session to share where you are in your journey. We can understand what you need, assess whether working together is a good fit and plan useful next steps.</p>
+        </div>
+        <div class="price-grid">
+          <article class="price-card">
+            <h3>Exploration Session</h3>
+            <p class="price">US$100 <small>/ session</small></p>
+            <p>A first private session to explore your situation and decide together what comes next.</p>
+            <button class="button small" style="width:100%;margin-top:auto" onclick="openBookingDirect('srv-exploration-session','Exploration Session')">Book Session</button>
+          </article>
+          <article class="price-card">
+            <h3>Clarity Package</h3>
+            <p class="price">US$475 <small>/ five sessions</small></p>
+            <p>Five weekly private sessions to make space for understanding and focused work.</p>
+            <button class="button small" style="width:100%;margin-top:auto" onclick="purchasePackageDirect('srv-clarity-package','Clarity Package', 475)">Purchase Package</button>
+          </article>
+          <article class="price-card">
+            <h3>Integration Package</h3>
+            <p class="price">US$900 <small>/ ten sessions</small></p>
+            <p>Ten private sessions over a maximum of three months for sustained work and integration.</p>
+            <button class="button small" style="width:100%;margin-top:auto" onclick="purchasePackageDirect('srv-integration-package','Integration Package', 900)">Purchase Package</button>
+          </article>
+        </div>
+        <p class="price-note">At the end of a package, we review your progress together. You can continue with individual sessions, choose a suitable package, pause or conclude the work.</p>
+      </div>
+    </section>
+
+    <section id="vision">
+      <div class="wrap">
+        <div class="section-heading">
+          <p class="eyebrow">Vision Board Experience</p>
+          <h2>A year of shared intention.</h2>
+          <p>Begin at the start-of-year Vision Board Brunch, a guided gathering to shape your vision for the year. After the brunch, you can choose whether to continue with a small, intimate group for the rest of the year.</p>
+        </div>
+        <div class="steps">
+          <article class="step">
+            <span class="num">01</span>
+            <h3>Begin together</h3>
+            <p>Join the Vision Board Brunch. The group has no more than 15 participants and closes to new members after February, so the space can remain familiar and private.</p>
+          </article>
+          <article class="step">
+            <span class="num">02</span>
+            <h3>Keep showing up</h3>
+            <p>For those who continue: one virtual group session each month, ongoing group connection, and a retreat each quarter for reflection, accountability and encouragement.</p>
+          </article>
+          <article class="step">
+            <span class="num">03</span>
+            <h3>Celebrate the year</h3>
+            <p>Close with an end-of-year celebration of what you have discovered and built together. You are free to leave the group at any point.</p>
+          </article>
+        </div>
+        <p class="price-note">This is a group coaching experience, not group therapy. Dates, participation details and fees will be announced here.</p>
+      </div>
+    </section>
+
+    <section class="pricing" id="resources">
+      <div class="wrap">
+        <div class="section-heading">
+          <p class="eyebrow">Lifelines &amp; Guided Resources</p>
+          <h2>Support you can return to.</h2>
+          <p>Planners, reflective guides and guided journals are part of the Sedi Laka vision. Audio and video guides may join them over time. As resources are released, you will find them here.</p>
+        </div>
+        <!-- Live Resources Catalog Grid -->
+        <div class="offer-grid" id="live-resources-grid">
+          <p style="color:var(--muted)">Loading digital resources...</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="events">
+      <div class="wrap">
+        <div class="section-heading">
+          <p class="eyebrow">Events &amp; Experiences</p>
+          <h2>Space to gather and grow.</h2>
+          <p>Explore Sedi Laka retreats and live online events as dates are announced. Each event will have its own details and way to book.</p>
+        </div>
+        <!-- Live Events Catalog Grid -->
+        <div class="offer-grid" id="live-events-grid" style="margin-bottom:2rem">
+          <p style="color:var(--muted)">Loading upcoming events...</p>
+        </div>
+        <div class="booking-panel">
+          <h3>Enquiries &amp; Special Bookings</h3>
+          <p>For group arrangements or custom corporate retreats, write directly to <strong>sedilaka.org@gmail.com</strong>.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Begin Here Section with both interactive booking calendar and original email enquiry fallback -->
+    <section class="booking" id="book">
+      <div class="wrap booking-inner">
+        <div>
+          <p class="eyebrow">Begin here</p>
+          <h2>Your first step can be simple.</h2>
+          <p>Select a date and available time slot below to schedule your private session, or email us if you prefer. There is no need to explain your whole story before we meet.</p>
+          <p>Appointments take place in a private online sanctuary, or in-person in Nairobi by arrangement.</p>
+
+          <!-- Interactive Booking Card -->
+          <div class="booking-engine">
+            <h3 style="margin-bottom:.5rem">Schedule Your Session</h3>
+            <div class="form-group">
+              <label for="booking-service-select">Select Service</label>
+              <select id="booking-service-select">
+                <option value="srv-exploration-session">Exploration Session (US$100)</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="booking-date-input">Select Date</label>
+              <input type="date" id="booking-date-input">
+            </div>
+            <div class="form-group">
+              <label>Available Slots (EAT / Nairobi Time)</label>
+              <div id="booking-slots-container" class="slot-grid">
+                <p style="color:var(--muted);grid-column:1/-1;font-size:.9rem">Select a date above to view open appointment slots.</p>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="booking-delivery">Session Format</label>
+              <select id="booking-delivery">
+                <option value="online">Online Video Sanctuary</option>
+                <option value="in_person">In-Person (Nairobi, Kenya)</option>
+              </select>
+            </div>
+            <button type="button" class="button" id="confirm-booking-btn" style="width:100%" disabled>Confirm Appointment</button>
+            <div id="booking-msg" class="alert-box" style="margin-top:1rem"></div>
+          </div>
+        </div>
+
+        <!-- Original Email Enquiry Panel Preserved as Approved Fallback -->
+        <div class="booking-panel">
+          <h3>Request an Exploration Session by Email</h3>
+          <p>Private first session · US$100</p>
+          <span class="small">Send your request to:</span>
+          <span class="contact-address" id="contact-email">sedilaka.org@gmail.com</span>
+          <div class="contact-actions">
+            <button class="button" type="button" id="copy-email">Copy email address</button>
+            <a class="button secondary" href="mailto:sedilaka.org@gmail.com?subject=Exploration%20Session%20enquiry">Open email app</a>
+          </div>
+          <p class="small copy-status" id="copy-status" role="status" aria-live="polite">If the email app does not open, copy the address and paste it into your preferred email service.</p>
+          <p class="small" style="margin:1rem 0 0">Email is for scheduling and enquiries; therapy takes place in an appointment. If you are in immediate danger, contact local emergency services.</p>
+        </div>
+      </div>
+    </section>
   </main>
+
+  <!-- Auth Modal (Sign In / Register / Reset) -->
+  <div id="auth-modal" class="modal-backdrop">
+    <div class="modal-box">
+      <div class="modal-tabs">
+        <button class="modal-tab-btn active" id="tab-btn-signin" onclick="switchAuthTab('signin')">Sign In</button>
+        <button class="modal-tab-btn" id="tab-btn-register" onclick="switchAuthTab('register')">Create Account</button>
+        <button class="modal-tab-btn" id="tab-btn-reset" onclick="switchAuthTab('reset')">Reset Password</button>
+      </div>
+
+      <div id="auth-alert" class="alert-box"></div>
+
+      <!-- Sign In Form -->
+      <form id="signin-form">
+        <div class="form-group">
+          <label for="login-email">Email Address</label>
+          <input type="email" id="login-email" required placeholder="you@example.com">
+        </div>
+        <div class="form-group">
+          <label for="login-pass">Password</label>
+          <input type="password" id="login-pass" required placeholder="••••••••">
+        </div>
+        <button type="submit" class="button" style="width:100%">Sign In</button>
+      </form>
+
+      <!-- Register Form -->
+      <form id="register-form" style="display:none">
+        <div class="form-group">
+          <label for="reg-name">Full Name</label>
+          <input type="text" id="reg-name" required placeholder="Your Name">
+        </div>
+        <div class="form-group">
+          <label for="reg-email">Email Address</label>
+          <input type="email" id="reg-email" required placeholder="you@example.com">
+        </div>
+        <div class="form-group">
+          <label for="reg-phone">Phone Number (Optional)</label>
+          <input type="tel" id="reg-phone" placeholder="+254...">
+        </div>
+        <div class="form-group">
+          <label for="reg-pass">Password (Min 8 characters)</label>
+          <input type="password" id="reg-pass" required minlength="8" placeholder="••••••••">
+        </div>
+        <button type="submit" class="button" style="width:100%">Create Account</button>
+      </form>
+
+      <!-- Reset Password Form -->
+      <form id="reset-form" style="display:none">
+        <div class="form-group">
+          <label for="reset-email">Email Address</label>
+          <input type="email" id="reset-email" required placeholder="you@example.com">
+        </div>
+        <button type="submit" class="button" style="width:100%">Send Reset Link</button>
+      </form>
+
+      <div style="text-align:center;margin-top:1.5rem">
+        <button type="button" class="button secondary small" onclick="closeAuthModal()">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="wrap footer-inner">
+      <div>
+        <img src="assets/sedi-laka-logo.png" width="665" height="214" alt="Sedi Laka Center">
+        <p>Trauma-informed care · Awakening potential · Building capacity</p>
+      </div>
+      <div>
+        <p><a href="mailto:sedilaka.org@gmail.com">sedilaka.org@gmail.com</a><br>Nairobi, Kenya</p>
+      </div>
+    </div>
+  </footer>
+
   <script>
+    // Copy email address functionality (Original Preserved)
     document.getElementById('copy-email').addEventListener('click', async function () {
       const address = document.getElementById('contact-email').textContent.trim();
       const status = document.getElementById('copy-status');
@@ -49,7 +396,408 @@
         status.textContent = 'Select and copy the address above, then paste it into your email app.';
       }
     });
+
+    // Global User State
+    let currentUser = null;
+    let selectedSlotUtc = null;
+
+    async function checkAuthStatus() {
+      try {
+        const res = await fetch('/api/auth/me');
+        if (res.ok) {
+          const { user } = await res.json();
+          currentUser = user;
+          const container = document.getElementById('nav-user-container');
+          const isStaff = ['admin', 'staff', 'therapist'].includes(user.role);
+          container.innerHTML = `
+            <a href="/portal" class="button secondary small">My Portal</a>
+            ${isStaff ? `<a href="/admin" class="button secondary small" style="background:#f7f4eb">Staff Dashboard</a>` : ''}
+            <button class="button small" style="background:transparent;color:var(--green);border:1px solid var(--line)" onclick="signOutUser()">Sign Out</button>
+          `;
+          loadUserPackagesIntoBooking();
+        }
+      } catch (e) {
+        // Unauthenticated
+      }
+    }
+
+    async function signOutUser() {
+      await fetch('/api/auth/logout', { method: 'POST' });
+      window.location.reload();
+    }
+
+    // Auth Modal handling
+    function openAuthModal(tab = 'signin') {
+      document.getElementById('auth-modal').style.display = 'flex';
+      switchAuthTab(tab);
+    }
+    function closeAuthModal() {
+      document.getElementById('auth-modal').style.display = 'none';
+    }
+    function switchAuthTab(tab) {
+      document.querySelectorAll('.modal-tab-btn').forEach(b => b.classList.remove('active'));
+      document.getElementById(`tab-btn-${tab}`).classList.add('active');
+      document.getElementById('signin-form').style.display = tab === 'signin' ? 'block' : 'none';
+      document.getElementById('register-form').style.display = tab === 'register' ? 'block' : 'none';
+      document.getElementById('reset-form').style.display = tab === 'reset' ? 'block' : 'none';
+      document.getElementById('auth-alert').style.display = 'none';
+    }
+
+    // Sign in submission
+    document.getElementById('signin-form').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const alertBox = document.getElementById('auth-alert');
+      alertBox.style.display = 'none';
+
+      try {
+        const res = await fetch('/api/auth/login', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            email: document.getElementById('login-email').value,
+            password: document.getElementById('login-pass').value
+          })
+        });
+        const data = await res.json();
+        if (!res.ok) throw new Error(data.error);
+
+        closeAuthModal();
+        checkAuthStatus();
+        alert('Welcome back, ' + data.user.fullName + '!');
+      } catch (err) {
+        alertBox.className = 'alert-box alert-error';
+        alertBox.style.display = 'block';
+        alertBox.textContent = err.message;
+      }
+    });
+
+    // Register submission
+    document.getElementById('register-form').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const alertBox = document.getElementById('auth-alert');
+      alertBox.style.display = 'none';
+
+      try {
+        const res = await fetch('/api/auth/register', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            fullName: document.getElementById('reg-name').value,
+            email: document.getElementById('reg-email').value,
+            phone: document.getElementById('reg-phone').value,
+            password: document.getElementById('reg-pass').value
+          })
+        });
+        const data = await res.json();
+        if (!res.ok) throw new Error(data.error);
+
+        closeAuthModal();
+        checkAuthStatus();
+        alert('Account created! A verification link has been sent to your email.');
+      } catch (err) {
+        alertBox.className = 'alert-box alert-error';
+        alertBox.style.display = 'block';
+        alertBox.textContent = err.message;
+      }
+    });
+
+    // Reset password submission
+    document.getElementById('reset-form').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const alertBox = document.getElementById('auth-alert');
+      try {
+        const res = await fetch('/api/auth/forgot-password', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email: document.getElementById('reset-email').value })
+        });
+        const data = await res.json();
+        alertBox.className = 'alert-box alert-success';
+        alertBox.style.display = 'block';
+        alertBox.textContent = data.message;
+      } catch (err) {
+        alertBox.className = 'alert-box alert-error';
+        alertBox.style.display = 'block';
+        alertBox.textContent = err.message;
+      }
+    });
+
+    // Load Live Resources
+    async function loadLiveResources() {
+      const container = document.getElementById('live-resources-grid');
+      try {
+        const res = await fetch('/api/resources');
+        const { resources } = await res.json();
+        if (!resources || !resources.length) return;
+
+        container.innerHTML = resources.map(r => `
+          <article class="offer">
+            <span class="badge ${r.is_free ? 'active' : 'gold'}" style="width:fit-content;margin-bottom:.8rem">
+              ${r.is_free ? 'Complimentary Resource' : `US$${Number(r.price_usd).toFixed(2)}`}
+            </span>
+            <h3>${r.title}</h3>
+            <p>${r.description}</p>
+            <div style="margin-top:1.5rem">
+              ${r.is_free ? `
+                <button class="button small" onclick="acquireResource('${r.id}', true)">Download Free Guide</button>
+              ` : `
+                <button class="button small" onclick="acquireResource('${r.id}', false)">Purchase Resource</button>
+              `}
+            </div>
+          </article>
+        `).join('');
+      } catch (e) {
+        console.error('Failed to load resources:', e);
+      }
+    }
+
+    async function acquireResource(resourceId, isFree) {
+      if (!currentUser) {
+        openAuthModal('signin');
+        return;
+      }
+      if (isFree) {
+        try {
+          const res = await fetch(`/api/resources/${resourceId}/request-download`, { method: 'POST' });
+          const data = await res.json();
+          if (!res.ok) throw new Error(data.error);
+          window.location.href = data.downloadUrl;
+        } catch (err) {
+          alert('Download error: ' + err.message);
+        }
+      } else {
+        // Initiate payment for paid resource
+        try {
+          const res = await fetch('/api/payments/initiate', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ itemType: 'resource', itemId: resourceId, provider: 'mock_sandbox' })
+          });
+          const { payment } = await res.json();
+          window.location.href = payment.checkoutUrl;
+        } catch (err) {
+          alert('Purchase error: ' + err.message);
+        }
+      }
+    }
+
+    // Load Live Events
+    async function loadLiveEvents() {
+      const container = document.getElementById('live-events-grid');
+      try {
+        const res = await fetch('/api/events');
+        const { events } = await res.json();
+        if (!events || !events.length) return;
+
+        container.innerHTML = events.map(e => `
+          <article class="offer">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:.8rem">
+              <span class="badge ${e.available_seats > 0 ? 'active' : 'cancelled'}">
+                ${e.available_seats > 0 ? `${e.available_seats} seats remaining (Max ${e.capacity})` : 'Sold Out'}
+              </span>
+              <span style="font-weight:bold;color:var(--green)">${e.price_usd > 0 ? `US$${Number(e.price_usd).toFixed(2)}` : 'Complimentary'}</span>
+            </div>
+            <h3>${e.title}</h3>
+            <p>${e.description}</p>
+            <p style="font-size:.9rem;color:var(--muted);margin-top:.8rem">
+              <strong>Date:</strong> ${new Date(e.start_time).toLocaleDateString()} (${e.timezone})<br>
+              <strong>Venue:</strong> ${e.venue}
+            </p>
+            <div style="margin-top:1.5rem">
+              <button class="button small" ${e.available_seats <= 0 ? 'disabled' : ''} onclick="registerForEventDirect('${e.id}', ${e.price_usd})">
+                ${e.available_seats <= 0 ? 'Event Full' : 'Register for Event'}
+              </button>
+            </div>
+          </article>
+        `).join('');
+      } catch (e) {
+        console.error('Failed to load events:', e);
+      }
+    }
+
+    async function registerForEventDirect(eventId, price) {
+      if (!currentUser) {
+        openAuthModal('signin');
+        return;
+      }
+      if (price > 0) {
+        // Paid event checkout
+        try {
+          const res = await fetch('/api/payments/initiate', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ itemType: 'event', itemId: eventId, provider: 'mock_sandbox' })
+          });
+          const { payment } = await res.json();
+          window.location.href = payment.checkoutUrl;
+        } catch (err) {
+          alert('Registration error: ' + err.message);
+        }
+      } else {
+        // Free event
+        try {
+          const res = await fetch(`/api/events/${eventId}/register`, { method: 'POST' });
+          const data = await res.json();
+          if (!res.ok) throw new Error(data.error);
+          alert('Registration confirmed! You can view this event in your portal.');
+          loadLiveEvents();
+        } catch (err) {
+          alert('Registration error: ' + err.message);
+        }
+      }
+    }
+
+    // Direct booking / purchase triggers from pricing cards
+    function openBookingDirect(serviceId, serviceName) {
+      const select = document.getElementById('booking-service-select');
+      select.value = serviceId;
+      document.getElementById('book').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    async function purchasePackageDirect(serviceId, serviceName, price) {
+      if (!currentUser) {
+        openAuthModal('signin');
+        return;
+      }
+      try {
+        const res = await fetch('/api/packages/purchase', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ serviceId, provider: 'mock_sandbox' })
+        });
+        const { payment } = await res.json();
+        window.location.href = payment.checkoutUrl;
+      } catch (err) {
+        alert('Package checkout error: ' + err.message);
+      }
+    }
+
+    async function loadUserPackagesIntoBooking() {
+      if (!currentUser) return;
+      try {
+        const res = await fetch('/api/packages/my');
+        const { packages } = await res.json();
+        const select = document.getElementById('booking-service-select');
+        packages.filter(p => p.status === 'active' && p.remaining_sessions > 0).forEach(pkg => {
+          const opt = document.createElement('option');
+          opt.value = `pkg:${pkg.id}`;
+          opt.textContent = `[Active Package] ${pkg.name} (${pkg.remaining_sessions} credits left)`;
+          select.appendChild(opt);
+        });
+      } catch (e) {}
+    }
+
+    // Interactive booking calendar & slot picker
+    const dateInput = document.getElementById('booking-date-input');
+    const slotsContainer = document.getElementById('booking-slots-container');
+    const confirmBtn = document.getElementById('confirm-booking-btn');
+
+    // Default min date: today
+    const tomorrow = new Date();
+    tomorrow.setDate(tomorrow.getDate() + 1);
+    dateInput.min = tomorrow.toISOString().split('T')[0];
+    dateInput.value = tomorrow.toISOString().split('T')[0];
+
+    async function fetchSlots() {
+      const date = dateInput.value;
+      if (!date) return;
+      slotsContainer.innerHTML = '<p style="color:var(--muted);grid-column:1/-1">Checking schedule availability...</p>';
+      selectedSlotUtc = null;
+      confirmBtn.disabled = true;
+
+      try {
+        const res = await fetch(`/api/bookings/availability?date=${date}&timezone=Africa/Nairobi`);
+        const { availableSlots } = await res.json();
+
+        if (!availableSlots || availableSlots.length === 0) {
+          slotsContainer.innerHTML = '<p style="color:var(--muted);grid-column:1/-1">No available slots on this date. Please pick another day.</p>';
+          return;
+        }
+
+        slotsContainer.innerHTML = availableSlots.map(s => `
+          <button type="button" class="slot-btn" data-utc="${s.startTime}">
+            ${s.formattedTime}
+          </button>
+        `).join('');
+
+        document.querySelectorAll('.slot-btn').forEach(btn => {
+          btn.addEventListener('click', () => {
+            document.querySelectorAll('.slot-btn').forEach(b => b.classList.remove('selected'));
+            btn.classList.add('selected');
+            selectedSlotUtc = btn.dataset.utc;
+            confirmBtn.disabled = false;
+          });
+        });
+      } catch (err) {
+        slotsContainer.innerHTML = `<p style="color:red;grid-column:1/-1">Availability error: ${err.message}</p>`;
+      }
+    }
+
+    dateInput.addEventListener('change', fetchSlots);
+
+    // Confirm booking
+    confirmBtn.addEventListener('click', async () => {
+      if (!selectedSlotUtc) return;
+      if (!currentUser) {
+        openAuthModal('signin');
+        return;
+      }
+
+      const bookingMsg = document.getElementById('booking-msg');
+      bookingMsg.style.display = 'none';
+      confirmBtn.disabled = true;
+      confirmBtn.textContent = 'Reserving Slot...';
+
+      const serviceVal = document.getElementById('booking-service-select').value;
+      let serviceId = 'srv-exploration-session';
+      let packageId = null;
+
+      if (serviceVal.startsWith('pkg:')) {
+        packageId = serviceVal.split(':')[1];
+        serviceId = 'srv-clarity-package'; // maps to package service
+      } else {
+        serviceId = serviceVal;
+      }
+
+      try {
+        const res = await fetch('/api/bookings', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            serviceId,
+            packageId,
+            startTimeUtc: selectedSlotUtc,
+            deliveryMethod: document.getElementById('booking-delivery').value,
+            clientTimezone: 'Africa/Nairobi'
+          })
+        });
+
+        const data = await res.json();
+        if (!res.ok) throw new Error(data.error);
+
+        bookingMsg.className = 'alert-box alert-success';
+        bookingMsg.style.display = 'block';
+        bookingMsg.innerHTML = `<strong>Appointment Confirmed!</strong><br>Reference: ${data.appointment.reference_number}<br><a href="/portal" style="color:#123e32;font-weight:bold;margin-top:8px;display:inline-block">View in My Portal &rarr;</a>`;
+        confirmBtn.textContent = 'Booked';
+      } catch (err) {
+        confirmBtn.disabled = false;
+        confirmBtn.textContent = 'Confirm Appointment';
+        bookingMsg.className = 'alert-box alert-error';
+        bookingMsg.style.display = 'block';
+        bookingMsg.textContent = err.message;
+      }
+    });
+
+    // Initialize page
+    checkAuthStatus();
+    loadLiveResources();
+    loadLiveEvents();
+    fetchSlots();
+
+    // Check if URL specifies auth modal
+    if (window.location.search.includes('auth=signin')) {
+      openAuthModal('signin');
+    }
   </script>
-  <footer class="footer"><div class="wrap footer-inner"><div><img src="assets/sedi-laka-logo.png" width="665" height="214" alt="Sedi Laka Center"><p>Trauma-informed care · Awakening potential · Building capacity</p></div><div><p><a href="mailto:sedilaka.org@gmail.com">sedilaka.org@gmail.com</a><br>Nairobi, Kenya</p></div></div></footer>
 </body>
 </html>

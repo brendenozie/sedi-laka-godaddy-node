@@ -1,0 +1,535 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Client Portal · Sedi Laka Center</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23123e32'/%3E%3Cpath d='M32 9c10 12 7 19 0 23-7-4-10-11 0-23Z' fill='%23d1a44b'/%3E%3Crect x='27' y='33' width='10' height='21' rx='2' fill='%23f7f3e9'/%3E%3C/svg%3E">
+  <style>
+    :root{--green:#123e32;--green2:#28594c;--ivory:#faf8f2;--white:#fffefa;--sage:#dbe7d8;--gold:#b68b3a;--ink:#20382f;--muted:#536a60;--line:#d9dfd5;--blush:#f4e8e6}
+    *{box-sizing:border-box}
+    body{margin:0;background:var(--ivory);color:var(--ink);font:400 1rem/1.6 system-ui,-apple-system,sans-serif}
+    h1,h2,h3{font-family:Georgia,serif;font-weight:400;color:var(--green);margin-top:0}
+    a{color:var(--green2);text-decoration:none}
+    a:hover{text-decoration:underline}
+    .wrap{width:min(1160px,calc(100% - 2.5rem));margin:auto}
+    .site-header{background:var(--white);border-bottom:1px solid var(--line);padding:1rem 0}
+    .nav{display:flex;align-items:center;justify-content:space-between;gap:2rem}
+    .brand img{width:180px;height:auto;display:block}
+    .user-badge{display:flex;align-items:center;gap:1.2rem;font-size:.92rem}
+    .button{display:inline-flex;align-items:center;justify-content:center;min-height:42px;padding:.55rem 1.1rem;border:1px solid var(--green);border-radius:3px;background:var(--green);color:white;text-decoration:none;font-weight:650;cursor:pointer}
+    .button:hover{background:#215545;text-decoration:none}
+    .button.secondary{background:transparent;color:var(--green)}
+    .button.secondary:hover{background:#edf2e9}
+    .button.danger{background:#a32d29;border-color:#a32d29;color:white}
+    .button.danger:hover{background:#841f1c}
+    .button.small{min-height:34px;padding:.3rem .75rem;font-size:.85rem}
+    
+    .portal-layout{display:grid;grid-template-columns:260px 1fr;gap:2.5rem;padding:3rem 0 5rem}
+    .sidebar{background:var(--white);border:1px solid var(--line);border-radius:4px;padding:1.5rem}
+    .nav-tabs{display:flex;flex-direction:column;gap:.4rem}
+    .tab-btn{display:flex;align-items:center;padding:.75rem 1rem;background:transparent;border:none;border-radius:3px;font-size:.95rem;font-weight:600;color:var(--muted);text-align:left;cursor:pointer}
+    .tab-btn:hover{background:#f3f6f1;color:var(--green)}
+    .tab-btn.active{background:var(--sage);color:var(--green);font-weight:700}
+    
+    .panel{background:var(--white);border:1px solid var(--line);border-radius:4px;padding:2.5rem}
+    .panel-header{display:flex;justify-content:space-between;align-items:baseline;border-bottom:1px solid var(--line);padding-bottom:1rem;margin-bottom:2rem}
+    .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1.5rem}
+    .card{border:1px solid var(--line);padding:1.5rem;border-radius:3px;background:var(--white)}
+    .badge{display:inline-block;padding:.2rem .6rem;border-radius:2px;font-size:.78rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em}
+    .badge.confirmed,.badge.active,.badge.successful{background:#dbe7d8;color:#123e32}
+    .badge.cancelled,.badge.failed{background:#fbeae8;color:#8a251e}
+    .badge.completed{background:#e7ece1;color:#536a60}
+    .badge.pending{background:#fef3d6;color:#8f6b1e}
+    
+    table{width:100%;border-collapse:collapse;font-size:.92rem}
+    th,td{padding:.85rem;text-align:left;border-bottom:1px solid var(--line)}
+    th{background:#f8f9f6;font-size:.82rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted)}
+    
+    .field{margin-bottom:1.4rem}
+    label{display:block;font-size:.88rem;font-weight:600;margin-bottom:.4rem;color:var(--green2)}
+    input,select,textarea{width:100%;padding:.7rem;border:1px solid var(--line);border-radius:3px;font-size:1rem}
+    .form-msg{margin-top:1rem;padding:.8rem;border-radius:3px;font-size:.9rem;display:none}
+    
+    /* Modal */
+    .modal-backdrop{position:fixed;inset:0;background:rgba(18,62,50,0.5);display:none;align-items:center;justify-content:center;z-index:100}
+    .modal{background:var(--white);border:1px solid var(--line);border-radius:4px;width:min(550px,calc(100% - 2rem));padding:2rem;max-height:90vh;overflow-y:auto}
+    
+    @media(max-width:850px){
+      .portal-layout{grid-template-columns:1fr}
+      .sidebar{margin-bottom:1.5rem}
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap nav">
+      <a href="/" class="brand"><img src="/assets/sedi-laka-logo.png" alt="Sedi Laka Center"></a>
+      <div class="user-badge">
+        <span id="user-display">Loading account...</span>
+        <a href="/" class="button secondary small">Visit Public Site</a>
+        <button id="signout-btn" class="button small">Sign Out</button>
+      </div>
+    </div>
+  </header>
+
+  <div class="wrap portal-layout">
+    <aside class="sidebar">
+      <div class="nav-tabs" role="tablist">
+        <button class="tab-btn active" data-tab="appointments">My Appointments</button>
+        <button class="tab-btn" data-tab="packages">Packages &amp; Balances</button>
+        <button class="tab-btn" data-tab="events">My Events</button>
+        <button class="tab-btn" data-tab="resources">Digital Library</button>
+        <button class="tab-btn" data-tab="payments">Payment History</button>
+        <button class="tab-btn" data-tab="settings">Profile &amp; Privacy</button>
+      </div>
+    </aside>
+
+    <main>
+      <!-- 1. Appointments Tab -->
+      <section id="tab-appointments" class="panel">
+        <div class="panel-header">
+          <h2>My Appointments</h2>
+          <a href="/#fees" class="button small">Book New Session</a>
+        </div>
+        <div id="appointments-list">
+          <p>Loading your appointments...</p>
+        </div>
+      </section>
+
+      <!-- 2. Packages Tab -->
+      <section id="tab-packages" class="panel" style="display:none">
+        <div class="panel-header">
+          <h2>Packages &amp; Session Credits</h2>
+          <a href="/#fees" class="button small">Purchase Package</a>
+        </div>
+        <div id="packages-list">
+          <p>Loading your packages...</p>
+        </div>
+      </section>
+
+      <!-- 3. Events Tab -->
+      <section id="tab-events" class="panel" style="display:none">
+        <div class="panel-header">
+          <h2>Registered Events</h2>
+          <a href="/#events" class="button small">Browse Upcoming Events</a>
+        </div>
+        <div id="events-list">
+          <p>Loading registered events...</p>
+        </div>
+      </section>
+
+      <!-- 4. Digital Library Tab -->
+      <section id="tab-resources" class="panel" style="display:none">
+        <div class="panel-header">
+          <h2>Lifelines &amp; Guided Resources</h2>
+          <a href="/#resources" class="button small">Browse Catalog</a>
+        </div>
+        <div id="resources-list">
+          <p>Loading your digital resources...</p>
+        </div>
+      </section>
+
+      <!-- 5. Payments Tab -->
+      <section id="tab-payments" class="panel" style="display:none">
+        <div class="panel-header">
+          <h2>Payment &amp; Invoice History</h2>
+        </div>
+        <div id="payments-list">
+          <p>Loading transactions...</p>
+        </div>
+      </section>
+
+      <!-- 6. Profile & Privacy Settings -->
+      <section id="tab-settings" class="panel" style="display:none">
+        <div class="panel-header">
+          <h2>Profile &amp; Privacy Settings</h2>
+        </div>
+        
+        <form id="profile-form">
+          <div class="field">
+            <label for="prof-name">Full Name</label>
+            <input type="text" id="prof-name" required>
+          </div>
+          <div class="field">
+            <label for="prof-email">Email Address</label>
+            <input type="email" id="prof-email" disabled style="background:#f3f6f1">
+          </div>
+          <div class="field">
+            <label for="prof-phone">Phone Number</label>
+            <input type="tel" id="prof-phone" placeholder="+254...">
+          </div>
+          <div class="field">
+            <label>
+              <input type="checkbox" id="pref-reminders" style="width:auto;margin-right:8px">
+              Receive appointment email notifications and reminders
+            </label>
+          </div>
+          <button type="submit" class="button">Save Profile</button>
+          <div id="profile-msg" class="form-msg"></div>
+        </form>
+
+        <hr style="margin:2.5rem 0;border:0;border-top:1px solid var(--line)">
+
+        <h3>Data Privacy &amp; Portability</h3>
+        <p style="color:var(--muted);font-size:.92rem">Under the Kenyan Data Protection Act and international privacy principles, you have full ownership over your data.</p>
+        <div style="display:flex;gap:1rem;flex-wrap:wrap;margin-top:1.2rem">
+          <button type="button" id="export-data-btn" class="button secondary">Export All My Data (JSON)</button>
+          <button type="button" id="delete-acct-btn" class="button danger">Request Account Deletion</button>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <!-- Cancellation Modal -->
+  <div id="cancel-modal" class="modal-backdrop">
+    <div class="modal">
+      <h3>Cancel Appointment</h3>
+      <p>Are you sure you want to cancel this appointment? If this was booked through a package, your session credit will be restored to your balance.</p>
+      <form id="cancel-form">
+        <input type="hidden" id="cancel-appt-id">
+        <div class="field">
+          <label for="cancel-reason">Reason for cancellation (optional)</label>
+          <textarea id="cancel-reason" rows="3" placeholder="Let us know if you would like to reschedule..."></textarea>
+        </div>
+        <div style="display:flex;gap:1rem;justify-content:flex-end">
+          <button type="button" class="button secondary" onclick="closeModal('cancel-modal')">Keep Appointment</button>
+          <button type="submit" class="button danger">Confirm Cancellation</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    let currentUser = null;
+
+    // Check authentication on load
+    async function initPortal() {
+      try {
+        const res = await fetch('/api/auth/me');
+        if (!res.ok) {
+          window.location.href = '/?auth=signin';
+          return;
+        }
+        const data = await res.json();
+        currentUser = data.user;
+        document.getElementById('user-display').textContent = `${currentUser.fullName} (${currentUser.role})`;
+        document.getElementById('prof-name').value = currentUser.fullName || '';
+        document.getElementById('prof-email').value = currentUser.email || '';
+        document.getElementById('prof-phone').value = currentUser.phone || '';
+        document.getElementById('pref-reminders').checked = currentUser.communicationPrefs?.emailReminders !== false;
+
+        loadAppointments();
+        loadPackages();
+        loadEvents();
+        loadResources();
+        loadPayments();
+      } catch (err) {
+        window.location.href = '/?auth=signin';
+      }
+    }
+
+    // Tabs switching
+    document.querySelectorAll('.tab-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const tab = btn.dataset.tab;
+        document.querySelectorAll('main > section').forEach(sec => sec.style.display = 'none');
+        document.getElementById(`tab-${tab}`).style.display = 'block';
+      });
+    });
+
+    // 1. Load Appointments
+    async function loadAppointments() {
+      const container = document.getElementById('appointments-list');
+      try {
+        const res = await fetch('/api/bookings/my');
+        const { appointments } = await res.json();
+
+        if (!appointments || appointments.length === 0) {
+          container.innerHTML = `
+            <div style="text-align:center;padding:3rem 1rem;color:var(--muted)">
+              <p>You have no scheduled appointments yet.</p>
+              <a href="/#fees" class="button" style="margin-top:1rem">Book an Exploration Session</a>
+            </div>`;
+          return;
+        }
+
+        container.innerHTML = `
+          <div class="grid">
+            ${appointments.map(a => {
+              const start = new Date(a.start_time).toLocaleString('en-US', {
+                timeZone: a.client_timezone || 'Africa/Nairobi',
+                dateStyle: 'medium',
+                timeStyle: 'short'
+              });
+              const canCancel = a.status === 'confirmed';
+              return `
+                <div class="card">
+                  <div style="display:flex;justify-content:space-between;align-items:start;margin-bottom:.8rem">
+                    <span class="badge ${a.status}">${a.status}</span>
+                    <small style="color:var(--muted)">${a.reference_number}</small>
+                  </div>
+                  <h3 style="font-size:1.25rem;margin-bottom:.4rem">${a.service_name}</h3>
+                  <p style="margin-bottom:.5rem;font-size:.95rem"><strong>Date:</strong> ${start}</p>
+                  <p style="margin-bottom:.5rem;font-size:.92rem;color:var(--muted)"><strong>Format:</strong> ${a.delivery_method === 'online' ? 'Online Video Sanctuary' : 'In-Person (Nairobi)'}</p>
+                  ${a.cancellation_reason ? `<p style="font-size:.85rem;color:#8a251e"><strong>Cancellation:</strong> ${a.cancellation_reason}</p>` : ''}
+                  ${canCancel ? `
+                    <div style="margin-top:1.2rem;display:flex;gap:.5rem">
+                      <button class="button danger small" onclick="openCancelModal('${a.id}')">Cancel</button>
+                    </div>` : ''}
+                </div>`;
+            }).join('')}
+          </div>`;
+      } catch (err) {
+        container.innerHTML = `<p style="color:red">Failed to load appointments: ${err.message}</p>`;
+      }
+    }
+
+    // 2. Load Packages
+    async function loadPackages() {
+      const container = document.getElementById('packages-list');
+      try {
+        const res = await fetch('/api/packages/my');
+        const { packages } = await res.json();
+
+        if (!packages || packages.length === 0) {
+          container.innerHTML = `
+            <div style="text-align:center;padding:3rem 1rem;color:var(--muted)">
+              <p>You do not currently have any active therapy packages.</p>
+              <a href="/#fees" class="button" style="margin-top:1rem">Explore Therapy Packages</a>
+            </div>`;
+          return;
+        }
+
+        container.innerHTML = `
+          <div class="grid">
+            ${packages.map(p => `
+              <div class="card" style="border-top:4px solid var(--gold)">
+                <div style="display:flex;justify-content:space-between;margin-bottom:.5rem">
+                  <span class="badge ${p.status}">${p.status}</span>
+                  <small style="color:var(--muted)">Expires: ${p.expires_at ? new Date(p.expires_at).toLocaleDateString() : 'N/A'}</small>
+                </div>
+                <h3 style="margin-bottom:.5rem">${p.name}</h3>
+                <div style="font:2rem Georgia,serif;color:var(--green);margin:.5rem 0">
+                  ${p.remaining_sessions} <small style="font:400 1rem system-ui,sans-serif;color:var(--muted)">/ ${p.total_sessions} sessions left</small>
+                </div>
+                ${p.remaining_sessions > 0 ? `
+                  <a href="/#book" class="button small" style="width:100%;margin-top:1rem">Book Session Using Credit</a>` : ''}
+                <div style="margin-top:1.5rem;border-top:1px solid var(--line);padding-top:1rem">
+                  <h4 style="font-size:.85rem;text-transform:uppercase;color:var(--muted);margin-bottom:.5rem">Entitlement Ledger</h4>
+                  <ul style="padding-left:1.2rem;margin:0;font-size:.85rem;color:var(--muted)">
+                    ${p.ledger.map(l => `<li>${l.delta > 0 ? '+' : ''}${l.delta} session (${l.action}): ${l.reason || ''} [Balance: ${l.balance_after}]</li>`).join('')}
+                  </ul>
+                </div>
+              </div>
+            `).join('')}
+          </div>`;
+      } catch (err) {
+        container.innerHTML = `<p style="color:red">Failed to load packages: ${err.message}</p>`;
+      }
+    }
+
+    // 3. Load Events
+    async function loadEvents() {
+      const container = document.getElementById('events-list');
+      try {
+        const res = await fetch('/api/events/my/registrations');
+        const { registrations } = await res.json();
+
+        if (!registrations || registrations.length === 0) {
+          container.innerHTML = `<p style="color:var(--muted);text-align:center;padding:2rem">You have not registered for any events yet. Explore upcoming retreats and workshops above.</p>`;
+          return;
+        }
+
+        container.innerHTML = `
+          <div class="grid">
+            ${registrations.map(r => `
+              <div class="card">
+                <span class="badge ${r.status}">${r.status}</span>
+                <h3 style="margin: .8rem 0 .4rem">${r.event_title}</h3>
+                <p style="font-size:.9rem;color:var(--muted)"><strong>Date:</strong> ${new Date(r.start_time).toLocaleString()} (${r.timezone})</p>
+                <p style="font-size:.9rem;color:var(--muted)"><strong>Venue:</strong> ${r.venue} (${r.delivery_mode.toUpperCase()})</p>
+              </div>
+            `).join('')}
+          </div>`;
+      } catch (err) {
+        container.innerHTML = `<p style="color:red">Failed to load events: ${err.message}</p>`;
+      }
+    }
+
+    // 4. Load Resources
+    async function loadResources() {
+      const container = document.getElementById('resources-list');
+      try {
+        const res = await fetch('/api/resources/my/library');
+        const { library } = await res.json();
+
+        if (!library || library.length === 0) {
+          container.innerHTML = `<p style="color:var(--muted);text-align:center;padding:2rem">No resources available in your library yet.</p>`;
+          return;
+        }
+
+        container.innerHTML = `
+          <div class="grid">
+            ${library.map(r => `
+              <div class="card">
+                <span class="badge active">${r.is_free ? 'Complimentary' : 'Purchased'}</span>
+                <h3 style="margin: .8rem 0 .4rem;font-size:1.2rem">${r.title}</h3>
+                <p style="font-size:.9rem;color:var(--muted);margin-bottom:1.2rem">${r.description}</p>
+                <button class="button small" onclick="downloadResource('${r.id}')">Download Resource</button>
+              </div>
+            `).join('')}
+          </div>`;
+      } catch (err) {
+        container.innerHTML = `<p style="color:red">Failed to load resources: ${err.message}</p>`;
+      }
+    }
+
+    async function downloadResource(resourceId) {
+      try {
+        const res = await fetch(`/api/resources/${resourceId}/request-download`, { method: 'POST' });
+        const data = await res.json();
+        if (!res.ok) throw new Error(data.error);
+        window.location.href = data.downloadUrl;
+      } catch (err) {
+        alert('Download error: ' + err.message);
+      }
+    }
+
+    // 5. Load Payments
+    async function loadPayments() {
+      const container = document.getElementById('payments-list');
+      try {
+        const res = await fetch('/api/payments/my');
+        const { payments } = await res.json();
+
+        if (!payments || payments.length === 0) {
+          container.innerHTML = `<p style="color:var(--muted);text-align:center;padding:2rem">No payment transactions found.</p>`;
+          return;
+        }
+
+        container.innerHTML = `
+          <table>
+            <thead>
+              <tr>
+                <th>Reference</th>
+                <th>Item</th>
+                <th>Method</th>
+                <th>Amount</th>
+                <th>Status</th>
+                <th>Date</th>
+              </tr>
+            </thead>
+            <tbody>
+              ${payments.map(p => {
+                let meta = {};
+                try { meta = JSON.parse(p.metadata_json || '{}'); } catch(e) {}
+                return `
+                  <tr>
+                    <td><code>${p.transaction_reference}</code></td>
+                    <td>${meta.itemTitle || p.item_type}</td>
+                    <td>${p.provider.toUpperCase()}</td>
+                    <td>US$${Number(p.amount).toFixed(2)}</td>
+                    <td><span class="badge ${p.status}">${p.status}</span></td>
+                    <td>${new Date(p.created_at).toLocaleDateString()}</td>
+                  </tr>`;
+              }).join('')}
+            </tbody>
+          </table>`;
+      } catch (err) {
+        container.innerHTML = `<p style="color:red">Failed to load payments: ${err.message}</p>`;
+      }
+    }
+
+    // Profile form
+    document.getElementById('profile-form').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const msg = document.getElementById('profile-msg');
+      msg.style.display = 'none';
+
+      try {
+        const res = await fetch('/api/auth/profile', {
+          method: 'PUT',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            fullName: document.getElementById('prof-name').value,
+            phone: document.getElementById('prof-phone').value,
+            communicationPrefs: {
+              emailReminders: document.getElementById('pref-reminders').checked
+            }
+          })
+        });
+        const data = await res.json();
+        if (!res.ok) throw new Error(data.error);
+
+        msg.style.display = 'block';
+        msg.style.background = '#dbe7d8';
+        msg.style.color = '#123e32';
+        msg.textContent = 'Profile changes saved successfully.';
+      } catch (err) {
+        msg.style.display = 'block';
+        msg.style.background = '#fbeae8';
+        msg.style.color = '#8a251e';
+        msg.textContent = err.message;
+      }
+    });
+
+    // Export Data (GDPR / Kenyan DPA)
+    document.getElementById('export-data-btn').addEventListener('click', () => {
+      window.location.href = '/api/auth/export-data';
+    });
+
+    // Delete Account
+    document.getElementById('delete-acct-btn').addEventListener('click', async () => {
+      if (confirm('Are you completely sure you want to delete your account? All personal identifiers will be permanently erased.')) {
+        const res = await fetch('/api/auth/delete-account', { method: 'DELETE' });
+        if (res.ok) {
+          alert('Account deleted.');
+          window.location.href = '/';
+        }
+      }
+    });
+
+    // Sign out
+    document.getElementById('signout-btn').addEventListener('click', async () => {
+      await fetch('/api/auth/logout', { method: 'POST' });
+      window.location.href = '/';
+    });
+
+    // Cancellation modal
+    function openCancelModal(apptId) {
+      document.getElementById('cancel-appt-id').value = apptId;
+      document.getElementById('cancel-modal').style.display = 'flex';
+    }
+    function closeModal(id) {
+      document.getElementById(id).style.display = 'none';
+    }
+
+    document.getElementById('cancel-form').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const apptId = document.getElementById('cancel-appt-id').value;
+      const reason = document.getElementById('cancel-reason').value;
+
+      try {
+        const res = await fetch(`/api/bookings/${apptId}/cancel`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ reason })
+        });
+        const data = await res.json();
+        if (!res.ok) throw new Error(data.error);
+
+        closeModal('cancel-modal');
+        loadAppointments();
+        loadPackages();
+      } catch (err) {
+        alert('Failed to cancel appointment: ' + err.message);
+      }
+    });
+
+    initPortal();
+  </script>
+</body>
+</html>

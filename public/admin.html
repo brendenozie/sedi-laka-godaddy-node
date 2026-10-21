@@ -1,0 +1,658 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Administrative Dashboard · Sedi Laka Center</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23123e32'/%3E%3Cpath d='M32 9c10 12 7 19 0 23-7-4-10-11 0-23Z' fill='%23d1a44b'/%3E%3Crect x='27' y='33' width='10' height='21' rx='2' fill='%23f7f3e9'/%3E%3C/svg%3E">
+  <style>
+    :root{--green:#123e32;--green2:#28594c;--ivory:#faf8f2;--white:#fffefa;--sage:#dbe7d8;--gold:#b68b3a;--ink:#20382f;--muted:#536a60;--line:#d9dfd5}
+    *{box-sizing:border-box}
+    body{margin:0;background:var(--ivory);color:var(--ink);font:400 1rem/1.6 system-ui,-apple-system,sans-serif}
+    h1,h2,h3{font-family:Georgia,serif;font-weight:400;color:var(--green);margin-top:0}
+    a{color:var(--green2);text-decoration:none}
+    .wrap{width:min(1240px,calc(100% - 2.5rem));margin:auto}
+    .site-header{background:var(--white);border-bottom:1px solid var(--line);padding:1rem 0}
+    .nav{display:flex;align-items:center;justify-content:space-between;gap:2rem}
+    .brand img{width:160px;height:auto;display:block}
+    .user-badge{display:flex;align-items:center;gap:1.2rem;font-size:.92rem}
+    .btn{display:inline-flex;align-items:center;justify-content:center;min-height:38px;padding:.4rem .9rem;border:1px solid var(--green);border-radius:3px;background:var(--green);color:white;text-decoration:none;font-weight:600;font-size:.88rem;cursor:pointer}
+    .btn:hover{background:#215545}
+    .btn.secondary{background:transparent;color:var(--green)}
+    .btn.secondary:hover{background:#edf2e9}
+    .btn.danger{background:#a32d29;border-color:#a32d29;color:white}
+    
+    .admin-layout{display:grid;grid-template-columns:240px 1fr;gap:2rem;padding:2.5rem 0 5rem}
+    .sidebar{background:var(--white);border:1px solid var(--line);border-radius:4px;padding:1.2rem}
+    .nav-tabs{display:flex;flex-direction:column;gap:.3rem}
+    .tab-btn{display:flex;align-items:center;padding:.7rem .9rem;background:transparent;border:none;border-radius:3px;font-size:.92rem;font-weight:600;color:var(--muted);text-align:left;cursor:pointer}
+    .tab-btn:hover{background:#f3f6f1;color:var(--green)}
+    .tab-btn.active{background:var(--sage);color:var(--green);font-weight:700}
+    
+    .panel{background:var(--white);border:1px solid var(--line);border-radius:4px;padding:2rem}
+    .panel-header{display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--line);padding-bottom:1rem;margin-bottom:1.5rem}
+    
+    .metrics-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1.2rem;margin-bottom:2rem}
+    .metric-card{border:1px solid var(--line);border-radius:4px;padding:1.5rem;background:#fcfbf7}
+    .metric-card .num{font:2.3rem Georgia,serif;color:var(--green);margin:.2rem 0}
+    .metric-card small{font-size:.8rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted)}
+    
+    table{width:100%;border-collapse:collapse;font-size:.88rem}
+    th,td{padding:.75rem;text-align:left;border-bottom:1px solid var(--line)}
+    th{background:#f8f9f6;font-size:.78rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted)}
+    
+    .badge{display:inline-block;padding:.2rem .5rem;border-radius:2px;font-size:.75rem;font-weight:700;text-transform:uppercase}
+    .badge.confirmed,.badge.active,.badge.successful{background:#dbe7d8;color:#123e32}
+    .badge.cancelled,.badge.failed{background:#fbeae8;color:#8a251e}
+    .badge.pending{background:#fef3d6;color:#8f6b1e}
+    
+    .field{margin-bottom:1.2rem}
+    label{display:block;font-size:.82rem;font-weight:600;margin-bottom:.3rem;color:var(--green2)}
+    input,select,textarea{width:100%;padding:.6rem;border:1px solid var(--line);border-radius:3px;font-size:.92rem}
+    
+    .modal-backdrop{position:fixed;inset:0;background:rgba(18,62,50,0.5);display:none;align-items:center;justify-content:center;z-index:100}
+    .modal{background:var(--white);border:1px solid var(--line);border-radius:4px;width:min(600px,calc(100% - 2rem));padding:2rem;max-height:90vh;overflow-y:auto}
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap nav">
+      <div style="display:flex;align-items:center;gap:1.5rem">
+        <a href="/" class="brand"><img src="/assets/sedi-laka-logo.png" alt="Sedi Laka Center"></a>
+        <span style="font-size:.8rem;background:var(--gold);color:white;padding:.2rem .6rem;border-radius:2px;font-weight:bold;text-transform:uppercase">Staff Dashboard</span>
+      </div>
+      <div class="user-badge">
+        <span id="admin-user-display">Loading staff profile...</span>
+        <a href="/portal" class="btn secondary">Client Portal</a>
+        <button id="admin-logout-btn" class="btn secondary">Sign Out</button>
+      </div>
+    </div>
+  </header>
+
+  <div class="wrap admin-layout">
+    <aside class="sidebar">
+      <div class="nav-tabs">
+        <button class="tab-btn active" data-tab="overview">Overview &amp; Metrics</button>
+        <button class="tab-btn" data-tab="appointments">Appointments</button>
+        <button class="tab-btn" data-tab="schedule">Schedule &amp; Blackouts</button>
+        <button class="tab-btn" data-tab="events">Events &amp; Attendees</button>
+        <button class="tab-btn" data-tab="payments">Payments &amp; Refunds</button>
+        <button class="tab-btn" data-tab="audit">Audit Logs</button>
+        <button class="tab-btn" data-tab="backups">Backups &amp; Disaster Recovery</button>
+      </div>
+    </aside>
+
+    <main>
+      <!-- 1. Overview Tab -->
+      <section id="tab-overview" class="panel">
+        <div class="panel-header">
+          <h2>Center Overview</h2>
+          <span style="font-size:.85rem;color:var(--muted)" id="last-refreshed"></span>
+        </div>
+        <div class="metrics-grid">
+          <div class="metric-card">
+            <small>Active Clients</small>
+            <div class="num" id="m-clients">0</div>
+          </div>
+          <div class="metric-card">
+            <small>Upcoming Sessions</small>
+            <div class="num" id="m-upcoming">0</div>
+          </div>
+          <div class="metric-card">
+            <small>Active Packages</small>
+            <div class="num" id="m-packages">0</div>
+          </div>
+          <div class="metric-card">
+            <small>Confirmed Revenue</small>
+            <div class="num" id="m-revenue">US$0</div>
+          </div>
+        </div>
+
+        <h3>Recent Appointments Live Feed</h3>
+        <div id="recent-appts-table">Loading feed...</div>
+      </section>
+
+      <!-- 2. Appointments Tab -->
+      <section id="tab-appointments" class="panel" style="display:none">
+        <div class="panel-header">
+          <h2>Appointments Manager</h2>
+          <div style="display:flex;gap:.5rem">
+            <select id="appt-filter-status" style="width:auto">
+              <option value="">All Statuses</option>
+              <option value="confirmed">Confirmed</option>
+              <option value="completed">Completed</option>
+              <option value="cancelled">Cancelled</option>
+              <option value="no_show">No Show</option>
+            </select>
+          </div>
+        </div>
+        <div id="all-appts-table">Loading appointments...</div>
+      </section>
+
+      <!-- 3. Schedule & Blackouts Tab -->
+      <section id="tab-schedule" class="panel" style="display:none">
+        <div class="panel-header">
+          <h2>Working Hours &amp; Blackout Dates</h2>
+          <button class="btn" onclick="openModal('blackout-modal')">+ Add Blackout Period</button>
+        </div>
+        
+        <h3>Weekly Operating Hours</h3>
+        <div id="schedule-table">Loading weekly schedule...</div>
+
+        <h3 style="margin-top:2rem">Configured Blackout Dates &amp; Holidays</h3>
+        <div id="blackouts-table">Loading blackout dates...</div>
+      </section>
+
+      <!-- 4. Events Tab -->
+      <section id="tab-events" class="panel" style="display:none">
+        <div class="panel-header">
+          <h2>Events &amp; Group Experiences</h2>
+          <button class="btn" onclick="openModal('event-modal')">+ Create Event</button>
+        </div>
+        <div id="admin-events-list">Loading events...</div>
+      </section>
+
+      <!-- 5. Payments Tab -->
+      <section id="tab-payments" class="panel" style="display:none">
+        <div class="panel-header">
+          <h2>Payments &amp; Reconciliation</h2>
+        </div>
+        <div id="admin-payments-table">Loading transactions...</div>
+      </section>
+
+      <!-- 6. Audit Logs Tab -->
+      <section id="tab-audit" class="panel" style="display:none">
+        <div class="panel-header">
+          <h2>Security &amp; Operational Audit Trail</h2>
+        </div>
+        <div id="audit-logs-table">Loading audit logs...</div>
+      </section>
+
+      <!-- 7. Backups Tab -->
+      <section id="tab-backups" class="panel" style="display:none">
+        <div class="panel-header">
+          <h2>Database Backups &amp; Disaster Recovery</h2>
+          <button class="btn" id="create-backup-btn">Create Snapshot Now</button>
+        </div>
+        <p style="color:var(--muted);font-size:.9rem">Automated atomic database snapshots generated via SQLite VACUUM INTO. Backups are verified with PRAGMA integrity_check before retention.</p>
+        
+        <div id="backups-list" style="margin-top:1.5rem">Loading backups...</div>
+        <div id="restore-test-result" style="margin-top:1.5rem;display:none;padding:1rem;border-radius:3px"></div>
+      </section>
+    </main>
+  </div>
+
+  <!-- Add Blackout Modal -->
+  <div id="blackout-modal" class="modal-backdrop">
+    <div class="modal">
+      <h3>Register Blackout Period</h3>
+      <form id="blackout-form">
+        <div class="field">
+          <label>Start Date &amp; Time (UTC)</label>
+          <input type="datetime-local" id="bo-start" required>
+        </div>
+        <div class="field">
+          <label>End Date &amp; Time (UTC)</label>
+          <input type="datetime-local" id="bo-end" required>
+        </div>
+        <div class="field">
+          <label>Reason (e.g. Annual Retreat, Public Holiday)</label>
+          <input type="text" id="bo-reason" required>
+        </div>
+        <div style="display:flex;gap:1rem;justify-content:flex-end">
+          <button type="button" class="btn secondary" onclick="closeModal('blackout-modal')">Cancel</button>
+          <button type="submit" class="btn">Save Blackout Period</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Create Event Modal -->
+  <div id="event-modal" class="modal-backdrop">
+    <div class="modal">
+      <h3>Create New Event / Group Experience</h3>
+      <form id="create-event-form">
+        <div class="field">
+          <label>Event Title</label>
+          <input type="text" id="ev-title" required placeholder="e.g. Vision Board Circle">
+        </div>
+        <div class="field">
+          <label>Description</label>
+          <textarea id="ev-desc" rows="3" required></textarea>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem">
+          <div class="field">
+            <label>Start Date &amp; Time</label>
+            <input type="datetime-local" id="ev-start" required>
+          </div>
+          <div class="field">
+            <label>End Date &amp; Time</label>
+            <input type="datetime-local" id="ev-end" required>
+          </div>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem">
+          <div class="field">
+            <label>Capacity Limit</label>
+            <input type="number" id="ev-cap" value="15" required>
+          </div>
+          <div class="field">
+            <label>Price (USD)</label>
+            <input type="number" id="ev-price" value="0.00" step="0.01" required>
+          </div>
+        </div>
+        <div class="field">
+          <label>Venue / Location</label>
+          <input type="text" id="ev-venue" required placeholder="Nairobi Sanctuary / Live Online Room">
+        </div>
+        <div style="display:flex;gap:1rem;justify-content:flex-end">
+          <button type="button" class="btn secondary" onclick="closeModal('event-modal')">Cancel</button>
+          <button type="submit" class="btn">Publish Event</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Attendees Modal -->
+  <div id="attendees-modal" class="modal-backdrop">
+    <div class="modal" style="width:min(750px,calc(100% - 2rem))">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem">
+        <h3 id="attendees-title" style="margin:0">Event Attendees Roster</h3>
+        <button class="btn secondary" onclick="closeModal('attendees-modal')">Close</button>
+      </div>
+      <div id="attendees-content">Loading roster...</div>
+    </div>
+  </div>
+
+  <script>
+    async function initAdmin() {
+      try {
+        const res = await fetch('/api/auth/me');
+        if (!res.ok) { window.location.href = '/?auth=signin'; return; }
+        const { user } = await res.json();
+        if (!['admin', 'staff', 'therapist'].includes(user.role)) {
+          alert('Access denied: Staff or administrator role required.');
+          window.location.href = '/portal';
+          return;
+        }
+        document.getElementById('admin-user-display').textContent = `${user.fullName} (${user.role.toUpperCase()})`;
+        loadOverview();
+      } catch (err) {
+        window.location.href = '/?auth=signin';
+      }
+    }
+
+    // Tab switching
+    document.querySelectorAll('.tab-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const tab = btn.dataset.tab;
+        document.querySelectorAll('main > section').forEach(sec => sec.style.display = 'none');
+        document.getElementById(`tab-${tab}`).style.display = 'block';
+
+        if (tab === 'overview') loadOverview();
+        if (tab === 'appointments') loadAppointments();
+        if (tab === 'schedule') loadSchedule();
+        if (tab === 'events') loadEvents();
+        if (tab === 'payments') loadPayments();
+        if (tab === 'audit') loadAuditLogs();
+        if (tab === 'backups') loadBackups();
+      });
+    });
+
+    // 1. Overview
+    async function loadOverview() {
+      const res = await fetch('/api/admin/overview');
+      const { metrics, recentAppointments } = await res.json();
+      document.getElementById('m-clients').textContent = metrics.totalClients;
+      document.getElementById('m-upcoming').textContent = metrics.upcomingAppointments;
+      document.getElementById('m-packages').textContent = metrics.activePackages;
+      document.getElementById('m-revenue').textContent = `US$${metrics.totalRevenueUsd.toFixed(2)}`;
+      document.getElementById('last-refreshed').textContent = `Updated: ${new Date().toLocaleTimeString()}`;
+
+      const feed = document.getElementById('recent-appts-table');
+      if (!recentAppointments.length) {
+        feed.innerHTML = '<p style="color:var(--muted)">No appointments recorded yet.</p>';
+        return;
+      }
+      feed.innerHTML = `
+        <table>
+          <thead>
+            <tr>
+              <th>Reference</th>
+              <th>Client</th>
+              <th>Service</th>
+              <th>Time</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            ${recentAppointments.map(a => `
+              <tr>
+                <td><code>${a.reference_number}</code></td>
+                <td>${a.client_name} (${a.client_email})</td>
+                <td>${a.service_name}</td>
+                <td>${new Date(a.start_time).toLocaleString()}</td>
+                <td><span class="badge ${a.status}">${a.status}</span></td>
+              </tr>
+            `).join('')}
+          </tbody>
+        </table>`;
+    }
+
+    // 2. Appointments Manager
+    async function loadAppointments() {
+      const status = document.getElementById('appt-filter-status').value;
+      const res = await fetch(`/api/admin/appointments?status=${status}`);
+      const { appointments } = await res.json();
+      const container = document.getElementById('all-appts-table');
+
+      container.innerHTML = `
+        <table>
+          <thead>
+            <tr>
+              <th>Ref</th>
+              <th>Client</th>
+              <th>Phone</th>
+              <th>Service</th>
+              <th>Date &amp; Time</th>
+              <th>Status</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            ${appointments.map(a => `
+              <tr>
+                <td><code>${a.reference_number}</code></td>
+                <td>${a.client_name}<br><small style="color:var(--muted)">${a.client_email}</small></td>
+                <td>${a.client_phone || '—'}</td>
+                <td>${a.service_name}</td>
+                <td>${new Date(a.start_time).toLocaleString()}</td>
+                <td><span class="badge ${a.status}">${a.status}</span></td>
+                <td>
+                  ${a.status === 'confirmed' ? `
+                    <button class="btn secondary" style="min-height:28px;padding:.2rem .5rem;font-size:.78rem" onclick="updateApptStatus('${a.id}','completed')">Complete</button>
+                    <button class="btn secondary" style="min-height:28px;padding:.2rem .5rem;font-size:.78rem" onclick="updateApptStatus('${a.id}','no_show')">No-Show</button>
+                    <button class="btn danger" style="min-height:28px;padding:.2rem .5rem;font-size:.78rem" onclick="updateApptStatus('${a.id}','cancelled')">Cancel</button>
+                  ` : '—'}
+                </td>
+              </tr>
+            `).join('')}
+          </tbody>
+        </table>`;
+    }
+
+    document.getElementById('appt-filter-status').addEventListener('change', loadAppointments);
+
+    async function updateApptStatus(apptId, newStatus) {
+      if (!confirm(`Update appointment to "${newStatus}"?`)) return;
+      await fetch(`/api/admin/appointments/${apptId}/status`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ status: newStatus })
+      });
+      loadAppointments();
+    }
+
+    // 3. Schedule & Blackouts
+    async function loadSchedule() {
+      const res = await fetch('/api/admin/schedule');
+      const { schedule, blackouts } = await res.json();
+      const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+
+      document.getElementById('schedule-table').innerHTML = `
+        <table>
+          <thead><tr><th>Day</th><th>Working</th><th>Start Time</th><th>End Time</th><th>Slot Interval</th><th>Buffer</th></tr></thead>
+          <tbody>
+            ${schedule.map(s => `
+              <tr>
+                <td><strong>${days[s.day_of_week]}</strong></td>
+                <td>${s.is_working_day ? '<span style="color:#205e43;font-weight:bold">Open</span>' : '<span style="color:var(--muted)">Closed</span>'}</td>
+                <td>${s.start_time}</td>
+                <td>${s.end_time}</td>
+                <td>${s.slot_interval_minutes}m</td>
+                <td>${s.buffer_minutes}m</td>
+              </tr>
+            `).join('')}
+          </tbody>
+        </table>`;
+
+      document.getElementById('blackouts-table').innerHTML = blackouts.length ? `
+        <table>
+          <thead><tr><th>Start</th><th>End</th><th>Reason</th><th>Actions</th></tr></thead>
+          <tbody>
+            ${blackouts.map(b => `
+              <tr>
+                <td>${new Date(b.start_time).toLocaleString()}</td>
+                <td>${new Date(b.end_time).toLocaleString()}</td>
+                <td>${b.reason || 'Time Off'}</td>
+                <td><button class="btn danger" style="min-height:26px;padding:.15rem .45rem;font-size:.75rem" onclick="deleteBlackout('${b.id}')">Remove</button></td>
+              </tr>
+            `).join('')}
+          </tbody>
+        </table>` : '<p style="color:var(--muted)">No blackout dates configured.</p>';
+    }
+
+    async function deleteBlackout(id) {
+      if (!confirm('Remove this blackout period?')) return;
+      await fetch(`/api/admin/blackout-dates/${id}`, { method: 'DELETE' });
+      loadSchedule();
+    }
+
+    document.getElementById('blackout-form').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      await fetch('/api/admin/blackout-dates', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          startTime: new Date(document.getElementById('bo-start').value).toISOString(),
+          endTime: new Date(document.getElementById('bo-end').value).toISOString(),
+          reason: document.getElementById('bo-reason').value
+        })
+      });
+      closeModal('blackout-modal');
+      loadSchedule();
+    });
+
+    // 4. Events
+    async function loadEvents() {
+      const res = await fetch('/api/events');
+      const { events } = await res.json();
+      document.getElementById('admin-events-list').innerHTML = `
+        <table>
+          <thead><tr><th>Title</th><th>Date</th><th>Delivery</th><th>Capacity</th><th>Price</th><th>Attendees</th></tr></thead>
+          <tbody>
+            ${events.map(e => `
+              <tr>
+                <td><strong>${e.title}</strong></td>
+                <td>${new Date(e.start_time).toLocaleDateString()}</td>
+                <td>${e.delivery_mode.toUpperCase()}</td>
+                <td>${e.available_seats} / ${e.capacity} left</td>
+                <td>US$${Number(e.price_usd).toFixed(2)}</td>
+                <td><button class="btn secondary" style="min-height:26px;padding:.15rem .5rem;font-size:.75rem" onclick="viewAttendees('${e.id}','${e.title}')">View Roster</button></td>
+              </tr>
+            `).join('')}
+          </tbody>
+        </table>`;
+    }
+
+    async function viewAttendees(eventId, eventTitle) {
+      document.getElementById('attendees-title').textContent = `Attendees: ${eventTitle}`;
+      document.getElementById('attendees-content').innerHTML = '<p>Loading roster...</p>';
+      openModal('attendees-modal');
+
+      const res = await fetch(`/api/admin/events/${eventId}/attendees`);
+      const { attendees } = await res.json();
+
+      if (!attendees.length) {
+        document.getElementById('attendees-content').innerHTML = '<p style="color:var(--muted);padding:1.5rem;text-align:center">No registered attendees yet.</p>';
+        return;
+      }
+
+      document.getElementById('attendees-content').innerHTML = `
+        <table>
+          <thead><tr><th>Name</th><th>Email</th><th>Phone</th><th>Status</th><th>Registered At</th></tr></thead>
+          <tbody>
+            ${attendees.map(a => `
+              <tr>
+                <td><strong>${a.full_name}</strong></td>
+                <td>${a.email}</td>
+                <td>${a.phone || '—'}</td>
+                <td><span class="badge ${a.status}">${a.status}</span></td>
+                <td>${new Date(a.registered_at).toLocaleString()}</td>
+              </tr>
+            `).join('')}
+          </tbody>
+        </table>`;
+    }
+
+    document.getElementById('create-event-form').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      await fetch('/api/admin/events', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          title: document.getElementById('ev-title').value,
+          description: document.getElementById('ev-desc').value,
+          startTime: new Date(document.getElementById('ev-start').value).toISOString(),
+          endTime: new Date(document.getElementById('ev-end').value).toISOString(),
+          capacity: document.getElementById('ev-cap').value,
+          priceUsd: document.getElementById('ev-price').value,
+          venue: document.getElementById('ev-venue').value
+        })
+      });
+      closeModal('event-modal');
+      loadEvents();
+    });
+
+    // 5. Payments & Refunds
+    async function loadPayments() {
+      const res = await fetch('/api/admin/payments');
+      const { payments } = await res.json();
+      document.getElementById('admin-payments-table').innerHTML = `
+        <table>
+          <thead><tr><th>Ref</th><th>Client</th><th>Method</th><th>Amount</th><th>Status</th><th>Date</th><th>Action</th></tr></thead>
+          <tbody>
+            ${payments.map(p => `
+              <tr>
+                <td><code>${p.transaction_reference}</code></td>
+                <td>${p.client_name}</td>
+                <td>${p.provider.toUpperCase()}</td>
+                <td>US$${Number(p.amount).toFixed(2)}</td>
+                <td><span class="badge ${p.status}">${p.status}</span></td>
+                <td>${new Date(p.created_at).toLocaleDateString()}</td>
+                <td>
+                  ${p.status === 'successful' ? `<button class="btn danger" style="min-height:26px;padding:.15rem .5rem;font-size:.75rem" onclick="refundPayment('${p.id}')">Refund</button>` : '—'}
+                </td>
+              </tr>
+            `).join('')}
+          </tbody>
+        </table>`;
+    }
+
+    async function refundPayment(paymentId) {
+      const reason = prompt('Please enter a reason for this refund:');
+      if (!reason) return;
+      await fetch(`/api/admin/payments/${paymentId}/refund`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ reason })
+      });
+      loadPayments();
+    }
+
+    // 6. Audit Logs
+    async function loadAuditLogs() {
+      const res = await fetch('/api/admin/audit-logs');
+      const { logs } = await res.json();
+      document.getElementById('audit-logs-table').innerHTML = logs.length ? `
+        <table>
+          <thead><tr><th>Timestamp</th><th>Action</th><th>Role</th><th>Resource</th><th>Details</th></tr></thead>
+          <tbody>
+            ${logs.map(l => `
+              <tr>
+                <td>${new Date(l.created_at).toLocaleString()}</td>
+                <td><code>${l.action}</code></td>
+                <td>${l.role}</td>
+                <td>${l.resource_type} (${l.resource_id})</td>
+                <td><small style="color:var(--muted)">${l.details_json}</small></td>
+              </tr>
+            `).join('')}
+          </tbody>
+        </table>` : '<p style="color:var(--muted)">No audit entries found.</p>';
+    }
+
+    // 7. Backups
+    async function loadBackups() {
+      const res = await fetch('/api/admin/backups');
+      const { backups } = await res.json();
+      document.getElementById('backups-list').innerHTML = backups.length ? `
+        <table>
+          <thead><tr><th>Filename</th><th>Size</th><th>Created</th><th>Actions</th></tr></thead>
+          <tbody>
+            ${backups.map(b => `
+              <tr>
+                <td><code>${b.filename}</code></td>
+                <td>${(b.sizeBytes / 1024).toFixed(1)} KB</td>
+                <td>${new Date(b.createdAt).toLocaleString()}</td>
+                <td>
+                  <button class="btn secondary" style="min-height:26px;padding:.15rem .5rem;font-size:.75rem" onclick="runRestoreTest('${b.filename}')">Verify Restore</button>
+                </td>
+              </tr>
+            `).join('')}
+          </tbody>
+        </table>` : '<p style="color:var(--muted)">No existing backups found.</p>';
+    }
+
+    document.getElementById('create-backup-btn').addEventListener('click', async () => {
+      const btn = document.getElementById('create-backup-btn');
+      btn.disabled = true;
+      btn.textContent = 'Creating Snapshot...';
+      try {
+        const res = await fetch('/api/admin/backups/create', { method: 'POST' });
+        const data = await res.json();
+        alert(data.message);
+        loadBackups();
+      } finally {
+        btn.disabled = false;
+        btn.textContent = 'Create Snapshot Now';
+      }
+    });
+
+    async function runRestoreTest(filename) {
+      const resBox = document.getElementById('restore-test-result');
+      resBox.style.display = 'block';
+      resBox.style.background = '#f7f4eb';
+      resBox.textContent = `Testing restore against ${filename}...`;
+
+      const res = await fetch('/api/admin/backups/verify-restore', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ filename })
+      });
+      const data = await res.json();
+
+      if (data.result?.success) {
+        resBox.style.background = '#dbe7d8';
+        resBox.style.color = '#123e32';
+        resBox.innerHTML = `<strong>Restore Verification PASSED!</strong><br>Loaded ${data.result.userCount} users, ${data.result.serviceCount} services, ${data.result.appointmentCount} appointments. Integrity check: OK.`;
+      } else {
+        resBox.style.background = '#fbeae8';
+        resBox.style.color = '#8a251e';
+        resBox.textContent = `Verification FAILED: ${data.result?.error || 'Unknown failure'}`;
+      }
+    }
+
+    // Sign out
+    document.getElementById('admin-logout-btn').addEventListener('click', async () => {
+      await fetch('/api/auth/logout', { method: 'POST' });
+      window.location.href = '/';
+    });
+
+    function openModal(id) { document.getElementById(id).style.display = 'flex'; }
+    function closeModal(id) { document.getElementById(id).style.display = 'none'; }
+
+    initAdmin();
+  </script>
+</body>
+</html>
