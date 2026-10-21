@@ -254,19 +254,19 @@
             <h3>Exploration Session</h3>
             <p class="price">US$100 <small>/ session</small></p>
             <p>A first private session to explore your situation and decide together what comes next.</p>
-            <button class="button small" style="width:100%;margin-top:auto" onclick="openBookingDirect('srv-exploration-session','Exploration Session')">Book Session</button>
+            <button type="button" id="btn-book-exploration" class="button small" style="width:100%;margin-top:auto" onclick="openBookingDirect('srv-exploration-session','Exploration Session')">Book Session</button>
           </article>
           <article class="price-card">
             <h3>Clarity Package</h3>
             <p class="price">US$475 <small>/ five sessions</small></p>
             <p>Five weekly private sessions to make space for understanding and focused work.</p>
-            <button class="button small" style="width:100%;margin-top:auto" onclick="purchasePackageDirect('srv-clarity-package','Clarity Package', 475)">Purchase Package</button>
+            <button type="button" id="btn-purchase-clarity" class="button small" style="width:100%;margin-top:auto" onclick="purchasePackageDirect('srv-clarity-package','Clarity Package', 475)">Purchase Package</button>
           </article>
           <article class="price-card">
             <h3>Integration Package</h3>
             <p class="price">US$900 <small>/ ten sessions</small></p>
             <p>Ten private sessions over a maximum of three months for sustained work and integration.</p>
-            <button class="button small" style="width:100%;margin-top:auto" onclick="purchasePackageDirect('srv-integration-package','Integration Package', 900)">Purchase Package</button>
+            <button type="button" id="btn-purchase-integration" class="button small" style="width:100%;margin-top:auto" onclick="purchasePackageDirect('srv-integration-package','Integration Package', 900)">Purchase Package</button>
           </article>
         </div>
         <p class="price-note">At the end of a package, we review your progress together. You can continue with individual sessions, choose a suitable package, pause or conclude the work.</p>
@@ -394,9 +394,9 @@
   <div id="auth-modal" class="modal-backdrop">
     <div class="modal-box">
       <div class="modal-tabs">
-        <button class="modal-tab-btn active" id="tab-btn-signin" onclick="switchAuthTab('signin')">Sign In</button>
-        <button class="modal-tab-btn" id="tab-btn-register" onclick="switchAuthTab('register')">Create Account</button>
-        <button class="modal-tab-btn" id="tab-btn-reset" onclick="switchAuthTab('reset')">Reset Password</button>
+        <button type="button" class="modal-tab-btn active" id="tab-btn-signin" onclick="switchAuthTab('signin')">Sign In</button>
+        <button type="button" class="modal-tab-btn" id="tab-btn-register" onclick="switchAuthTab('register')">Create Account</button>
+        <button type="button" class="modal-tab-btn" id="tab-btn-reset" onclick="switchAuthTab('reset')">Reset Password</button>
       </div>
 
       <div id="auth-alert" class="alert-box"></div>
@@ -445,7 +445,7 @@
       </form>
 
       <div style="text-align:center;margin-top:1.5rem">
-        <button type="button" class="button secondary small" onclick="closeAuthModal()">Close</button>
+        <button type="button" class="button secondary small" id="btn-close-auth-modal" onclick="closeAuthModal()">Close</button>
       </div>
     </div>
   </div>
@@ -641,9 +641,9 @@
             <p>${r.description}</p>
             <div style="margin-top:1.5rem">
               ${r.is_free ? `
-                <button type="button" class="button small" onclick="acquireResource('${r.id}', true)">Download Free Guide</button>
+                <button type="button" class="button small btn-acquire-resource" data-resource-id="${r.id}" data-is-free="true" onclick="acquireResource('${r.id}', true)">Download Free Guide</button>
               ` : `
-                <button type="button" class="button small" onclick="acquireResource('${r.id}', false)">Purchase Resource</button>
+                <button type="button" class="button small btn-acquire-resource" data-resource-id="${r.id}" data-is-free="false" onclick="acquireResource('${r.id}', false)">Purchase Resource</button>
               `}
             </div>
           </article>
@@ -707,7 +707,7 @@
               <strong>Venue:</strong> ${e.venue}
             </p>
             <div style="margin-top:1.5rem">
-              <button type="button" class="button small" ${e.available_seats <= 0 ? 'disabled' : ''} onclick="registerForEventDirect('${e.id}', ${e.price_usd})">
+              <button type="button" class="button small btn-register-event" data-event-id="${e.id}" data-price="${e.price_usd}" ${e.available_seats <= 0 ? 'disabled' : ''} onclick="registerForEventDirect('${e.id}', ${e.price_usd})">
                 ${e.available_seats <= 0 ? 'Event Full' : 'Register for Event'}
               </button>
             </div>
@@ -905,6 +905,57 @@
         bookingMsg.textContent = err.message;
       }
     });
+
+    // Explicit event listeners for modal controls and pricing cards
+    const navAuthBtn = document.getElementById('nav-auth-btn');
+    if (navAuthBtn) navAuthBtn.addEventListener('click', () => openAuthModal('signin'));
+
+    const tabSignin = document.getElementById('tab-btn-signin');
+    if (tabSignin) tabSignin.addEventListener('click', () => switchAuthTab('signin'));
+
+    const tabRegister = document.getElementById('tab-btn-register');
+    if (tabRegister) tabRegister.addEventListener('click', () => switchAuthTab('register'));
+
+    const tabReset = document.getElementById('tab-btn-reset');
+    if (tabReset) tabReset.addEventListener('click', () => switchAuthTab('reset'));
+
+    const closeBtn = document.getElementById('btn-close-auth-modal');
+    if (closeBtn) closeBtn.addEventListener('click', () => closeAuthModal());
+
+    const authModalEl = document.getElementById('auth-modal');
+    if (authModalEl) {
+      authModalEl.addEventListener('click', (e) => {
+        if (e.target === authModalEl) closeAuthModal();
+      });
+    }
+
+    const btnExploration = document.getElementById('btn-book-exploration');
+    if (btnExploration) btnExploration.addEventListener('click', () => openBookingDirect('srv-exploration-session', 'Exploration Session'));
+
+    const btnClarity = document.getElementById('btn-purchase-clarity');
+    if (btnClarity) btnClarity.addEventListener('click', () => purchasePackageDirect('srv-clarity-package', 'Clarity Package', 475));
+
+    const btnIntegration = document.getElementById('btn-purchase-integration');
+    if (btnIntegration) btnIntegration.addEventListener('click', () => purchasePackageDirect('srv-integration-package', 'Integration Package', 900));
+
+    // Event delegation for dynamic cards
+    const resGrid = document.getElementById('live-resources-grid');
+    if (resGrid) {
+      resGrid.addEventListener('click', (e) => {
+        const btn = e.target.closest('.btn-acquire-resource');
+        if (!btn) return;
+        acquireResource(btn.dataset.resourceId, btn.dataset.isFree === 'true');
+      });
+    }
+
+    const evGrid = document.getElementById('live-events-grid');
+    if (evGrid) {
+      evGrid.addEventListener('click', (e) => {
+        const btn = e.target.closest('.btn-register-event');
+        if (!btn || btn.disabled) return;
+        registerForEventDirect(btn.dataset.eventId, Number(btn.dataset.price || 0));
+      });
+    }
 
     // Initialize page
     checkAuthStatus();
