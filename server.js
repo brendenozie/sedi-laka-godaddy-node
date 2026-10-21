@@ -2,11 +2,13 @@ const app = require('./src/app');
 const config = require('./src/config');
 const { getDb } = require('./src/db');
 const { seedDatabase } = require('./src/db/seed');
+const { ensureAdminAccounts } = require('./src/scripts/ensureAdmin');
 
 // Initialize database schema and initial seeds
 try {
   getDb();
   seedDatabase();
+  ensureAdminAccounts();
 } catch (err) {
   console.error('[Startup Error] Failed to initialize database:', err);
   process.exit(1);

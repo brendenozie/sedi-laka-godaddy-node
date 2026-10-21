@@ -69,6 +69,7 @@
       <a href="/" class="brand"><img src="/assets/sedi-laka-logo.png" alt="Sedi Laka Center"></a>
       <div class="user-badge">
         <span id="user-display">Loading account...</span>
+        <a href="/admin" id="admin-switch-btn" class="button secondary small" style="display:none;background:#edf2e9!important;color:var(--green)!important">Staff Dashboard</a>
         <a href="/" class="button secondary small">Visit Public Site</a>
         <button id="signout-btn" class="button secondary small">Sign Out</button>
       </div>
@@ -216,6 +217,10 @@
         const data = await res.json();
         currentUser = data.user;
         document.getElementById('user-display').textContent = `${currentUser.fullName} (${currentUser.role})`;
+        if (['admin', 'staff', 'therapist'].includes(currentUser.role)) {
+          const switchBtn = document.getElementById('admin-switch-btn');
+          if (switchBtn) switchBtn.style.display = 'inline-flex';
+        }
         document.getElementById('prof-name').value = currentUser.fullName || '';
         document.getElementById('prof-email').value = currentUser.email || '';
         document.getElementById('prof-phone').value = currentUser.phone || '';

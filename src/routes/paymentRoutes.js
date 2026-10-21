@@ -39,26 +39,37 @@ router.get('/my', requireAuth, (req, res) => {
   res.json({ payments });
 });
 
-// GET /api/payments/:reference
-router.get('/:reference', requireAuth, (req, res) => {
+// GET /api/payments/:reference - Public order reference lookup for checkout
+router.get('/:reference', (req, res) => {
   const db = getDb();
   const payment = db.prepare('SELECT * FROM payments WHERE transaction_reference = ?').get(req.params.reference);
   if (!payment) {
     return res.status(404).json({ error: 'Payment transaction not found.' });
   }
-  // IDOR check
-  if (req.user.role === 'client' && payment.user_id !== req.user.id) {
+  // IDOR check: If user is authenticated as a client, ensure it matches their user_id
+  if (req.user && req.user.role === 'client' && payment.user_id && payment.user_id !== req.user.id) {
     return res.status(403).json({ error: 'Unauthorized.' });
   }
   res.json({ payment });
 });
 
 // POST /api/payments/sandbox-checkout - used by client checkout flow & automated tests
-router.post('/sandbox-checkout', requireAuth, (req, res, next) => {
+router.post('/sandbox-checkout', (req, res, next) => {
   try {
     const { transactionReference, simulateSuccess = true } = req.body;
     if (!transactionReference) {
       return res.status(400).json({ error: 'transactionReference is required.' });
+    }
+
+    const db = getDb();
+    const payment = db.prepare('SELECT * FROM payments WHERE transaction_reference = ?').get(transactionReference);
+    if (!payment) {
+      return res.status(404).json({ error: 'Payment transaction not found.' });
+    }
+
+    // IDOR check: If user is authenticated as a client, ensure it matches their user_id
+    if (req.user && req.user.role === 'client' && payment.user_id && payment.user_id !== req.user.id) {
+      return res.status(403).json({ error: 'Unauthorized.' });
     }
 
     const providerTxId = `mock_tx_${Date.now()}`;

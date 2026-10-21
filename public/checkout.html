@@ -11,23 +11,26 @@
     body{margin:0;background:var(--ivory);color:var(--ink);font:400 1rem/1.6 system-ui,-apple-system,sans-serif}
     button,input,select,textarea{font-family:inherit;font-size:inherit}
     h1,h2,h3{font-family:Georgia,serif;font-weight:400;color:var(--green);margin-top:0}
+    a{color:var(--green);text-decoration:underline}
     .wrap{width:min(640px,calc(100% - 2.5rem));margin:3rem auto}
     .card{background:var(--white);border:1px solid var(--line);border-radius:4px;padding:2.5rem;box-shadow:0 4px 15px rgba(18,62,50,0.04)}
-    .header{display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line);padding-bottom:1.5rem;margin-bottom:2rem}
-    .brand img{width:160px;height:auto}
+    .header{display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line);padding-bottom:1.5rem;margin-bottom:1.5rem}
+    .brand img{width:160px;height:auto;display:block}
+    .user-bar{display:flex;align-items:center;justify-content:space-between;background:#f4f7f2;border:1px solid #d4dfd2;padding:.6rem 1rem;border-radius:3px;font-size:.86rem;margin-bottom:1.5rem}
     .price-box{background:#f7f4eb;border-left:4px solid var(--gold);padding:1.2rem 1.5rem;margin:1.5rem 0;border-radius:2px}
     .price{font:2.2rem Georgia,serif;color:var(--green);margin:.2rem 0}
-    .btn{display:inline-flex;align-items:center;justify-content:center;width:100%;min-height:48px;padding:.7rem 1.25rem;border:1px solid var(--green);border-radius:3px;background:var(--green);color:#ffffff !important;text-decoration:none;font-weight:650;font-size:1rem;cursor:pointer;transition:all .15s ease}
+    .btn{display:inline-flex;align-items:center;justify-content:center;width:100%;min-height:48px;padding:.7rem 1.25rem;border:1px solid var(--green);border-radius:3px;background:var(--green);color:#ffffff !important;text-decoration:none !important;font-weight:650;font-size:1rem;cursor:pointer;transition:all .15s ease}
     .btn:hover{background:#215545 !important}
     .btn.secondary{background:transparent !important;color:var(--green) !important;border:1px solid var(--green) !important;margin-top:.8rem}
     .btn.secondary:hover{background:#edf2e9 !important;color:var(--green) !important}
     button:disabled, .btn:disabled, .btn[disabled]{background:#d8e2dc !important;border-color:#c4d3cb !important;color:#496359 !important;cursor:not-allowed !important;opacity:0.92 !important}
-    .status-msg{margin-top:1.2rem;padding:1rem;border-radius:3px;display:none;font-size:.92rem}
+    .status-msg{margin-top:1.2rem;padding:1.2rem;border-radius:3px;display:none;font-size:.94rem;line-height:1.5}
     .status-success{background:#dbe7d8;color:#123e32;border:1px solid #c2d8bc}
     .status-error{background:#fbeae8;color:#8a251e;border:1px solid #f2c7c3}
     .field{margin-bottom:1.2rem}
     label{display:block;font-size:.85rem;font-weight:600;margin-bottom:.4rem;color:var(--green2)}
     input,select{width:100%;padding:.75rem;border:1px solid var(--line);border-radius:3px;font-size:1rem}
+    .auth-box{background:#fafaf6;border:1px dashed var(--line);padding:1.2rem;border-radius:3px;margin-bottom:1.5rem;display:none}
   </style>
 </head>
 <body>
@@ -35,7 +38,31 @@
     <div class="card">
       <div class="header">
         <a href="/" class="brand"><img src="/assets/sedi-laka-logo.png" alt="Sedi Laka Center"></a>
-        <span style="font-size:.85rem;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;font-weight:700">Secure Checkout</span>
+        <span style="font-size:.82rem;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;font-weight:700">Secure Checkout</span>
+      </div>
+
+      <!-- Auth State Banner -->
+      <div id="checkout-auth-banner" class="user-bar">
+        <span id="auth-status-text">Checking authentication status...</span>
+        <span id="auth-action-link"></span>
+      </div>
+
+      <!-- Inline Sign In Box -->
+      <div id="inline-auth-box" class="auth-box">
+        <h3 style="font-size:1.1rem;margin-bottom:.5rem">Sign in to your Sedi Laka Account</h3>
+        <p style="font-size:.85rem;color:var(--muted);margin-bottom:1rem">Sign in to link this purchase directly to your Client Portal.</p>
+        <form id="inline-login-form">
+          <div class="field">
+            <label for="checkout-login-email">Email Address</label>
+            <input type="email" id="checkout-login-email" required placeholder="your.email@example.com">
+          </div>
+          <div class="field">
+            <label for="checkout-login-pass">Password</label>
+            <input type="password" id="checkout-login-pass" required placeholder="••••••••">
+          </div>
+          <div id="inline-auth-alert" style="display:none;color:#8a251e;font-size:.85rem;margin-bottom:.8rem"></div>
+          <button type="submit" class="btn" style="min-height:40px;font-size:.9rem">Sign In &amp; Continue</button>
+        </form>
       </div>
 
       <div id="checkout-loading">
@@ -56,7 +83,7 @@
           <div class="field">
             <label for="provider-select">Payment Method</label>
             <select id="provider-select">
-              <option value="mock_sandbox">Sandbox Verified Test Gateway (Zero charge test)</option>
+              <option value="mock_sandbox">Sandbox Verified Test Gateway (Zero charge verification)</option>
               <option value="mpesa">M-Pesa (Kenya Mobile Money - Daraja STK Push)</option>
               <option value="card_stripe">Credit / Debit Card (Stripe Gateway)</option>
             </select>
@@ -80,6 +107,12 @@
     const urlParams = new URLSearchParams(window.location.search);
     const txRef = urlParams.get('ref');
 
+    const authBannerText = document.getElementById('auth-status-text');
+    const authActionLink = document.getElementById('auth-action-link');
+    const inlineAuthBox = document.getElementById('inline-auth-box');
+    const inlineLoginForm = document.getElementById('inline-login-form');
+    const inlineAuthAlert = document.getElementById('inline-auth-alert');
+
     const loadingEl = document.getElementById('checkout-loading');
     const contentEl = document.getElementById('checkout-content');
     const titleEl = document.getElementById('item-title');
@@ -90,13 +123,64 @@
     const providerSelect = document.getElementById('provider-select');
     const phoneField = document.getElementById('phone-field');
 
+    let currentSessionUser = null;
+
     providerSelect.addEventListener('change', () => {
       phoneField.style.display = providerSelect.value === 'mpesa' ? 'block' : 'none';
     });
 
+    async function checkAuth() {
+      try {
+        const res = await fetch('/api/auth/me');
+        if (res.ok) {
+          const { user } = await res.json();
+          currentSessionUser = user;
+          authBannerText.innerHTML = `Signed in as <strong>${user.fullName || user.email}</strong> (${user.role.toUpperCase()})`;
+          const staffLink = ['admin', 'staff', 'therapist'].includes(user.role) ? ' &middot; <a href="/admin">Admin Dashboard</a>' : '';
+          authActionLink.innerHTML = `<a href="/portal">My Portal</a>${staffLink}`;
+          inlineAuthBox.style.display = 'none';
+        } else {
+          currentSessionUser = null;
+          authBannerText.textContent = 'Not currently signed in';
+          authActionLink.innerHTML = '<a href="#" id="toggle-signin-link">Sign In</a>';
+          document.getElementById('toggle-signin-link').addEventListener('click', (e) => {
+            e.preventDefault();
+            inlineAuthBox.style.display = inlineAuthBox.style.display === 'block' ? 'none' : 'block';
+          });
+        }
+      } catch (e) {
+        currentSessionUser = null;
+        authBannerText.textContent = 'Guest Checkout';
+      }
+    }
+
+    inlineLoginForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      inlineAuthAlert.style.display = 'none';
+      const email = document.getElementById('checkout-login-email').value;
+      const password = document.getElementById('checkout-login-pass').value;
+
+      try {
+        const res = await fetch('/api/auth/login', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email, password })
+        });
+        const data = await res.json();
+        if (!res.ok) throw new Error(data.error || 'Login failed.');
+
+        inlineAuthBox.style.display = 'none';
+        await checkAuth();
+        await loadTransaction();
+      } catch (err) {
+        inlineAuthAlert.style.display = 'block';
+        inlineAuthAlert.textContent = err.message;
+      }
+    });
+
     async function loadTransaction() {
       if (!txRef) {
-        loadingEl.innerHTML = '<p style="color:red">Error: No transaction reference provided in URL.</p>';
+        loadingEl.innerHTML = '<p style="color:#8a251e"><strong>Error:</strong> No transaction reference found in URL. Please initiate your booking or package selection from the <a href="/">homepage</a>.</p>';
         return;
       }
 
@@ -121,14 +205,27 @@
           form.style.display = 'none';
           statusBox.className = 'status-msg status-success';
           statusBox.style.display = 'block';
-          statusBox.innerHTML = `<strong>Payment Verified!</strong> This transaction has already been fulfilled.<br><a href="/portal" style="color:#123e32;font-weight:bold;margin-top:8px;display:inline-block">Go to My Portal &rarr;</a>`;
+          statusBox.innerHTML = `<strong>Payment Verified!</strong> This transaction has already been fulfilled.<br><br>
+            <div style="display:flex;gap:.8rem;flex-wrap:wrap">
+              <a href="/portal" class="btn" style="width:auto;min-height:38px;padding:.4rem 1rem">Go to Client Portal &rarr;</a>
+              ${currentSessionUser && ['admin', 'staff', 'therapist'].includes(currentSessionUser.role) ? '<a href="/admin" class="btn secondary" style="width:auto;min-height:38px;padding:.4rem 1rem;margin-top:0">Staff Dashboard &rarr;</a>' : ''}
+              <a href="/" class="btn secondary" style="width:auto;min-height:38px;padding:.4rem 1rem;margin-top:0">Back to Home</a>
+            </div>`;
           return;
         }
 
         loadingEl.style.display = 'none';
         contentEl.style.display = 'block';
       } catch (err) {
-        loadingEl.innerHTML = `<p style="color:red">Failed to load payment: ${err.message}. Please <a href="/portal">return to portal</a>.</p>`;
+        loadingEl.innerHTML = `
+          <div style="background:#fbeae8;border:1px solid #f2c7c3;padding:1.2rem;border-radius:4px;color:#8a251e">
+            <h3 style="color:#8a251e;margin-bottom:.4rem">Checkout Notice</h3>
+            <p style="margin-bottom:1rem">${err.message}</p>
+            <p style="margin-bottom:0">
+              <button type="button" class="btn" style="min-height:36px;font-size:.85rem;width:auto;padding:.3rem 1rem;display:inline-block;margin-right:.5rem" onclick="inlineAuthBox.style.display='block'">Sign In to Account</button>
+              <a href="/portal" style="color:#123e32;font-weight:600">Return to Portal</a> or <a href="/">Return to Home</a>
+            </p>
+          </div>`;
       }
     }
 
@@ -154,7 +251,14 @@
 
         statusBox.className = 'status-msg status-success';
         statusBox.style.display = 'block';
-        statusBox.innerHTML = `<strong>Payment Successful!</strong><br>${data.message}<br><br><a href="/portal" class="btn" style="margin-top:10px;">View in Client Portal</a>`;
+        statusBox.innerHTML = `
+          <h3 style="margin-bottom:.4rem;color:var(--green)">Payment Successful!</h3>
+          <p style="margin-bottom:1.2rem">${data.message} Your package sessions / booking have been allocated and confirmed.</p>
+          <div style="display:flex;gap:.8rem;flex-wrap:wrap">
+            <a href="/portal" class="btn" style="width:auto;min-height:40px;padding:.5rem 1.2rem">View in Client Portal &rarr;</a>
+            ${currentSessionUser && ['admin', 'staff', 'therapist'].includes(currentSessionUser.role) ? '<a href="/admin" class="btn secondary" style="width:auto;min-height:40px;padding:.5rem 1.2rem;margin-top:0">Go to Staff Dashboard &rarr;</a>' : ''}
+            <a href="/" class="btn secondary" style="width:auto;min-height:40px;padding:.5rem 1.2rem;margin-top:0">Return to Home</a>
+          </div>`;
         form.style.display = 'none';
       } catch (err) {
         btn.disabled = false;
@@ -165,7 +269,10 @@
       }
     });
 
-    loadTransaction();
+    (async () => {
+      await checkAuth();
+      await loadTransaction();
+    })();
   </script>
 </body>
 </html>

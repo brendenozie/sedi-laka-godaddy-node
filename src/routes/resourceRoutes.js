@@ -8,7 +8,7 @@ const { requireAuth } = require('../middleware/auth');
 // GET /api/resources - catalog of digital resources
 router.get('/', (req, res) => {
   const db = getDb();
-  const resources = db.prepare('SELECT * FROM resources WHERE status = "published" ORDER BY created_at DESC').all();
+  const resources = db.prepare("SELECT * FROM resources WHERE status = 'published' ORDER BY created_at DESC").all();
   res.json({ resources });
 });
 
