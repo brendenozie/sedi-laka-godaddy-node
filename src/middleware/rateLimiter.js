@@ -3,7 +3,7 @@ function rateLimiter({ windowMs = 60 * 1000, maxRequests = 30, message = 'Too ma
   const requests = new Map();
 
   // Periodically clean up old buckets
-  setInterval(() => {
+  const cleanupTimer = setInterval(() => {
     const now = Date.now();
     for (const [ip, data] of requests.entries()) {
       if (now - data.startTime > windowMs) {
@@ -11,6 +11,7 @@ function rateLimiter({ windowMs = 60 * 1000, maxRequests = 30, message = 'Too ma
       }
     }
   }, windowMs);
+  cleanupTimer.unref();
 
   return (req, res, next) => {
     const ip = req.ip || req.socket.remoteAddress || '127.0.0.1';

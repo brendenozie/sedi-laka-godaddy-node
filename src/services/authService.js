@@ -305,6 +305,8 @@ function sanitizeUser(user) {
       safeUser.communication_prefs = {};
     }
   }
+  safeUser.fullName = safeUser.full_name;
+  safeUser.communicationPrefs = safeUser.communication_prefs;
   return safeUser;
 }
 
