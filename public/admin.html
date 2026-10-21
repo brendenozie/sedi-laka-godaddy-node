@@ -12,57 +12,65 @@
     button,input,select,textarea{font-family:inherit;font-size:inherit}
     h1,h2,h3{font-family:Georgia,serif;font-weight:400;color:var(--green);margin-top:0}
     a{color:var(--green2);text-decoration:none}
-    .wrap{width:min(1240px,calc(100% - 2.5rem));margin:auto}
+    .wrap{width:min(1360px,calc(100% - 2rem));margin:auto}
     .site-header{background:var(--white);border-bottom:1px solid var(--line);padding:1rem 0}
     .nav{display:flex;align-items:center;justify-content:space-between;gap:2rem}
     .brand img{width:160px;height:auto;display:block}
-    .user-badge{display:flex;align-items:center;gap:1.2rem;font-size:.92rem}
-    .btn{display:inline-flex;align-items:center;justify-content:center;min-height:38px;padding:.4rem .9rem;border:1px solid var(--green);border-radius:3px;background:var(--green);color:#ffffff !important;text-decoration:none;font-weight:600;font-size:.88rem;cursor:pointer;transition:all .15s ease}
+    .user-badge{display:flex;align-items:center;gap:1rem;font-size:.9rem}
+    .btn{display:inline-flex;align-items:center;justify-content:center;min-height:36px;padding:.35rem .85rem;border:1px solid var(--green);border-radius:3px;background:var(--green);color:#ffffff !important;text-decoration:none;font-weight:600;font-size:.85rem;cursor:pointer;transition:all .15s ease}
     .btn:hover{background:#215545 !important}
     .btn.secondary{background:transparent !important;color:var(--green) !important;border:1px solid var(--green) !important}
     .btn.secondary:hover{background:#edf2e9 !important;color:var(--green) !important}
     .btn.danger{background:#a32d29 !important;border-color:#a32d29 !important;color:#ffffff !important}
     .btn.danger:hover{background:#841f1c !important}
+    .btn.small{min-height:28px;padding:.2rem .6rem;font-size:.78rem}
     button:disabled, .btn:disabled, .btn[disabled]{background:#d8e2dc !important;border-color:#c4d3cb !important;color:#496359 !important;cursor:not-allowed !important;opacity:0.92 !important}
     
-    .admin-layout{display:grid;grid-template-columns:240px 1fr;gap:2rem;padding:2.5rem 0 5rem}
+    .admin-layout{display:grid;grid-template-columns:250px 1fr;gap:2rem;padding:2rem 0 5rem}
     .sidebar{background:var(--white);border:1px solid var(--line);border-radius:4px;padding:1.2rem}
     .nav-tabs{display:flex;flex-direction:column;gap:.3rem}
-    .tab-btn{display:flex;align-items:center;padding:.7rem .9rem;background:transparent;border:none;border-radius:3px;font-size:.92rem;font-weight:600;color:var(--muted);text-align:left;cursor:pointer}
+    .tab-btn{display:flex;align-items:center;padding:.65rem .85rem;background:transparent;border:none;border-radius:3px;font-size:.9rem;font-weight:600;color:var(--muted);text-align:left;cursor:pointer}
     .tab-btn:hover{background:#f3f6f1;color:var(--green)}
     .tab-btn.active{background:var(--sage);color:var(--green);font-weight:700}
     
     .panel{background:var(--white);border:1px solid var(--line);border-radius:4px;padding:2rem}
-    .panel-header{display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--line);padding-bottom:1rem;margin-bottom:1.5rem}
+    .panel-header{display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--line);padding-bottom:1rem;margin-bottom:1.5rem;flex-wrap:wrap;gap:1rem}
     
     .metrics-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1.2rem;margin-bottom:2rem}
     .metric-card{border:1px solid var(--line);border-radius:4px;padding:1.5rem;background:#fcfbf7}
     .metric-card .num{font:2.3rem Georgia,serif;color:var(--green);margin:.2rem 0}
     .metric-card small{font-size:.8rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted)}
     
-    table{width:100%;border-collapse:collapse;font-size:.88rem}
-    th,td{padding:.75rem;text-align:left;border-bottom:1px solid var(--line)}
-    th{background:#f8f9f6;font-size:.78rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted)}
+    table{width:100%;border-collapse:collapse;font-size:.88rem;margin-top:.5rem}
+    th,td{padding:.65rem .75rem;text-align:left;border-bottom:1px solid var(--line);vertical-align:middle}
+    th{background:#f8f9f6;font-size:.76rem;text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
     
-    .badge{display:inline-block;padding:.2rem .5rem;border-radius:2px;font-size:.75rem;font-weight:700;text-transform:uppercase}
+    .badge{display:inline-block;padding:.2rem .5rem;border-radius:2px;font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.04em}
     .badge.confirmed,.badge.active,.badge.successful{background:#dbe7d8;color:#123e32}
     .badge.cancelled,.badge.failed{background:#fbeae8;color:#8a251e}
     .badge.pending{background:#fef3d6;color:#8f6b1e}
+    .badge.admin{background:#d8e2dc;color:#123e32}
+    .badge.client{background:#e7ece1;color:#536a60}
     
-    .field{margin-bottom:1.2rem}
+    .field{margin-bottom:1.1rem}
     label{display:block;font-size:.82rem;font-weight:600;margin-bottom:.3rem;color:var(--green2)}
-    input,select,textarea{width:100%;padding:.6rem;border:1px solid var(--line);border-radius:3px;font-size:.92rem}
+    input,select,textarea{width:100%;padding:.55rem .7rem;border:1px solid var(--line);border-radius:3px;font-size:.9rem}
     
-    .modal-backdrop{position:fixed;inset:0;background:rgba(18,62,50,0.5);display:none;align-items:center;justify-content:center;z-index:100}
-    .modal{background:var(--white);border:1px solid var(--line);border-radius:4px;width:min(600px,calc(100% - 2rem));padding:2rem;max-height:90vh;overflow-y:auto}
+    .modal-backdrop{position:fixed;inset:0;background:rgba(18,62,50,0.55);display:none;align-items:center;justify-content:center;z-index:200}
+    .modal{background:var(--white);border:1px solid var(--line);border-radius:4px;width:min(640px,calc(100% - 2rem));padding:2rem;max-height:92vh;overflow-y:auto;box-shadow:0 8px 30px rgba(0,0,0,0.2)}
+    
+    .filter-bar{display:flex;align-items:center;gap:.8rem;flex-wrap:wrap;margin-bottom:1rem}
+    .filter-bar input, .filter-bar select{width:auto;min-width:180px}
+    
+    .console-box{background:#1e2925;color:#e7f3ee;padding:1rem;border-radius:4px;font-family:monospace;font-size:.88rem;overflow-x:auto}
   </style>
 </head>
 <body>
   <header class="site-header">
     <div class="wrap nav">
-      <div style="display:flex;align-items:center;gap:1.5rem">
+      <div style="display:flex;align-items:center;gap:1.2rem">
         <a href="/" class="brand"><img src="/assets/sedi-laka-logo.png" alt="Sedi Laka Center"></a>
-        <span style="font-size:.8rem;background:var(--gold);color:white;padding:.2rem .6rem;border-radius:2px;font-weight:bold;text-transform:uppercase">Staff Dashboard</span>
+        <span style="font-size:.75rem;background:var(--gold);color:white;padding:.2rem .6rem;border-radius:2px;font-weight:bold;text-transform:uppercase">Staff Dashboard</span>
       </div>
       <div class="user-badge">
         <span id="admin-user-display">Loading staff profile...</span>
@@ -76,10 +84,14 @@
     <aside class="sidebar">
       <div class="nav-tabs">
         <button class="tab-btn active" data-tab="overview">Overview &amp; Metrics</button>
+        <button class="tab-btn" data-tab="accounts">All Accounts</button>
+        <button class="tab-btn" data-tab="orders">Orders &amp; Payments</button>
+        <button class="tab-btn" data-tab="services">Services &amp; Pricing</button>
         <button class="tab-btn" data-tab="appointments">Appointments</button>
         <button class="tab-btn" data-tab="schedule">Schedule &amp; Blackouts</button>
         <button class="tab-btn" data-tab="events">Events &amp; Attendees</button>
-        <button class="tab-btn" data-tab="payments">Payments &amp; Refunds</button>
+        <button class="tab-btn" data-tab="resources">Digital Library</button>
+        <button class="tab-btn" data-tab="database">Database Explorer</button>
         <button class="tab-btn" data-tab="audit">Audit Logs</button>
         <button class="tab-btn" data-tab="backups">Backups &amp; Disaster Recovery</button>
       </div>
@@ -94,7 +106,7 @@
         </div>
         <div class="metrics-grid">
           <div class="metric-card">
-            <small>Active Clients</small>
+            <small>Registered Clients</small>
             <div class="num" id="m-clients">0</div>
           </div>
           <div class="metric-card">
@@ -115,55 +127,126 @@
         <div id="recent-appts-table">Loading feed...</div>
       </section>
 
-      <!-- 2. Appointments Tab -->
+      <!-- 2. Accounts Tab -->
+      <section id="tab-accounts" class="panel" style="display:none">
+        <div class="panel-header">
+          <h2>All User Accounts</h2>
+          <button class="btn" onclick="openModal('add-user-modal')">+ Create Account</button>
+        </div>
+        <div class="filter-bar">
+          <input type="text" id="users-search" placeholder="Search by name, email, phone..." oninput="debounce(loadUsers, 300)()">
+          <select id="users-role-filter" onchange="loadUsers()">
+            <option value="">All Roles</option>
+            <option value="client">Clients</option>
+            <option value="staff">Staff</option>
+            <option value="therapist">Therapists</option>
+            <option value="admin">Administrators</option>
+          </select>
+        </div>
+        <div id="users-table-container">Loading accounts...</div>
+      </section>
+
+      <!-- 3. Orders Tab -->
+      <section id="tab-orders" class="panel" style="display:none">
+        <div class="panel-header">
+          <h2>All Orders &amp; Payments</h2>
+          <div style="display:flex;gap:.5rem">
+            <select id="orders-status-filter" onchange="loadOrders()">
+              <option value="">All Statuses</option>
+              <option value="successful">Successful</option>
+              <option value="pending">Pending</option>
+              <option value="refunded">Refunded</option>
+              <option value="failed">Failed</option>
+            </select>
+          </div>
+        </div>
+        <div id="orders-table-container">Loading orders...</div>
+      </section>
+
+      <!-- 4. Services Tab -->
+      <section id="tab-services" class="panel" style="display:none">
+        <div class="panel-header">
+          <h2>Services &amp; Pricing Catalog</h2>
+          <button class="btn" onclick="openCreateServiceModal()">+ Add New Service / Package</button>
+        </div>
+        <p style="color:var(--muted);font-size:.9rem;margin-top:-.5rem;margin-bottom:1.5rem">
+          Manage services, session durations, package bundles, and USD prices displayed across the public website and booking calendar.
+        </p>
+        <div id="services-table-container">Loading services...</div>
+      </section>
+
+      <!-- 5. Appointments Tab -->
       <section id="tab-appointments" class="panel" style="display:none">
         <div class="panel-header">
           <h2>Appointments Manager</h2>
-          <div style="display:flex;gap:.5rem">
-            <select id="appt-filter-status" style="width:auto">
-              <option value="">All Statuses</option>
-              <option value="confirmed">Confirmed</option>
-              <option value="completed">Completed</option>
-              <option value="cancelled">Cancelled</option>
-              <option value="no_show">No Show</option>
-            </select>
-          </div>
+          <select id="appt-filter-status" onchange="loadAppointments()" style="width:auto">
+            <option value="">All Statuses</option>
+            <option value="confirmed">Confirmed</option>
+            <option value="completed">Completed</option>
+            <option value="cancelled">Cancelled</option>
+            <option value="no_show">No Show</option>
+          </select>
         </div>
         <div id="all-appts-table">Loading appointments...</div>
       </section>
 
-      <!-- 3. Schedule & Blackouts Tab -->
+      <!-- 6. Schedule & Blackouts Tab -->
       <section id="tab-schedule" class="panel" style="display:none">
         <div class="panel-header">
           <h2>Working Hours &amp; Blackout Dates</h2>
           <button class="btn" onclick="openModal('blackout-modal')">+ Add Blackout Period</button>
         </div>
         
-        <h3>Weekly Operating Hours</h3>
+        <h3>Weekly Operating Schedule</h3>
         <div id="schedule-table">Loading weekly schedule...</div>
 
         <h3 style="margin-top:2rem">Configured Blackout Dates &amp; Holidays</h3>
         <div id="blackouts-table">Loading blackout dates...</div>
       </section>
 
-      <!-- 4. Events Tab -->
+      <!-- 7. Events Tab -->
       <section id="tab-events" class="panel" style="display:none">
         <div class="panel-header">
           <h2>Events &amp; Group Experiences</h2>
-          <button class="btn" onclick="openModal('event-modal')">+ Create Event</button>
+          <button class="btn" onclick="openCreateEventModal()">+ Create Event</button>
         </div>
         <div id="admin-events-list">Loading events...</div>
       </section>
 
-      <!-- 5. Payments Tab -->
-      <section id="tab-payments" class="panel" style="display:none">
+      <!-- 8. Digital Resources Tab -->
+      <section id="tab-resources" class="panel" style="display:none">
         <div class="panel-header">
-          <h2>Payments &amp; Reconciliation</h2>
+          <h2>Digital Library &amp; Guided Tools</h2>
+          <button class="btn" onclick="openCreateResourceModal()">+ Add Digital Resource</button>
         </div>
-        <div id="admin-payments-table">Loading transactions...</div>
+        <div id="admin-resources-table">Loading digital resources...</div>
       </section>
 
-      <!-- 6. Audit Logs Tab -->
+      <!-- 9. Database Explorer Tab -->
+      <section id="tab-database" class="panel" style="display:none">
+        <div class="panel-header">
+          <h2>Database Explorer &amp; Direct SQL Console</h2>
+        </div>
+        <p style="color:var(--muted);font-size:.9rem">Inspect raw SQLite records and execute safe administrative SQL operations with automated transaction safety and audit tracking.</p>
+        
+        <div class="filter-bar" style="margin-top:1rem">
+          <label style="margin:0;align-self:center">Table:</label>
+          <select id="db-table-select" onchange="inspectTable()"></select>
+          <button class="btn secondary small" onclick="inspectTable()">Refresh Table</button>
+        </div>
+        <div id="db-table-view" style="max-height:450px;overflow:auto;border:1px solid var(--line);border-radius:3px"></div>
+
+        <h3 style="margin-top:2rem">Execute SQL Query</h3>
+        <form id="sql-exec-form">
+          <textarea id="sql-input" rows="3" style="font-family:monospace;font-size:.88rem" placeholder="SELECT * FROM users WHERE role = 'client' LIMIT 10;"></textarea>
+          <div style="display:flex;justify-content:flex-end;gap:1rem;margin-top:.5rem">
+            <button type="submit" class="btn">Execute Query</button>
+          </div>
+        </form>
+        <div id="sql-result" style="margin-top:1rem;display:none" class="console-box"></div>
+      </section>
+
+      <!-- 10. Audit Logs Tab -->
       <section id="tab-audit" class="panel" style="display:none">
         <div class="panel-header">
           <h2>Security &amp; Operational Audit Trail</h2>
@@ -171,7 +254,7 @@
         <div id="audit-logs-table">Loading audit logs...</div>
       </section>
 
-      <!-- 7. Backups Tab -->
+      <!-- 11. Backups Tab -->
       <section id="tab-backups" class="panel" style="display:none">
         <div class="panel-header">
           <h2>Database Backups &amp; Disaster Recovery</h2>
@@ -185,7 +268,266 @@
     </main>
   </div>
 
-  <!-- Add Blackout Modal -->
+  <!-- MODALS -->
+
+  <!-- Add User Modal -->
+  <div id="add-user-modal" class="modal-backdrop">
+    <div class="modal">
+      <h3>Create User Account</h3>
+      <form id="add-user-form">
+        <div class="field">
+          <label>Full Name</label>
+          <input type="text" id="usr-name" required placeholder="Full Name">
+        </div>
+        <div class="field">
+          <label>Email Address</label>
+          <input type="email" id="usr-email" required placeholder="user@example.com">
+        </div>
+        <div class="field">
+          <label>Password (min 8 chars)</label>
+          <input type="password" id="usr-pass" required minlength="8" placeholder="••••••••">
+        </div>
+        <div class="field">
+          <label>Phone Number (optional)</label>
+          <input type="tel" id="usr-phone" placeholder="+254...">
+        </div>
+        <div class="field">
+          <label>Role</label>
+          <select id="usr-role">
+            <option value="client">Client</option>
+            <option value="staff">Staff</option>
+            <option value="therapist">Therapist</option>
+            <option value="admin">Administrator</option>
+          </select>
+        </div>
+        <div class="field">
+          <label><input type="checkbox" id="usr-verified" checked style="width:auto;margin-right:6px"> Mark Email Verified</label>
+        </div>
+        <div style="display:flex;gap:1rem;justify-content:flex-end">
+          <button type="button" class="btn secondary" onclick="closeModal('add-user-modal')">Cancel</button>
+          <button type="submit" class="btn">Create Account</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Edit User Modal -->
+  <div id="edit-user-modal" class="modal-backdrop">
+    <div class="modal">
+      <h3>Edit User Account</h3>
+      <form id="edit-user-form">
+        <input type="hidden" id="edit-usr-id">
+        <div class="field">
+          <label>Full Name</label>
+          <input type="text" id="edit-usr-name" required>
+        </div>
+        <div class="field">
+          <label>Email Address</label>
+          <input type="email" id="edit-usr-email" disabled style="background:#f3f6f1">
+        </div>
+        <div class="field">
+          <label>Phone Number</label>
+          <input type="tel" id="edit-usr-phone">
+        </div>
+        <div class="field">
+          <label>Role</label>
+          <select id="edit-usr-role">
+            <option value="client">Client</option>
+            <option value="staff">Staff</option>
+            <option value="therapist">Therapist</option>
+            <option value="admin">Administrator</option>
+          </select>
+        </div>
+        <div class="field">
+          <label><input type="checkbox" id="edit-usr-verified" style="width:auto;margin-right:6px"> Email Verified</label>
+        </div>
+        <div style="display:flex;gap:1rem;justify-content:flex-end">
+          <button type="button" class="btn secondary" onclick="closeModal('edit-user-modal')">Cancel</button>
+          <button type="submit" class="btn">Save Changes</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Reset User Password Modal -->
+  <div id="reset-user-pwd-modal" class="modal-backdrop">
+    <div class="modal">
+      <h3>Reset User Password</h3>
+      <p id="reset-pwd-user-label" style="color:var(--muted);font-size:.9rem"></p>
+      <form id="reset-user-pwd-form">
+        <input type="hidden" id="reset-pwd-usr-id">
+        <div class="field">
+          <label>New Password (min 8 characters)</label>
+          <input type="password" id="reset-pwd-new" required minlength="8" placeholder="••••••••">
+        </div>
+        <div style="display:flex;gap:1rem;justify-content:flex-end">
+          <button type="button" class="btn secondary" onclick="closeModal('reset-user-pwd-modal')">Cancel</button>
+          <button type="submit" class="btn">Reset Password</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Service Modal (Add / Edit) -->
+  <div id="service-modal" class="modal-backdrop">
+    <div class="modal">
+      <h3 id="service-modal-title">Service / Package Configuration</h3>
+      <form id="service-form">
+        <input type="hidden" id="srv-edit-id">
+        <div class="field">
+          <label>Service / Offering Name</label>
+          <input type="text" id="srv-name" required placeholder="e.g. Clarity Package">
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem">
+          <div class="field">
+            <label>Type</label>
+            <select id="srv-type">
+              <option value="single_session">Single Session</option>
+              <option value="package">Package / Bundle</option>
+            </select>
+          </div>
+          <div class="field">
+            <label>Price (USD)</label>
+            <input type="number" id="srv-price" step="0.01" required placeholder="475.00">
+          </div>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem">
+          <div class="field">
+            <label>Duration (Minutes per session)</label>
+            <input type="number" id="srv-duration" value="50" required>
+          </div>
+          <div class="field">
+            <label>Session Count in Bundle</label>
+            <input type="number" id="srv-sessions" value="1" required>
+          </div>
+        </div>
+        <div class="field">
+          <label>Description</label>
+          <textarea id="srv-desc" rows="3" required placeholder="Detailed clinical or coaching description..."></textarea>
+        </div>
+        <div class="field">
+          <label><input type="checkbox" id="srv-active" checked style="width:auto;margin-right:6px"> Active in Catalog &amp; Booking</label>
+        </div>
+        <div style="display:flex;gap:1rem;justify-content:flex-end">
+          <button type="button" class="btn secondary" onclick="closeModal('service-modal')">Cancel</button>
+          <button type="submit" class="btn">Save Service</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Event Modal -->
+  <div id="event-modal" class="modal-backdrop">
+    <div class="modal">
+      <h3 id="event-modal-title">Event Configuration</h3>
+      <form id="event-form">
+        <input type="hidden" id="ev-edit-id">
+        <div class="field">
+          <label>Event Title</label>
+          <input type="text" id="ev-title" required placeholder="e.g. Vision Board Circle">
+        </div>
+        <div class="field">
+          <label>Description</label>
+          <textarea id="ev-desc" rows="3" required></textarea>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem">
+          <div class="field">
+            <label>Start Date &amp; Time (Local)</label>
+            <input type="datetime-local" id="ev-start" required>
+          </div>
+          <div class="field">
+            <label>End Date &amp; Time (Local)</label>
+            <input type="datetime-local" id="ev-end" required>
+          </div>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem">
+          <div class="field">
+            <label>Capacity Limit</label>
+            <input type="number" id="ev-cap" value="15" required>
+          </div>
+          <div class="field">
+            <label>Price (USD - 0 for free)</label>
+            <input type="number" id="ev-price" value="0.00" step="0.01" required>
+          </div>
+        </div>
+        <div class="field">
+          <label>Venue / Location</label>
+          <input type="text" id="ev-venue" required placeholder="Nairobi Sanctuary / Online Sanctuary">
+        </div>
+        <div class="field">
+          <label>Status</label>
+          <select id="ev-status">
+            <option value="published">Published</option>
+            <option value="draft">Draft</option>
+            <option value="cancelled">Cancelled</option>
+          </select>
+        </div>
+        <div style="display:flex;gap:1rem;justify-content:flex-end">
+          <button type="button" class="btn secondary" onclick="closeModal('event-modal')">Cancel</button>
+          <button type="submit" class="btn">Save Event</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Resource Modal -->
+  <div id="resource-modal" class="modal-backdrop">
+    <div class="modal">
+      <h3 id="res-modal-title">Digital Library Resource</h3>
+      <form id="resource-form">
+        <input type="hidden" id="res-edit-id">
+        <div class="field">
+          <label>Resource Title</label>
+          <input type="text" id="res-title" required placeholder="e.g. Intentional Living Planner">
+        </div>
+        <div class="field">
+          <label>Description</label>
+          <textarea id="res-desc" rows="3" required></textarea>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem">
+          <div class="field">
+            <label>Type</label>
+            <select id="res-is-free" onchange="document.getElementById('res-price-field').style.display = this.value === 'false' ? 'block' : 'none'">
+              <option value="true">Complimentary (Free)</option>
+              <option value="false">Paid Digital Download</option>
+            </select>
+          </div>
+          <div class="field" id="res-price-field" style="display:none">
+            <label>Price (USD)</label>
+            <input type="number" id="res-price" value="15.00" step="0.01">
+          </div>
+        </div>
+        <div class="field">
+          <label>Protected File Asset Name</label>
+          <input type="text" id="res-file" required value="guide.pdf">
+        </div>
+        <div class="field">
+          <label>Status</label>
+          <select id="res-status">
+            <option value="published">Published</option>
+            <option value="draft">Draft</option>
+          </select>
+        </div>
+        <div style="display:flex;gap:1rem;justify-content:flex-end">
+          <button type="button" class="btn secondary" onclick="closeModal('resource-modal')">Cancel</button>
+          <button type="submit" class="btn">Save Resource</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Attendees Modal -->
+  <div id="attendees-modal" class="modal-backdrop">
+    <div class="modal" style="width:min(750px,calc(100% - 2rem))">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem">
+        <h3 id="attendees-title" style="margin:0">Event Attendees Roster</h3>
+        <button class="btn secondary small" onclick="closeModal('attendees-modal')">Close</button>
+      </div>
+      <div id="attendees-content">Loading roster...</div>
+    </div>
+  </div>
+
+  <!-- Blackout Modal -->
   <div id="blackout-modal" class="modal-backdrop">
     <div class="modal">
       <h3>Register Blackout Period</h3>
@@ -210,63 +552,9 @@
     </div>
   </div>
 
-  <!-- Create Event Modal -->
-  <div id="event-modal" class="modal-backdrop">
-    <div class="modal">
-      <h3>Create New Event / Group Experience</h3>
-      <form id="create-event-form">
-        <div class="field">
-          <label>Event Title</label>
-          <input type="text" id="ev-title" required placeholder="e.g. Vision Board Circle">
-        </div>
-        <div class="field">
-          <label>Description</label>
-          <textarea id="ev-desc" rows="3" required></textarea>
-        </div>
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem">
-          <div class="field">
-            <label>Start Date &amp; Time</label>
-            <input type="datetime-local" id="ev-start" required>
-          </div>
-          <div class="field">
-            <label>End Date &amp; Time</label>
-            <input type="datetime-local" id="ev-end" required>
-          </div>
-        </div>
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem">
-          <div class="field">
-            <label>Capacity Limit</label>
-            <input type="number" id="ev-cap" value="15" required>
-          </div>
-          <div class="field">
-            <label>Price (USD)</label>
-            <input type="number" id="ev-price" value="0.00" step="0.01" required>
-          </div>
-        </div>
-        <div class="field">
-          <label>Venue / Location</label>
-          <input type="text" id="ev-venue" required placeholder="Nairobi Sanctuary / Live Online Room">
-        </div>
-        <div style="display:flex;gap:1rem;justify-content:flex-end">
-          <button type="button" class="btn secondary" onclick="closeModal('event-modal')">Cancel</button>
-          <button type="submit" class="btn">Publish Event</button>
-        </div>
-      </form>
-    </div>
-  </div>
-
-  <!-- Attendees Modal -->
-  <div id="attendees-modal" class="modal-backdrop">
-    <div class="modal" style="width:min(750px,calc(100% - 2rem))">
-      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem">
-        <h3 id="attendees-title" style="margin:0">Event Attendees Roster</h3>
-        <button class="btn secondary" onclick="closeModal('attendees-modal')">Close</button>
-      </div>
-      <div id="attendees-content">Loading roster...</div>
-    </div>
-  </div>
-
   <script>
+    let currentAdminUser = null;
+
     async function initAdmin() {
       try {
         const res = await fetch('/api/auth/me');
@@ -277,6 +565,7 @@
           window.location.href = '/portal';
           return;
         }
+        currentAdminUser = user;
         document.getElementById('admin-user-display').textContent = `${user.fullName} (${user.role.toUpperCase()})`;
         loadOverview();
       } catch (err) {
@@ -294,10 +583,14 @@
         document.getElementById(`tab-${tab}`).style.display = 'block';
 
         if (tab === 'overview') loadOverview();
+        if (tab === 'accounts') loadUsers();
+        if (tab === 'orders') loadOrders();
+        if (tab === 'services') loadServices();
         if (tab === 'appointments') loadAppointments();
         if (tab === 'schedule') loadSchedule();
         if (tab === 'events') loadEvents();
-        if (tab === 'payments') loadPayments();
+        if (tab === 'resources') loadResources();
+        if (tab === 'database') loadDbTables();
         if (tab === 'audit') loadAuditLogs();
         if (tab === 'backups') loadBackups();
       });
@@ -318,22 +611,15 @@
         feed.innerHTML = '<p style="color:var(--muted)">No appointments recorded yet.</p>';
         return;
       }
+
       feed.innerHTML = `
         <table>
-          <thead>
-            <tr>
-              <th>Reference</th>
-              <th>Client</th>
-              <th>Service</th>
-              <th>Time</th>
-              <th>Status</th>
-            </tr>
-          </thead>
+          <thead><tr><th>Ref</th><th>Client</th><th>Service</th><th>Start Time</th><th>Status</th></tr></thead>
           <tbody>
             ${recentAppointments.map(a => `
               <tr>
                 <td><code>${a.reference_number}</code></td>
-                <td>${a.client_name} (${a.client_email})</td>
+                <td><strong>${a.client_name}</strong><br><small style="color:var(--muted)">${a.client_email}</small></td>
                 <td>${a.service_name}</td>
                 <td>${new Date(a.start_time).toLocaleString()}</td>
                 <td><span class="badge ${a.status}">${a.status}</span></td>
@@ -343,41 +629,35 @@
         </table>`;
     }
 
-    // 2. Appointments Manager
-    async function loadAppointments() {
-      const status = document.getElementById('appt-filter-status').value;
-      const res = await fetch(`/api/admin/appointments?status=${status}`);
-      const { appointments } = await res.json();
-      const container = document.getElementById('all-appts-table');
+    // 2. Users / Accounts
+    async function loadUsers() {
+      const search = document.getElementById('users-search').value;
+      const role = document.getElementById('users-role-filter').value;
+      const res = await fetch(`/api/admin/users?search=${encodeURIComponent(search)}&role=${encodeURIComponent(role)}`);
+      const { users } = await res.json();
+      const container = document.getElementById('users-table-container');
+
+      if (!users.length) {
+        container.innerHTML = '<p style="color:var(--muted)">No matching accounts found.</p>';
+        return;
+      }
 
       container.innerHTML = `
         <table>
-          <thead>
-            <tr>
-              <th>Ref</th>
-              <th>Client</th>
-              <th>Phone</th>
-              <th>Service</th>
-              <th>Date &amp; Time</th>
-              <th>Status</th>
-              <th>Actions</th>
-            </tr>
-          </thead>
+          <thead><tr><th>Name</th><th>Email</th><th>Phone</th><th>Role</th><th>Verified</th><th>Created</th><th>Actions</th></tr></thead>
           <tbody>
-            ${appointments.map(a => `
+            ${users.map(u => `
               <tr>
-                <td><code>${a.reference_number}</code></td>
-                <td>${a.client_name}<br><small style="color:var(--muted)">${a.client_email}</small></td>
-                <td>${a.client_phone || '—'}</td>
-                <td>${a.service_name}</td>
-                <td>${new Date(a.start_time).toLocaleString()}</td>
-                <td><span class="badge ${a.status}">${a.status}</span></td>
+                <td><strong>${u.full_name}</strong></td>
+                <td>${u.email}</td>
+                <td>${u.phone || '—'}</td>
+                <td><span class="badge ${u.role}">${u.role}</span></td>
+                <td>${u.email_verified ? '<span style="color:#123e32;font-weight:bold">✓ Yes</span>' : '<span style="color:#8a251e">✗ No</span>'}</td>
+                <td>${new Date(u.created_at).toLocaleDateString()}</td>
                 <td>
-                  ${a.status === 'confirmed' ? `
-                    <button class="btn secondary" style="min-height:28px;padding:.2rem .5rem;font-size:.78rem" onclick="updateApptStatus('${a.id}','completed')">Complete</button>
-                    <button class="btn secondary" style="min-height:28px;padding:.2rem .5rem;font-size:.78rem" onclick="updateApptStatus('${a.id}','no_show')">No-Show</button>
-                    <button class="btn danger" style="min-height:28px;padding:.2rem .5rem;font-size:.78rem" onclick="updateApptStatus('${a.id}','cancelled')">Cancel</button>
-                  ` : '—'}
+                  <button class="btn secondary small" onclick="openEditUserModal('${u.id}', '${encodeURIComponent(u.full_name)}', '${u.email}', '${u.phone || ''}', '${u.role}', ${u.email_verified})">Edit</button>
+                  <button class="btn secondary small" onclick="openResetPasswordModal('${u.id}', '${u.email}')">Reset Pwd</button>
+                  ${u.id !== currentAdminUser?.id ? `<button class="btn danger small" onclick="deleteUser('${u.id}', '${encodeURIComponent(u.full_name)}')">Delete</button>` : ''}
                 </td>
               </tr>
             `).join('')}
@@ -385,19 +665,283 @@
         </table>`;
     }
 
-    document.getElementById('appt-filter-status').addEventListener('change', loadAppointments);
+    document.getElementById('add-user-form').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const res = await fetch('/api/admin/users', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          fullName: document.getElementById('usr-name').value,
+          email: document.getElementById('usr-email').value,
+          password: document.getElementById('usr-pass').value,
+          phone: document.getElementById('usr-phone').value,
+          role: document.getElementById('usr-role').value,
+          emailVerified: document.getElementById('usr-verified').checked
+        })
+      });
+      const data = await res.json();
+      if (!res.ok) { alert(data.error); return; }
+      closeModal('add-user-modal');
+      document.getElementById('add-user-form').reset();
+      loadUsers();
+    });
 
-    async function updateApptStatus(apptId, newStatus) {
-      if (!confirm(`Update appointment to "${newStatus}"?`)) return;
-      await fetch(`/api/admin/appointments/${apptId}/status`, {
+    function openEditUserModal(id, encName, email, phone, role, verified) {
+      document.getElementById('edit-usr-id').value = id;
+      document.getElementById('edit-usr-name').value = decodeURIComponent(encName);
+      document.getElementById('edit-usr-email').value = email;
+      document.getElementById('edit-usr-phone').value = phone;
+      document.getElementById('edit-usr-role').value = role;
+      document.getElementById('edit-usr-verified').checked = verified === 1;
+      openModal('edit-user-modal');
+    }
+
+    document.getElementById('edit-user-form').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const id = document.getElementById('edit-usr-id').value;
+      const res = await fetch(`/api/admin/users/${id}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ status: newStatus })
+        body: JSON.stringify({
+          fullName: document.getElementById('edit-usr-name').value,
+          phone: document.getElementById('edit-usr-phone').value,
+          role: document.getElementById('edit-usr-role').value,
+          emailVerified: document.getElementById('edit-usr-verified').checked
+        })
       });
+      const data = await res.json();
+      if (!res.ok) { alert(data.error); return; }
+      closeModal('edit-user-modal');
+      loadUsers();
+    });
+
+    function openResetPasswordModal(id, email) {
+      document.getElementById('reset-pwd-usr-id').value = id;
+      document.getElementById('reset-pwd-user-label').textContent = `Resetting password for: ${email}`;
+      document.getElementById('reset-pwd-new').value = '';
+      openModal('reset-user-pwd-modal');
+    }
+
+    document.getElementById('reset-user-pwd-form').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const id = document.getElementById('reset-pwd-usr-id').value;
+      const newPassword = document.getElementById('reset-pwd-new').value;
+      const res = await fetch(`/api/admin/users/${id}/reset-password`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ newPassword })
+      });
+      const data = await res.json();
+      if (!res.ok) { alert(data.error); return; }
+      alert('Password updated successfully.');
+      closeModal('reset-user-pwd-modal');
+    });
+
+    async function deleteUser(id, encName) {
+      if (!confirm(`Are you sure you want to permanently delete account: ${decodeURIComponent(encName)}?`)) return;
+      const res = await fetch(`/api/admin/users/${id}`, { method: 'DELETE' });
+      const data = await res.json();
+      if (!res.ok) { alert(data.error); return; }
+      loadUsers();
+    }
+
+    // 3. Orders & Payments
+    async function loadOrders() {
+      const res = await fetch('/api/admin/payments');
+      const { payments } = await res.json();
+      const statusFilter = document.getElementById('orders-status-filter').value;
+      const filtered = statusFilter ? payments.filter(p => p.status === statusFilter) : payments;
+      const container = document.getElementById('orders-table-container');
+
+      if (!filtered.length) {
+        container.innerHTML = '<p style="color:var(--muted)">No matching transactions.</p>';
+        return;
+      }
+
+      container.innerHTML = `
+        <table>
+          <thead><tr><th>Ref</th><th>Buyer / Client</th><th>Item</th><th>Method</th><th>Amount</th><th>Status</th><th>Date</th><th>Actions</th></tr></thead>
+          <tbody>
+            ${filtered.map(p => {
+              let meta = {};
+              try { meta = JSON.parse(p.metadata_json || '{}'); } catch(e) {}
+              return `
+                <tr>
+                  <td><code>${p.transaction_reference}</code></td>
+                  <td><strong>${p.client_name || 'Guest / Unassigned'}</strong><br><small style="color:var(--muted)">${p.client_email || ''}</small></td>
+                  <td>${meta.itemTitle || p.item_type}</td>
+                  <td>${p.provider.toUpperCase()}</td>
+                  <td><strong>US$${Number(p.amount).toFixed(2)}</strong></td>
+                  <td><span class="badge ${p.status}">${p.status}</span></td>
+                  <td>${new Date(p.created_at).toLocaleString()}</td>
+                  <td>
+                    ${p.status === 'pending' ? `<button class="btn small" onclick="fulfillOrder('${p.id}')">Fulfill</button>` : ''}
+                    ${p.status === 'successful' ? `<button class="btn danger small" onclick="refundPayment('${p.id}')">Refund</button>` : ''}
+                  </td>
+                </tr>`;
+            }).join('')}
+          </tbody>
+        </table>`;
+    }
+
+    async function fulfillOrder(paymentId) {
+      if (!confirm('Manually fulfill and activate this order?')) return;
+      const res = await fetch(`/api/admin/payments/${paymentId}/fulfill`, { method: 'POST' });
+      const data = await res.json();
+      if (!res.ok) { alert(data.error); return; }
+      alert('Order fulfilled successfully.');
+      loadOrders();
+    }
+
+    async function refundPayment(paymentId) {
+      const reason = prompt('Please enter a reason for this refund:');
+      if (!reason) return;
+      const res = await fetch(`/api/admin/payments/${paymentId}/refund`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ reason })
+      });
+      const data = await res.json();
+      if (!res.ok) { alert(data.error); return; }
+      alert('Refund processed.');
+      loadOrders();
+    }
+
+    // 4. Services Catalog
+    async function loadServices() {
+      const res = await fetch('/api/admin/services');
+      const { services } = await res.json();
+      const container = document.getElementById('services-table-container');
+
+      container.innerHTML = `
+        <table>
+          <thead><tr><th>Service Name</th><th>Type</th><th>Duration</th><th>Sessions</th><th>Price (USD)</th><th>Status</th><th>Actions</th></tr></thead>
+          <tbody>
+            ${services.map(s => `
+              <tr>
+                <td><strong>${s.name}</strong><br><small style="color:var(--muted)">${s.description}</small></td>
+                <td><code>${s.type}</code></td>
+                <td>${s.duration_minutes}m</td>
+                <td>${s.session_count}</td>
+                <td><strong>US$${Number(s.price_usd).toFixed(2)}</strong></td>
+                <td>${s.is_active ? '<span class="badge active">Active</span>' : '<span class="badge cancelled">Hidden</span>'}</td>
+                <td>
+                  <button class="btn secondary small" onclick="openEditServiceModal('${s.id}', '${encodeURIComponent(s.name)}', '${s.type}', ${s.duration_minutes}, ${s.price_usd}, ${s.session_count}, '${encodeURIComponent(s.description)}', ${s.is_active})">Edit</button>
+                  <button class="btn danger small" onclick="deleteService('${s.id}')">Delete</button>
+                </td>
+              </tr>
+            `).join('')}
+          </tbody>
+        </table>`;
+    }
+
+    function openCreateServiceModal() {
+      document.getElementById('service-modal-title').textContent = 'Create New Service or Package';
+      document.getElementById('service-form').reset();
+      document.getElementById('srv-edit-id').value = '';
+      openModal('service-modal');
+    }
+
+    function openEditServiceModal(id, encName, type, duration, price, sessions, encDesc, isActive) {
+      document.getElementById('service-modal-title').textContent = 'Edit Service / Package';
+      document.getElementById('srv-edit-id').value = id;
+      document.getElementById('srv-name').value = decodeURIComponent(encName);
+      document.getElementById('srv-type').value = type;
+      document.getElementById('srv-duration').value = duration;
+      document.getElementById('srv-price').value = price;
+      document.getElementById('srv-sessions').value = sessions;
+      document.getElementById('srv-desc').value = decodeURIComponent(encDesc);
+      document.getElementById('srv-active').checked = isActive === 1;
+      openModal('service-modal');
+    }
+
+    document.getElementById('service-form').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const editId = document.getElementById('srv-edit-id').value;
+      const payload = {
+        name: document.getElementById('srv-name').value,
+        type: document.getElementById('srv-type').value,
+        durationMinutes: document.getElementById('srv-duration').value,
+        priceUsd: document.getElementById('srv-price').value,
+        sessionCount: document.getElementById('srv-sessions').value,
+        description: document.getElementById('srv-desc').value,
+        isActive: document.getElementById('srv-active').checked
+      };
+
+      const url = editId ? `/api/admin/services/${editId}` : '/api/admin/services';
+      const method = editId ? 'PUT' : 'POST';
+
+      const res = await fetch(url, {
+        method,
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      });
+      const data = await res.json();
+      if (!res.ok) { alert(data.error); return; }
+      closeModal('service-modal');
+      loadServices();
+    });
+
+    async function deleteService(id) {
+      if (!confirm('Are you sure you want to delete this service?')) return;
+      const res = await fetch(`/api/admin/services/${id}`, { method: 'DELETE' });
+      const data = await res.json();
+      if (!res.ok) { alert(data.error); return; }
+      loadServices();
+    }
+
+    // 5. Appointments Manager
+    async function loadAppointments() {
+      const status = document.getElementById('appt-filter-status').value;
+      const res = await fetch(`/api/admin/appointments${status ? `?status=${status}` : ''}`);
+      const { appointments } = await res.json();
+      const container = document.getElementById('all-appts-table');
+
+      if (!appointments.length) {
+        container.innerHTML = '<p style="color:var(--muted)">No appointments match the criteria.</p>';
+        return;
+      }
+
+      container.innerHTML = `
+        <table>
+          <thead><tr><th>Ref</th><th>Client</th><th>Service</th><th>Start Time</th><th>Format</th><th>Status</th><th>Actions</th></tr></thead>
+          <tbody>
+            ${appointments.map(a => `
+              <tr>
+                <td><code>${a.reference_number}</code></td>
+                <td><strong>${a.client_name}</strong><br><small style="color:var(--muted)">${a.client_email} &middot; ${a.client_phone || ''}</small></td>
+                <td>${a.service_name}</td>
+                <td>${new Date(a.start_time).toLocaleString()}</td>
+                <td>${a.delivery_method}</td>
+                <td><span class="badge ${a.status}">${a.status}</span></td>
+                <td>
+                  <select onchange="updateApptStatus('${a.id}', this.value)" style="width:auto;font-size:.8rem;padding:.2rem">
+                    <option value="" disabled selected>Change Status</option>
+                    <option value="confirmed">Confirmed</option>
+                    <option value="completed">Completed</option>
+                    <option value="cancelled">Cancelled</option>
+                    <option value="no_show">No Show</option>
+                  </select>
+                </td>
+              </tr>
+            `).join('')}
+          </tbody>
+        </table>`;
+    }
+
+    async function updateApptStatus(id, status) {
+      if (!status) return;
+      const res = await fetch(`/api/admin/appointments/${id}/status`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ status })
+      });
+      const data = await res.json();
+      if (!res.ok) { alert(data.error); return; }
       loadAppointments();
     }
 
-    // 3. Schedule & Blackouts
+    // 6. Schedule & Blackouts
     async function loadSchedule() {
       const res = await fetch('/api/admin/schedule');
       const { schedule, blackouts } = await res.json();
@@ -405,16 +949,19 @@
 
       document.getElementById('schedule-table').innerHTML = `
         <table>
-          <thead><tr><th>Day</th><th>Working</th><th>Start Time</th><th>End Time</th><th>Slot Interval</th><th>Buffer</th></tr></thead>
+          <thead><tr><th>Day</th><th>Working Day</th><th>Hours (Local)</th><th>Buffer</th><th>Slot Interval</th><th>Save</th></tr></thead>
           <tbody>
             ${schedule.map(s => `
               <tr>
                 <td><strong>${days[s.day_of_week]}</strong></td>
-                <td>${s.is_working_day ? '<span style="color:#205e43;font-weight:bold">Open</span>' : '<span style="color:var(--muted)">Closed</span>'}</td>
-                <td>${s.start_time}</td>
-                <td>${s.end_time}</td>
-                <td>${s.slot_interval_minutes}m</td>
-                <td>${s.buffer_minutes}m</td>
+                <td><input type="checkbox" id="work-${s.day_of_week}" ${s.is_working_day ? 'checked' : ''} style="width:auto"></td>
+                <td>
+                  <input type="time" id="start-${s.day_of_week}" value="${s.start_time}" style="width:110px"> to
+                  <input type="time" id="end-${s.day_of_week}" value="${s.end_time}" style="width:110px">
+                </td>
+                <td><input type="number" id="buf-${s.day_of_week}" value="${s.buffer_minutes}" style="width:65px"> m</td>
+                <td><input type="number" id="slot-${s.day_of_week}" value="${s.slot_interval_minutes}" style="width:65px"> m</td>
+                <td><button class="btn secondary small" onclick="saveDaySchedule(${s.day_of_week})">Update</button></td>
               </tr>
             `).join('')}
           </tbody>
@@ -422,24 +969,35 @@
 
       document.getElementById('blackouts-table').innerHTML = blackouts.length ? `
         <table>
-          <thead><tr><th>Start</th><th>End</th><th>Reason</th><th>Actions</th></tr></thead>
+          <thead><tr><th>Start</th><th>End</th><th>Reason</th><th>Action</th></tr></thead>
           <tbody>
             ${blackouts.map(b => `
               <tr>
                 <td>${new Date(b.start_time).toLocaleString()}</td>
                 <td>${new Date(b.end_time).toLocaleString()}</td>
-                <td>${b.reason || 'Time Off'}</td>
-                <td><button class="btn danger" style="min-height:26px;padding:.15rem .45rem;font-size:.75rem" onclick="deleteBlackout('${b.id}')">Remove</button></td>
+                <td>${b.reason}</td>
+                <td><button class="btn danger small" onclick="deleteBlackout('${b.id}')">Remove</button></td>
               </tr>
             `).join('')}
           </tbody>
-        </table>` : '<p style="color:var(--muted)">No blackout dates configured.</p>';
+        </table>` : '<p style="color:var(--muted)">No blackout periods configured.</p>';
     }
 
-    async function deleteBlackout(id) {
-      if (!confirm('Remove this blackout period?')) return;
-      await fetch(`/api/admin/blackout-dates/${id}`, { method: 'DELETE' });
-      loadSchedule();
+    async function saveDaySchedule(day) {
+      const isWorkingDay = document.getElementById(`work-${day}`).checked ? 1 : 0;
+      const startTime = document.getElementById(`start-${day}`).value;
+      const endTime = document.getElementById(`end-${day}`).value;
+      const bufferMinutes = Number(document.getElementById(`buf-${day}`).value);
+      const slotIntervalMinutes = Number(document.getElementById(`slot-${day}`).value);
+
+      const res = await fetch(`/api/admin/schedule/${day}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ isWorkingDay, startTime, endTime, bufferMinutes, slotIntervalMinutes })
+      });
+      const data = await res.json();
+      if (!res.ok) { alert(data.error); return; }
+      alert('Day schedule updated.');
     }
 
     document.getElementById('blackout-form').addEventListener('submit', async (e) => {
@@ -457,42 +1015,109 @@
       loadSchedule();
     });
 
-    // 4. Events
+    async function deleteBlackout(id) {
+      if (!confirm('Remove this blackout period?')) return;
+      await fetch(`/api/admin/blackout-dates/${id}`, { method: 'DELETE' });
+      loadSchedule();
+    }
+
+    // 7. Events
     async function loadEvents() {
-      const res = await fetch('/api/events');
+      const res = await fetch('/api/admin/events');
       const { events } = await res.json();
-      document.getElementById('admin-events-list').innerHTML = `
+      const container = document.getElementById('admin-events-list');
+
+      container.innerHTML = `
         <table>
-          <thead><tr><th>Title</th><th>Date</th><th>Delivery</th><th>Capacity</th><th>Price</th><th>Attendees</th></tr></thead>
+          <thead><tr><th>Event Title</th><th>Date &amp; Time</th><th>Venue</th><th>Capacity</th><th>Price</th><th>Status</th><th>Actions</th></tr></thead>
           <tbody>
             ${events.map(e => `
               <tr>
                 <td><strong>${e.title}</strong></td>
-                <td>${new Date(e.start_time).toLocaleDateString()}</td>
-                <td>${e.delivery_mode.toUpperCase()}</td>
-                <td>${e.available_seats} / ${e.capacity} left</td>
+                <td>${new Date(e.start_time).toLocaleString()}</td>
+                <td>${e.venue}</td>
+                <td><strong>${e.registered_count || 0}</strong> / ${e.capacity} booked</td>
                 <td>US$${Number(e.price_usd).toFixed(2)}</td>
-                <td><button class="btn secondary" style="min-height:26px;padding:.15rem .5rem;font-size:.75rem" onclick="viewAttendees('${e.id}','${e.title}')">View Roster</button></td>
+                <td><span class="badge ${e.status}">${e.status}</span></td>
+                <td>
+                  <button class="btn secondary small" onclick="viewAttendees('${e.id}', '${encodeURIComponent(e.title)}')">Roster</button>
+                  <button class="btn secondary small" onclick="openEditEventModal('${e.id}', '${encodeURIComponent(e.title)}', '${encodeURIComponent(e.description)}', '${e.start_time}', '${e.end_time}', '${encodeURIComponent(e.venue)}', '${e.delivery_mode}', ${e.capacity}, ${e.price_usd}, '${e.status}')">Edit</button>
+                  <button class="btn danger small" onclick="deleteEvent('${e.id}')">Delete</button>
+                </td>
               </tr>
             `).join('')}
           </tbody>
         </table>`;
     }
 
-    async function viewAttendees(eventId, eventTitle) {
-      document.getElementById('attendees-title').textContent = `Attendees: ${eventTitle}`;
-      document.getElementById('attendees-content').innerHTML = '<p>Loading roster...</p>';
-      openModal('attendees-modal');
+    function openCreateEventModal() {
+      document.getElementById('event-modal-title').textContent = 'Create New Event';
+      document.getElementById('event-form').reset();
+      document.getElementById('ev-edit-id').value = '';
+      openModal('event-modal');
+    }
 
+    function openEditEventModal(id, encTitle, encDesc, start, end, encVenue, mode, cap, price, status) {
+      document.getElementById('event-modal-title').textContent = 'Edit Event';
+      document.getElementById('ev-edit-id').value = id;
+      document.getElementById('ev-title').value = decodeURIComponent(encTitle);
+      document.getElementById('ev-desc').value = decodeURIComponent(encDesc);
+      document.getElementById('ev-start').value = start ? new Date(start).toISOString().slice(0, 16) : '';
+      document.getElementById('ev-end').value = end ? new Date(end).toISOString().slice(0, 16) : '';
+      document.getElementById('ev-venue').value = decodeURIComponent(encVenue);
+      document.getElementById('ev-cap').value = cap;
+      document.getElementById('ev-price').value = price;
+      document.getElementById('ev-status').value = status;
+      openModal('event-modal');
+    }
+
+    document.getElementById('event-form').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const editId = document.getElementById('ev-edit-id').value;
+      const payload = {
+        title: document.getElementById('ev-title').value,
+        description: document.getElementById('ev-desc').value,
+        startTime: new Date(document.getElementById('ev-start').value).toISOString(),
+        endTime: new Date(document.getElementById('ev-end').value).toISOString(),
+        venue: document.getElementById('ev-venue').value,
+        capacity: Number(document.getElementById('ev-cap').value),
+        priceUsd: Number(document.getElementById('ev-price').value),
+        status: document.getElementById('ev-status').value
+      };
+
+      const url = editId ? `/api/admin/events/${editId}` : '/api/admin/events';
+      const method = editId ? 'PUT' : 'POST';
+
+      const res = await fetch(url, {
+        method,
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      });
+      const data = await res.json();
+      if (!res.ok) { alert(data.error); return; }
+      closeModal('event-modal');
+      loadEvents();
+    });
+
+    async function deleteEvent(id) {
+      if (!confirm('Are you sure you want to delete this event?')) return;
+      await fetch(`/api/admin/events/${id}`, { method: 'DELETE' });
+      loadEvents();
+    }
+
+    async function viewAttendees(eventId, encTitle) {
+      document.getElementById('attendees-title').textContent = `Attendees: ${decodeURIComponent(encTitle)}`;
+      openModal('attendees-modal');
       const res = await fetch(`/api/admin/events/${eventId}/attendees`);
       const { attendees } = await res.json();
+      const content = document.getElementById('attendees-content');
 
       if (!attendees.length) {
-        document.getElementById('attendees-content').innerHTML = '<p style="color:var(--muted);padding:1.5rem;text-align:center">No registered attendees yet.</p>';
+        content.innerHTML = '<p style="color:var(--muted)">No registered attendees yet.</p>';
         return;
       }
 
-      document.getElementById('attendees-content').innerHTML = `
+      content.innerHTML = `
         <table>
           <thead><tr><th>Name</th><th>Email</th><th>Phone</th><th>Status</th><th>Registered At</th></tr></thead>
           <tbody>
@@ -509,43 +1134,26 @@
         </table>`;
     }
 
-    document.getElementById('create-event-form').addEventListener('submit', async (e) => {
-      e.preventDefault();
-      await fetch('/api/admin/events', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          title: document.getElementById('ev-title').value,
-          description: document.getElementById('ev-desc').value,
-          startTime: new Date(document.getElementById('ev-start').value).toISOString(),
-          endTime: new Date(document.getElementById('ev-end').value).toISOString(),
-          capacity: document.getElementById('ev-cap').value,
-          priceUsd: document.getElementById('ev-price').value,
-          venue: document.getElementById('ev-venue').value
-        })
-      });
-      closeModal('event-modal');
-      loadEvents();
-    });
+    // 8. Digital Resources
+    async function loadResources() {
+      const res = await fetch('/api/admin/resources');
+      const { resources } = await res.json();
+      const container = document.getElementById('admin-resources-table');
 
-    // 5. Payments & Refunds
-    async function loadPayments() {
-      const res = await fetch('/api/admin/payments');
-      const { payments } = await res.json();
-      document.getElementById('admin-payments-table').innerHTML = `
+      container.innerHTML = `
         <table>
-          <thead><tr><th>Ref</th><th>Client</th><th>Method</th><th>Amount</th><th>Status</th><th>Date</th><th>Action</th></tr></thead>
+          <thead><tr><th>Title</th><th>Type</th><th>Price (USD)</th><th>Protected File</th><th>Status</th><th>Actions</th></tr></thead>
           <tbody>
-            ${payments.map(p => `
+            ${resources.map(r => `
               <tr>
-                <td><code>${p.transaction_reference}</code></td>
-                <td>${p.client_name}</td>
-                <td>${p.provider.toUpperCase()}</td>
-                <td>US$${Number(p.amount).toFixed(2)}</td>
-                <td><span class="badge ${p.status}">${p.status}</span></td>
-                <td>${new Date(p.created_at).toLocaleDateString()}</td>
+                <td><strong>${r.title}</strong><br><small style="color:var(--muted)">${r.description}</small></td>
+                <td>${r.is_free ? '<span class="badge active">Complimentary</span>' : '<span class="badge pending">Paid</span>'}</td>
+                <td>US$${Number(r.price_usd).toFixed(2)}</td>
+                <td><code>${r.file_path}</code></td>
+                <td><span class="badge ${r.status}">${r.status}</span></td>
                 <td>
-                  ${p.status === 'successful' ? `<button class="btn danger" style="min-height:26px;padding:.15rem .5rem;font-size:.75rem" onclick="refundPayment('${p.id}')">Refund</button>` : '—'}
+                  <button class="btn secondary small" onclick="openEditResourceModal('${r.id}', '${encodeURIComponent(r.title)}', '${encodeURIComponent(r.description)}', ${r.is_free}, ${r.price_usd}, '${r.file_path}', '${r.status}')">Edit</button>
+                  <button class="btn danger small" onclick="deleteResource('${r.id}')">Delete</button>
                 </td>
               </tr>
             `).join('')}
@@ -553,22 +1161,122 @@
         </table>`;
     }
 
-    async function refundPayment(paymentId) {
-      const reason = prompt('Please enter a reason for this refund:');
-      if (!reason) return;
-      await fetch(`/api/admin/payments/${paymentId}/refund`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ reason })
-      });
-      loadPayments();
+    function openCreateResourceModal() {
+      document.getElementById('res-modal-title').textContent = 'Add Digital Resource';
+      document.getElementById('resource-form').reset();
+      document.getElementById('res-edit-id').value = '';
+      openModal('resource-modal');
     }
 
-    // 6. Audit Logs
+    function openEditResourceModal(id, encTitle, encDesc, isFree, price, file, status) {
+      document.getElementById('res-modal-title').textContent = 'Edit Digital Resource';
+      document.getElementById('res-edit-id').value = id;
+      document.getElementById('res-title').value = decodeURIComponent(encTitle);
+      document.getElementById('res-desc').value = decodeURIComponent(encDesc);
+      document.getElementById('res-is-free').value = isFree ? 'true' : 'false';
+      document.getElementById('res-price-field').style.display = isFree ? 'none' : 'block';
+      document.getElementById('res-price').value = price;
+      document.getElementById('res-file').value = file;
+      document.getElementById('res-status').value = status;
+      openModal('resource-modal');
+    }
+
+    document.getElementById('resource-form').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const editId = document.getElementById('res-edit-id').value;
+      const isFree = document.getElementById('res-is-free').value === 'true';
+      const payload = {
+        title: document.getElementById('res-title').value,
+        description: document.getElementById('res-desc').value,
+        isFree,
+        priceUsd: isFree ? 0 : Number(document.getElementById('res-price').value),
+        filePath: document.getElementById('res-file').value,
+        status: document.getElementById('res-status').value
+      };
+
+      const url = editId ? `/api/admin/resources/${editId}` : '/api/admin/resources';
+      const method = editId ? 'PUT' : 'POST';
+
+      const res = await fetch(url, {
+        method,
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      });
+      const data = await res.json();
+      if (!res.ok) { alert(data.error); return; }
+      closeModal('resource-modal');
+      loadResources();
+    });
+
+    async function deleteResource(id) {
+      if (!confirm('Are you sure you want to delete this resource?')) return;
+      await fetch(`/api/admin/resources/${id}`, { method: 'DELETE' });
+      loadResources();
+    }
+
+    // 9. Database Explorer
+    async function loadDbTables() {
+      const res = await fetch('/api/admin/db/tables');
+      const { tables } = await res.json();
+      const select = document.getElementById('db-table-select');
+      select.innerHTML = tables.map(t => `<option value="${t.name}">${t.name} (${t.rowCount} rows)</option>`).join('');
+      inspectTable();
+    }
+
+    async function inspectTable() {
+      const tableName = document.getElementById('db-table-select').value;
+      if (!tableName) return;
+      const view = document.getElementById('db-table-view');
+      view.innerHTML = '<p style="padding:1rem">Loading records...</p>';
+
+      const res = await fetch(`/api/admin/db/table/${tableName}`);
+      const data = await res.json();
+
+      if (!data.rows || !data.rows.length) {
+        view.innerHTML = `<p style="padding:1rem;color:var(--muted)">Table '${tableName}' is empty.</p>`;
+        return;
+      }
+
+      const cols = data.columns.map(c => c.name);
+      view.innerHTML = `
+        <table>
+          <thead><tr>${cols.map(c => `<th>${c}</th>`).join('')}</tr></thead>
+          <tbody>
+            ${data.rows.map(r => `
+              <tr>${cols.map(c => `<td><small>${r[c] !== null && r[c] !== undefined ? String(r[c]) : '<em style="color:#aaa">null</em>'}</small></td>`).join('')}</tr>
+            `).join('')}
+          </tbody>
+        </table>`;
+    }
+
+    document.getElementById('sql-exec-form').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const sql = document.getElementById('sql-input').value;
+      const resultBox = document.getElementById('sql-result');
+      resultBox.style.display = 'block';
+      resultBox.textContent = 'Executing...';
+
+      try {
+        const res = await fetch('/api/admin/db/execute', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ sql })
+        });
+        const data = await res.json();
+        resultBox.textContent = JSON.stringify(data, null, 2);
+        loadDbTables();
+      } catch (err) {
+        resultBox.textContent = 'Execution Error: ' + err.message;
+      }
+    });
+
+    // 10. Audit Logs
     async function loadAuditLogs() {
       const res = await fetch('/api/admin/audit-logs');
       const { logs } = await res.json();
-      document.getElementById('audit-logs-table').innerHTML = logs.length ? `
+      const container = document.getElementById('audit-logs-table');
+
+      container.innerHTML = logs.length ? `
         <table>
           <thead><tr><th>Timestamp</th><th>Action</th><th>Role</th><th>Resource</th><th>Details</th></tr></thead>
           <tbody>
@@ -576,7 +1284,7 @@
               <tr>
                 <td>${new Date(l.created_at).toLocaleString()}</td>
                 <td><code>${l.action}</code></td>
-                <td>${l.role}</td>
+                <td><span class="badge ${l.role}">${l.role}</span></td>
                 <td>${l.resource_type} (${l.resource_id})</td>
                 <td><small style="color:var(--muted)">${l.details_json}</small></td>
               </tr>
@@ -585,7 +1293,7 @@
         </table>` : '<p style="color:var(--muted)">No audit entries found.</p>';
     }
 
-    // 7. Backups
+    // 11. Backups
     async function loadBackups() {
       const res = await fetch('/api/admin/backups');
       const { backups } = await res.json();
@@ -599,7 +1307,7 @@
                 <td>${(b.sizeBytes / 1024).toFixed(1)} KB</td>
                 <td>${new Date(b.createdAt).toLocaleString()}</td>
                 <td>
-                  <button class="btn secondary" style="min-height:26px;padding:.15rem .5rem;font-size:.75rem" onclick="runRestoreTest('${b.filename}')">Verify Restore</button>
+                  <button class="btn secondary small" onclick="runRestoreTest('${b.filename}')">Verify Integrity &amp; Restore</button>
                 </td>
               </tr>
             `).join('')}
@@ -654,6 +1362,13 @@
 
     function openModal(id) { document.getElementById(id).style.display = 'flex'; }
     function closeModal(id) { document.getElementById(id).style.display = 'none'; }
+    function debounce(func, wait) {
+      let timeout;
+      return function(...args) {
+        clearTimeout(timeout);
+        timeout = setTimeout(() => func.apply(this, args), wait);
+      };
+    }
 
     initAdmin();
   </script>

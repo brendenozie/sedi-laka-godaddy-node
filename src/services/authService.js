@@ -201,6 +201,30 @@ function resetPassword(token, newPassword) {
   return sanitizeUser(user);
 }
 
+// Change Password for authenticated user
+function changeUserPassword(userId, currentPassword, newPassword) {
+  const db = getDb();
+  const user = db.prepare('SELECT * FROM users WHERE id = ?').get(userId);
+  if (!user) throw new Error('User not found.');
+
+  const isValid = verifyPassword(currentPassword, user.password_hash, user.password_salt);
+  if (!isValid) throw new Error('Incorrect current password.');
+
+  if (!newPassword || newPassword.length < 8) {
+    throw new Error('New password must be at least 8 characters long.');
+  }
+
+  const { hash, salt } = hashPassword(newPassword);
+  const now = new Date().toISOString();
+  db.prepare(`
+    UPDATE users
+    SET password_hash = ?, password_salt = ?, updated_at = ?
+    WHERE id = ?
+  `).run(hash, salt, now, userId);
+
+  return sanitizeUser(user);
+}
+
 // Update Profile
 function updateProfile(userId, { fullName, phone, communicationPrefs }) {
   const db = getDb();
@@ -321,6 +345,7 @@ module.exports = {
   verifyEmailToken,
   requestPasswordReset,
   resetPassword,
+  changeUserPassword,
   updateProfile,
   exportUserData,
   deleteUserAccount,

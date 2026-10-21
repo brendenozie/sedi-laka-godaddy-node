@@ -159,6 +159,20 @@ router.put('/profile', requireAuth, (req, res, next) => {
   }
 });
 
+// POST /api/auth/change-password
+router.post('/change-password', requireAuth, (req, res, next) => {
+  try {
+    const { currentPassword, newPassword } = req.body;
+    if (!currentPassword || !newPassword) {
+      return res.status(400).json({ error: 'Current password and new password are required.' });
+    }
+    const user = authService.changeUserPassword(req.user.id, currentPassword, newPassword);
+    res.json({ message: 'Password updated successfully.', user });
+  } catch (err) {
+    next(err);
+  }
+});
+
 // GET /api/auth/export-data
 router.get('/export-data', requireAuth, (req, res, next) => {
   try {

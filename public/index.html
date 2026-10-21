@@ -249,7 +249,7 @@
           <h2>Choose a place to begin.</h2>
           <p>Book an Exploration Session to share where you are in your journey. We can understand what you need, assess whether working together is a good fit and plan useful next steps.</p>
         </div>
-        <div class="price-grid">
+        <div class="price-grid" id="live-services-grid">
           <article class="price-card">
             <h3>Exploration Session</h3>
             <p class="price">US$100 <small>/ session</small></p>
@@ -624,6 +624,53 @@
       }
     });
 
+    // Load Live Services & Packages Catalog
+    async function loadLiveServices() {
+      const container = document.getElementById('live-services-grid');
+      const select = document.getElementById('booking-service-select');
+      try {
+        const res = await fetch('/api/services');
+        const { services } = await res.json();
+        if (!services || !services.length) return;
+
+        // Populate booking select dropdown
+        if (select) {
+          const currentVal = select.value;
+          select.innerHTML = services.map(s => `
+            <option value="${s.id}">${s.name} (US$${Number(s.price_usd).toFixed(0)})</option>
+          `).join('');
+          if (currentVal && select.querySelector(`option[value="${currentVal}"]`)) {
+            select.value = currentVal;
+          }
+          loadUserPackagesIntoBooking();
+        }
+
+        // Populate pricing cards
+        if (container) {
+          container.innerHTML = services.map(s => {
+            const isPkg = s.type === 'package';
+            const unitLabel = isPkg
+              ? (s.session_count === 5 ? '/ five sessions' : (s.session_count === 10 ? '/ ten sessions' : `/ ${s.session_count} sessions`))
+              : '/ session';
+            const btnHtml = isPkg
+              ? `<button type="button" class="button small" style="width:100%;margin-top:auto" onclick="purchasePackageDirect('${s.id}', '${encodeURIComponent(s.name)}', ${s.price_usd})">Purchase Package</button>`
+              : `<button type="button" class="button small" style="width:100%;margin-top:auto" onclick="openBookingDirect('${s.id}', '${encodeURIComponent(s.name)}')">Book Session</button>`;
+
+            return `
+              <article class="price-card">
+                <h3>${s.name}</h3>
+                <p class="price">US$${Number(s.price_usd).toFixed(0)} <small>${unitLabel}</small></p>
+                <p>${s.description}</p>
+                ${btnHtml}
+              </article>
+            `;
+          }).join('');
+        }
+      } catch (e) {
+        console.error('Failed to load services:', e);
+      }
+    }
+
     // Load Live Resources
     async function loadLiveResources() {
       const container = document.getElementById('live-resources-grid');
@@ -959,6 +1006,7 @@
 
     // Initialize page
     checkAuthStatus();
+    loadLiveServices();
     loadLiveResources();
     loadLiveEvents();
     fetchSlots();
