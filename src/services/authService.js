@@ -147,7 +147,7 @@ function verifyEmailToken(token) {
     WHERE id = ?
   `).run(now, user.id);
 
-  return sanitizeUser(user);
+  return getUserById(user.id);
 }
 
 // Request Password Reset

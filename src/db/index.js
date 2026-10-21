@@ -17,20 +17,29 @@ if (!fs.existsSync(config.RESOURCES_DIR)) {
 
 const dbPath = path.join(config.DATA_DIR, 'sedi_laka.db');
 let db = null;
+let transactionDepth = 0;
 
 function getDb() {
   if (!db) {
     db = new DatabaseSync(dbPath);
     
-    // Add transaction helper method onto db instance for seamless call compatibility
+    // Add transaction helper method onto db instance with nested transaction support
     db.transaction = function (fn) {
       return function (...args) {
+        if (transactionDepth > 0) {
+          // Already within an outer transaction; execute directly in current transaction
+          return fn(...args);
+        }
+
+        transactionDepth++;
         db.exec('BEGIN IMMEDIATE;');
         try {
           const result = fn(...args);
           db.exec('COMMIT;');
+          transactionDepth--;
           return result;
         } catch (err) {
+          transactionDepth--;
           try { db.exec('ROLLBACK;'); } catch (_) {}
           throw err;
         }
