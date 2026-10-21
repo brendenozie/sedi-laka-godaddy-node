@@ -9,20 +9,108 @@
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23123e32'/%3E%3Cpath d='M32 9c10 12 7 19 0 23-7-4-10-11 0-23Z' fill='%23d1a44b'/%3E%3Crect x='27' y='33' width='10' height='21' rx='2' fill='%23f7f3e9'/%3E%3C/svg%3E">
   <style>
     :root{--green:#123e32;--green2:#28594c;--ivory:#faf8f2;--white:#fffefa;--sage:#dbe7d8;--gold:#b68b3a;--ink:#20382f;--muted:#536a60;--line:#d9dfd5;--blush:#f4e8e6}
-    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--ivory);color:var(--ink);font:400 1rem/1.68 system-ui,-apple-system,Segoe UI,sans-serif}h1,h2,h3,p{margin-top:0}h1,h2,h3{font-family:Georgia,'Times New Roman',serif;font-weight:400;line-height:1.12;color:var(--green)}h1{font-size:clamp(2.7rem,6vw,5.7rem);letter-spacing:-.035em}h2{font-size:clamp(2.15rem,4vw,3.65rem);letter-spacing:-.025em}h3{font-size:1.55rem}p{max-width:64ch}a{color:inherit}a:focus-visible,button:focus-visible{outline:3px solid var(--gold);outline-offset:4px}.wrap{width:min(1160px,calc(100% - 2.5rem));margin:auto}.skip{position:absolute;left:-9999px;top:1rem;background:white;padding:.5rem}.skip:focus{left:1rem;z-index:10}.eyebrow{font-size:.82rem;letter-spacing:.18em;text-transform:uppercase;font-weight:700;color:var(--green2)}.button{display:inline-flex;align-items:center;justify-content:center;min-height:50px;padding:.7rem 1.25rem;border:1px solid var(--green);border-radius:3px;background:var(--green);color:white;text-decoration:none;font-weight:650;line-height:1.3;text-align:center;cursor:pointer}.button:hover{background:#215545}.button.secondary{background:transparent;color:var(--green)}.button.secondary:hover{background:#edf2e9}.site-header{background:var(--white);border-bottom:1px solid var(--line)}.nav{min-height:96px;display:flex;align-items:center;justify-content:space-between;gap:2rem}.brand{display:block;flex:0 0 auto;width:246px;line-height:0}.brand img{display:block;width:100%;height:auto}.navlinks{display:flex;align-items:center;gap:1.4rem;font-size:.94rem;font-weight:600}.navlinks a{text-decoration:none}.navlinks a:hover{text-decoration:underline}.navlinks .button{color:white}.hero{background:linear-gradient(125deg,#f7f4eb 15%,#e6eee3 100%);overflow:hidden}.hero-inner{min-height:610px;padding:6.2rem 0 5.7rem;display:grid;grid-template-columns:minmax(0,1.17fr) minmax(280px,.83fr);gap:5rem;align-items:center}.hero h1{max-width:14ch;margin:.5rem 0 1.4rem}.hero .lead{font-size:1.19rem;max-width:52ch}.hero-actions{display:flex;gap:.8rem;flex-wrap:wrap;margin:2rem 0 0}.hero-art{min-height:430px;position:relative;border:1px solid #cfdbce;border-radius:220px 220px 10px 10px;background:radial-gradient(circle at 50% 40%,#fffdf6 0,#e7ece1 48%,#bbd2c2 100%);display:flex;align-items:center;justify-content:center;padding:3rem}.hero-art:after{content:"";position:absolute;inset:18px;border:1px solid rgba(182,139,58,.6);border-radius:210px 210px 4px 4px;pointer-events:none}.art-copy{text-align:center;position:relative;z-index:1}.art-copy span{display:block;font:italic 2.45rem/1.25 Georgia,serif;color:var(--green);max-width:10ch}.art-copy small{display:block;margin:1.5rem auto 0;padding-top:1.1rem;border-top:1px solid var(--gold);font-size:.85rem;letter-spacing:.15em;text-transform:uppercase;color:var(--green2)}section{padding:6rem 0}.section-heading{max-width:760px;margin-bottom:2.6rem}.section-heading p:last-child{font-size:1.1rem}.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem}.step{background:var(--white);border:1px solid var(--line);padding:2rem;min-height:270px}.step .num{display:block;color:var(--gold);font:2.2rem Georgia,serif;margin-bottom:1.8rem}.step p{margin-bottom:0}.band{background:var(--green);color:#f4f4e9}.band h2,.band h3{color:#fffdf5}.band .eyebrow{color:#dbc58e}.band-inner{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center}.band p{color:#e9efe8}.offer-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.2rem}.offer{border:1px solid var(--line);background:var(--white);padding:2rem;display:flex;flex-direction:column;min-height:240px}.offer p{margin-bottom:auto}.offer a{font-weight:700;text-underline-offset:.2em;color:var(--green2)}.pricing{background:#e8efe8}.price-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem;margin-top:2rem}.price-card{padding:2rem;background:var(--white);border-top:4px solid var(--gold);display:flex;flex-direction:column}.price{font:2.2rem Georgia,serif;color:var(--green);margin:.5rem 0 1rem}.price small{font:400 1rem system-ui,sans-serif;color:var(--muted)}.price-note{margin-top:1.5rem;color:var(--muted)}.booking{background:var(--blush)}.booking-inner{display:grid;grid-template-columns:1.1fr .9fr;gap:5rem;align-items:start}.booking-panel{background:var(--white);padding:2rem;border:1px solid #e2d6d1}.booking-panel h3{margin-bottom:.6rem}.booking-panel p{margin-bottom:1.5rem}.booking-panel .button{width:100%}.contact-address{display:block;padding:.8rem 1rem;margin:.4rem 0 1rem;border:1px solid var(--line);background:var(--ivory);color:var(--green);font-weight:700;overflow-wrap:anywhere;user-select:all}.contact-actions{display:grid;gap:.65rem}.copy-status{min-height:1.5em;margin:.5rem 0 0;color:var(--green2)}.small{font-size:.9rem;color:var(--muted)}.footer{background:var(--green);color:#e8efe8;padding:3rem 0}.footer-inner{display:flex;justify-content:space-between;gap:2rem;align-items:center}.footer img{width:210px;background:#fffefa;padding:.45rem;border-radius:2px}.footer p{margin:.8rem 0 0}.footer a{color:inherit;text-underline-offset:.2em}
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--ivory);color:var(--ink);font:400 1rem/1.68 system-ui,-apple-system,Segoe UI,sans-serif}
+    h1,h2,h3,p{margin-top:0}h1,h2,h3{font-family:Georgia,'Times New Roman',serif;font-weight:400;line-height:1.12;color:var(--green)}
+    h1{font-size:clamp(2.7rem,6vw,5.7rem);letter-spacing:-.035em}h2{font-size:clamp(2.15rem,4vw,3.65rem);letter-spacing:-.025em}h3{font-size:1.55rem}p{max-width:64ch}
+    a{color:inherit}
+    button,input,select,textarea{font-family:inherit;font-size:inherit}
+    a:focus-visible,button:focus-visible{outline:3px solid var(--gold);outline-offset:4px}
+    .wrap{width:min(1160px,calc(100% - 2.5rem));margin:auto}
+    .skip{position:absolute;left:-9999px;top:1rem;background:white;padding:.5rem}
+    .skip:focus{left:1rem;z-index:10}
+    .eyebrow{font-size:.82rem;letter-spacing:.18em;text-transform:uppercase;font-weight:700;color:var(--green2)}
     
-    /* Functional enhancement styles matching palette */
+    /* Buttons */
+    .button{display:inline-flex;align-items:center;justify-content:center;min-height:50px;padding:.7rem 1.25rem;border:1px solid var(--green);border-radius:3px;background:var(--green);color:#ffffff !important;text-decoration:none;font-weight:650;line-height:1.3;text-align:center;cursor:pointer;transition:all .15s ease}
+    .button:hover{background:#215545 !important;text-decoration:none}
+    
+    .button.secondary,
+    .navlinks .button.secondary{background:transparent !important;color:var(--green) !important;border:1px solid var(--green) !important}
+    .button.secondary:hover,
+    .navlinks .button.secondary:hover{background:#edf2e9 !important;color:var(--green) !important}
+    
     .button.small{min-height:40px;padding:.45rem 1rem;font-size:.92rem}
+    
+    /* Disabled buttons */
+    button:disabled,
+    .button:disabled,
+    .button[disabled]{
+      background:#d8e2dc !important;
+      border-color:#c4d3cb !important;
+      color:#496359 !important;
+      cursor:not-allowed !important;
+      opacity:0.92 !important;
+      box-shadow:none !important;
+    }
+    
+    .site-header{background:var(--white);border-bottom:1px solid var(--line)}
+    .nav{min-height:96px;display:flex;align-items:center;justify-content:space-between;gap:2rem}
+    .brand{display:block;flex:0 0 auto;width:246px;line-height:0}
+    .brand img{display:block;width:100%;height:auto}
+    .navlinks{display:flex;align-items:center;gap:1.4rem;font-size:.94rem;font-weight:600}
+    .navlinks a{text-decoration:none;color:var(--ink)}
+    .navlinks a:hover{text-decoration:underline}
+    .navlinks .button{color:#ffffff !important}
+    
+    .hero{background:linear-gradient(125deg,#f7f4eb 15%,#e6eee3 100%);overflow:hidden}
+    .hero-inner{min-height:610px;padding:6.2rem 0 5.7rem;display:grid;grid-template-columns:minmax(0,1.17fr) minmax(280px,.83fr);gap:5rem;align-items:center}
+    .hero h1{max-width:14ch;margin:.5rem 0 1.4rem}
+    .hero .lead{font-size:1.19rem;max-width:52ch}
+    .hero-actions{display:flex;gap:.8rem;flex-wrap:wrap;margin:2rem 0 0}
+    .hero-art{min-height:430px;position:relative;border:1px solid #cfdbce;border-radius:220px 220px 10px 10px;background:radial-gradient(circle at 50% 40%,#fffdf6 0,#e7ece1 48%,#bbd2c2 100%);display:flex;align-items:center;justify-content:center;padding:3rem}
+    .hero-art:after{content:"";position:absolute;inset:18px;border:1px solid rgba(182,139,58,.6);border-radius:210px 210px 4px 4px;pointer-events:none}
+    .art-copy{text-align:center;position:relative;z-index:1}
+    .art-copy span{display:block;font:italic 2.45rem/1.25 Georgia,serif;color:var(--green);max-width:10ch}
+    .art-copy small{display:block;margin:1.5rem auto 0;padding-top:1.1rem;border-top:1px solid var(--gold);font-size:.85rem;letter-spacing:.15em;text-transform:uppercase;color:var(--green2)}
+    section{padding:6rem 0}
+    .section-heading{max-width:760px;margin-bottom:2.6rem}
+    .section-heading p:last-child{font-size:1.1rem}
+    .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem}
+    .step{background:var(--white);border:1px solid var(--line);padding:2rem;min-height:270px}
+    .step .num{display:block;color:var(--gold);font:2.2rem Georgia,serif;margin-bottom:1.8rem}
+    .step p{margin-bottom:0}
+    .band{background:var(--green);color:#f4f4e9}
+    .band h2,.band h3{color:#fffdf5}
+    .band .eyebrow{color:#dbc58e}
+    .band-inner{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center}
+    .band p{color:#e9efe8}
+    .offer-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.2rem}
+    .offer{border:1px solid var(--line);background:var(--white);padding:2rem;display:flex;flex-direction:column;min-height:240px}
+    .offer p{margin-bottom:auto}
+    .offer a{font-weight:700;text-underline-offset:.2em;color:var(--green2)}
+    .pricing{background:#e8efe8}
+    .price-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem;margin-top:2rem}
+    .price-card{padding:2rem;background:var(--white);border-top:4px solid var(--gold);display:flex;flex-direction:column}
+    .price{font:2.2rem Georgia,serif;color:var(--green);margin:.5rem 0 1rem}
+    .price small{font:400 1rem system-ui,sans-serif;color:var(--muted)}
+    .price-note{margin-top:1.5rem;color:var(--muted)}
+    .booking{background:var(--blush)}
+    .booking-inner{display:grid;grid-template-columns:1.1fr .9fr;gap:5rem;align-items:start}
+    .booking-panel{background:var(--white);padding:2rem;border:1px solid #e2d6d1}
+    .booking-panel h3{margin-bottom:.6rem}
+    .booking-panel p{margin-bottom:1.5rem}
+    .booking-panel .button{width:100%}
+    .contact-address{display:block;padding:.8rem 1rem;margin:.4rem 0 1rem;border:1px solid var(--line);background:var(--ivory);color:var(--green);font-weight:700;overflow-wrap:anywhere;user-select:all}
+    .contact-actions{display:grid;gap:.65rem}
+    .copy-status{min-height:1.5em;margin:.5rem 0 0;color:var(--green2)}
+    .small{font-size:.9rem;color:var(--muted)}
+    .footer{background:var(--green);color:#e8efe8;padding:3rem 0}
+    .footer-inner{display:flex;justify-content:space-between;gap:2rem;align-items:center}
+    .footer img{width:210px;background:#fffefa;padding:.45rem;border-radius:2px}
+    .footer p{margin:.8rem 0 0}
+    .footer a{color:inherit;text-underline-offset:.2em}
+    
     .badge{display:inline-block;padding:.2rem .6rem;border-radius:2px;font-size:.78rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em}
     .badge.active{background:#dbe7d8;color:#123e32}
     .badge.gold{background:#fef3d6;color:#8f6b1e}
+    .badge.cancelled{background:#fbeae8;color:#8a251e}
     
     /* Interactive booking widget in #book */
     .booking-engine{background:var(--white);padding:2rem;border:1px solid #e2d6d1;margin-bottom:2rem}
     .slot-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(105px,1fr));gap:.6rem;margin-top:.8rem}
-    .slot-btn{padding:.6rem .4rem;border:1px solid var(--line);background:var(--ivory);border-radius:3px;font-weight:600;font-size:.88rem;color:var(--green);cursor:pointer;text-align:center}
-    .slot-btn:hover{background:var(--sage);border-color:var(--green2)}
-    .slot-btn.selected{background:var(--green);color:white;border-color:var(--green)}
+    .slot-btn{padding:.6rem .4rem;border:1px solid var(--line);background:var(--ivory);border-radius:3px;font-weight:600;font-size:.88rem;color:var(--green);cursor:pointer;text-align:center;transition:background-color .15s ease,color .15s ease}
+    .slot-btn:hover{background:var(--sage);border-color:var(--green2);color:var(--green)}
+    .slot-btn.selected{background:var(--green);color:#ffffff !important;border-color:var(--green)}
     
     /* Modals */
     .modal-backdrop{position:fixed;inset:0;background:rgba(18,62,50,0.6);display:none;align-items:center;justify-content:center;z-index:200}
@@ -37,7 +125,8 @@
     .alert-success{background:#dbe7d8;color:#123e32;border:1px solid #c2d8bc}
     .alert-error{background:#fbeae8;color:#8a251e;border:1px solid #f2c7c3}
 
-    @media(max-width:900px){.price-grid{grid-template-columns:1fr}.nav{padding:1rem 0;flex-wrap:wrap}.navlinks{width:100%;justify-content:space-between;gap:.7rem;flex-wrap:wrap}.hero-inner{gap:2rem}.hero-art{min-height:350px}.band-inner,.booking-inner{gap:2rem}}@media(max-width:700px){.wrap{width:min(100% - 2rem,520px)}.nav{min-height:auto}.brand{width:195px}.navlinks{font-size:.86rem}.navlinks .button{padding:.5rem .7rem;min-height:40px}.hero-inner{display:block;padding:4rem 0}.hero h1{max-width:13ch}.hero-art{min-height:270px;margin-top:3rem;border-radius:180px 180px 8px 8px}.hero-art:after{border-radius:160px 160px 4px 4px}.art-copy span{font-size:1.85rem}section{padding:4rem 0}.steps,.offer-grid,.price-grid,.band-inner,.booking-inner{grid-template-columns:1fr}.step,.offer{min-height:0}.footer-inner{display:block}.footer img{width:180px}}
+    @media(max-width:900px){.price-grid{grid-template-columns:1fr}.nav{padding:1rem 0;flex-wrap:wrap}.navlinks{width:100%;justify-content:space-between;gap:.7rem;flex-wrap:wrap}.hero-inner{gap:2rem}.hero-art{min-height:350px}.band-inner,.booking-inner{gap:2rem}}
+    @media(max-width:700px){.wrap{width:min(100% - 2rem,520px)}.nav{min-height:auto}.brand{width:195px}.navlinks{font-size:.86rem}.navlinks .button{padding:.5rem .7rem;min-height:40px}.hero-inner{display:block;padding:4rem 0}.hero h1{max-width:13ch}.hero-art{min-height:270px;margin-top:3rem;border-radius:180px 180px 8px 8px}.hero-art:after{border-radius:160px 160px 4px 4px}.art-copy span{font-size:1.85rem}section{padding:4rem 0}.steps,.offer-grid,.price-grid,.band-inner,.booking-inner{grid-template-columns:1fr}.step,.offer{min-height:0}.footer-inner{display:block}.footer img{width:180px}}
   </style>
 </head>
 <body>
@@ -400,6 +489,7 @@
     // Global User State
     let currentUser = null;
     let selectedSlotUtc = null;
+    let pendingAction = null;
 
     async function checkAuthStatus() {
       try {
@@ -410,9 +500,9 @@
           const container = document.getElementById('nav-user-container');
           const isStaff = ['admin', 'staff', 'therapist'].includes(user.role);
           container.innerHTML = `
-            <a href="/portal" class="button secondary small">My Portal</a>
-            ${isStaff ? `<a href="/admin" class="button secondary small" style="background:#f7f4eb">Staff Dashboard</a>` : ''}
-            <button class="button small" style="background:transparent;color:var(--green);border:1px solid var(--line)" onclick="signOutUser()">Sign Out</button>
+            <a href="/portal" class="button secondary small" style="color:var(--green)!important;background:transparent!important;border:1px solid var(--green)!important">My Portal</a>
+            ${isStaff ? `<a href="/admin" class="button secondary small" style="color:var(--green)!important;background:#edf2e9!important;border:1px solid var(--green)!important">Staff Dashboard</a>` : ''}
+            <button type="button" class="button secondary small" style="color:var(--green)!important;background:transparent!important;border:1px solid var(--line)!important" onclick="signOutUser()">Sign Out</button>
           `;
           loadUserPackagesIntoBooking();
         }
@@ -427,7 +517,8 @@
     }
 
     // Auth Modal handling
-    function openAuthModal(tab = 'signin') {
+    function openAuthModal(tab = 'signin', actionAfterAuth = null) {
+      if (actionAfterAuth) pendingAction = actionAfterAuth;
       document.getElementById('auth-modal').style.display = 'flex';
       switchAuthTab(tab);
     }
@@ -436,7 +527,8 @@
     }
     function switchAuthTab(tab) {
       document.querySelectorAll('.modal-tab-btn').forEach(b => b.classList.remove('active'));
-      document.getElementById(`tab-btn-${tab}`).classList.add('active');
+      const activeTabBtn = document.getElementById(`tab-btn-${tab}`);
+      if (activeTabBtn) activeTabBtn.classList.add('active');
       document.getElementById('signin-form').style.display = tab === 'signin' ? 'block' : 'none';
       document.getElementById('register-form').style.display = tab === 'register' ? 'block' : 'none';
       document.getElementById('reset-form').style.display = tab === 'reset' ? 'block' : 'none';
@@ -462,8 +554,12 @@
         if (!res.ok) throw new Error(data.error);
 
         closeAuthModal();
-        checkAuthStatus();
-        alert('Welcome back, ' + data.user.fullName + '!');
+        await checkAuthStatus();
+        if (pendingAction) {
+          const act = pendingAction;
+          pendingAction = null;
+          act();
+        }
       } catch (err) {
         alertBox.className = 'alert-box alert-error';
         alertBox.style.display = 'block';
@@ -492,8 +588,14 @@
         if (!res.ok) throw new Error(data.error);
 
         closeAuthModal();
-        checkAuthStatus();
-        alert('Account created! A verification link has been sent to your email.');
+        await checkAuthStatus();
+        if (pendingAction) {
+          const act = pendingAction;
+          pendingAction = null;
+          act();
+        } else {
+          alert('Account created! A verification link has been sent to your email.');
+        }
       } catch (err) {
         alertBox.className = 'alert-box alert-error';
         alertBox.style.display = 'block';
@@ -539,9 +641,9 @@
             <p>${r.description}</p>
             <div style="margin-top:1.5rem">
               ${r.is_free ? `
-                <button class="button small" onclick="acquireResource('${r.id}', true)">Download Free Guide</button>
+                <button type="button" class="button small" onclick="acquireResource('${r.id}', true)">Download Free Guide</button>
               ` : `
-                <button class="button small" onclick="acquireResource('${r.id}', false)">Purchase Resource</button>
+                <button type="button" class="button small" onclick="acquireResource('${r.id}', false)">Purchase Resource</button>
               `}
             </div>
           </article>
@@ -553,7 +655,7 @@
 
     async function acquireResource(resourceId, isFree) {
       if (!currentUser) {
-        openAuthModal('signin');
+        openAuthModal('signin', () => acquireResource(resourceId, isFree));
         return;
       }
       if (isFree) {
@@ -573,8 +675,9 @@
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ itemType: 'resource', itemId: resourceId, provider: 'mock_sandbox' })
           });
-          const { payment } = await res.json();
-          window.location.href = payment.checkoutUrl;
+          const data = await res.json();
+          if (!res.ok) throw new Error(data.error || 'Failed to initiate purchase');
+          window.location.href = data.payment.checkoutUrl;
         } catch (err) {
           alert('Purchase error: ' + err.message);
         }
@@ -604,7 +707,7 @@
               <strong>Venue:</strong> ${e.venue}
             </p>
             <div style="margin-top:1.5rem">
-              <button class="button small" ${e.available_seats <= 0 ? 'disabled' : ''} onclick="registerForEventDirect('${e.id}', ${e.price_usd})">
+              <button type="button" class="button small" ${e.available_seats <= 0 ? 'disabled' : ''} onclick="registerForEventDirect('${e.id}', ${e.price_usd})">
                 ${e.available_seats <= 0 ? 'Event Full' : 'Register for Event'}
               </button>
             </div>
@@ -617,7 +720,7 @@
 
     async function registerForEventDirect(eventId, price) {
       if (!currentUser) {
-        openAuthModal('signin');
+        openAuthModal('signin', () => registerForEventDirect(eventId, price));
         return;
       }
       if (price > 0) {
@@ -628,8 +731,9 @@
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ itemType: 'event', itemId: eventId, provider: 'mock_sandbox' })
           });
-          const { payment } = await res.json();
-          window.location.href = payment.checkoutUrl;
+          const data = await res.json();
+          if (!res.ok) throw new Error(data.error || 'Failed to initiate registration');
+          window.location.href = data.payment.checkoutUrl;
         } catch (err) {
           alert('Registration error: ' + err.message);
         }
@@ -650,13 +754,20 @@
     // Direct booking / purchase triggers from pricing cards
     function openBookingDirect(serviceId, serviceName) {
       const select = document.getElementById('booking-service-select');
-      select.value = serviceId;
-      document.getElementById('book').scrollIntoView({ behavior: 'smooth' });
+      if (select) select.value = serviceId;
+      const target = document.getElementById('book');
+      if (target) {
+        target.scrollIntoView({ behavior: 'smooth' });
+        setTimeout(() => {
+          const dateInputEl = document.getElementById('booking-date-input');
+          if (dateInputEl) dateInputEl.focus();
+        }, 350);
+      }
     }
 
     async function purchasePackageDirect(serviceId, serviceName, price) {
       if (!currentUser) {
-        openAuthModal('signin');
+        openAuthModal('signin', () => purchasePackageDirect(serviceId, serviceName, price));
         return;
       }
       try {
@@ -665,8 +776,9 @@
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ serviceId, provider: 'mock_sandbox' })
         });
-        const { payment } = await res.json();
-        window.location.href = payment.checkoutUrl;
+        const data = await res.json();
+        if (!res.ok) throw new Error(data.error || 'Failed to initiate package checkout');
+        window.location.href = data.payment.checkoutUrl;
       } catch (err) {
         alert('Package checkout error: ' + err.message);
       }
@@ -679,10 +791,13 @@
         const { packages } = await res.json();
         const select = document.getElementById('booking-service-select');
         packages.filter(p => p.status === 'active' && p.remaining_sessions > 0).forEach(pkg => {
-          const opt = document.createElement('option');
-          opt.value = `pkg:${pkg.id}`;
-          opt.textContent = `[Active Package] ${pkg.name} (${pkg.remaining_sessions} credits left)`;
-          select.appendChild(opt);
+          // Avoid duplicate option
+          if (!select.querySelector(`option[value="pkg:${pkg.id}"]`)) {
+            const opt = document.createElement('option');
+            opt.value = `pkg:${pkg.id}`;
+            opt.textContent = `[Active Package] ${pkg.name} (${pkg.remaining_sessions} credits left)`;
+            select.appendChild(opt);
+          }
         });
       } catch (e) {}
     }
@@ -692,11 +807,14 @@
     const slotsContainer = document.getElementById('booking-slots-container');
     const confirmBtn = document.getElementById('confirm-booking-btn');
 
-    // Default min date: today
-    const tomorrow = new Date();
-    tomorrow.setDate(tomorrow.getDate() + 1);
-    dateInput.min = tomorrow.toISOString().split('T')[0];
-    dateInput.value = tomorrow.toISOString().split('T')[0];
+    // Default target date: tomorrow, or Monday if tomorrow is Sunday
+    const targetDate = new Date();
+    targetDate.setDate(targetDate.getDate() + 1);
+    if (targetDate.getDay() === 0) {
+      targetDate.setDate(targetDate.getDate() + 1);
+    }
+    dateInput.min = new Date().toISOString().split('T')[0];
+    dateInput.value = targetDate.toISOString().split('T')[0];
 
     async function fetchSlots() {
       const date = dateInput.value;
@@ -710,7 +828,7 @@
         const { availableSlots } = await res.json();
 
         if (!availableSlots || availableSlots.length === 0) {
-          slotsContainer.innerHTML = '<p style="color:var(--muted);grid-column:1/-1">No available slots on this date. Please pick another day.</p>';
+          slotsContainer.innerHTML = '<p style="color:var(--muted);grid-column:1/-1">No available slots on this date. Please pick another day (Monday–Saturday).</p>';
           return;
         }
 
@@ -739,7 +857,7 @@
     confirmBtn.addEventListener('click', async () => {
       if (!selectedSlotUtc) return;
       if (!currentUser) {
-        openAuthModal('signin');
+        openAuthModal('signin', () => confirmBtn.click());
         return;
       }
 
@@ -754,7 +872,7 @@
 
       if (serviceVal.startsWith('pkg:')) {
         packageId = serviceVal.split(':')[1];
-        serviceId = 'srv-clarity-package'; // maps to package service
+        serviceId = 'srv-clarity-package';
       } else {
         serviceId = serviceVal;
       }

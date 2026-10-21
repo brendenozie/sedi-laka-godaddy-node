@@ -9,6 +9,7 @@
     :root{--green:#123e32;--green2:#28594c;--ivory:#faf8f2;--white:#fffefa;--sage:#dbe7d8;--gold:#b68b3a;--ink:#20382f;--muted:#536a60;--line:#d9dfd5;--blush:#f4e8e6}
     *{box-sizing:border-box}
     body{margin:0;background:var(--ivory);color:var(--ink);font:400 1rem/1.6 system-ui,-apple-system,sans-serif}
+    button,input,select,textarea{font-family:inherit;font-size:inherit}
     h1,h2,h3{font-family:Georgia,serif;font-weight:400;color:var(--green);margin-top:0}
     a{color:var(--green2);text-decoration:none}
     a:hover{text-decoration:underline}
@@ -17,13 +18,14 @@
     .nav{display:flex;align-items:center;justify-content:space-between;gap:2rem}
     .brand img{width:180px;height:auto;display:block}
     .user-badge{display:flex;align-items:center;gap:1.2rem;font-size:.92rem}
-    .button{display:inline-flex;align-items:center;justify-content:center;min-height:42px;padding:.55rem 1.1rem;border:1px solid var(--green);border-radius:3px;background:var(--green);color:white;text-decoration:none;font-weight:650;cursor:pointer}
-    .button:hover{background:#215545;text-decoration:none}
-    .button.secondary{background:transparent;color:var(--green)}
-    .button.secondary:hover{background:#edf2e9}
-    .button.danger{background:#a32d29;border-color:#a32d29;color:white}
-    .button.danger:hover{background:#841f1c}
+    .button{display:inline-flex;align-items:center;justify-content:center;min-height:42px;padding:.55rem 1.1rem;border:1px solid var(--green);border-radius:3px;background:var(--green);color:#ffffff !important;text-decoration:none;font-weight:650;cursor:pointer;transition:all .15s ease}
+    .button:hover{background:#215545 !important;text-decoration:none}
+    .button.secondary{background:transparent !important;color:var(--green) !important;border:1px solid var(--green) !important}
+    .button.secondary:hover{background:#edf2e9 !important;color:var(--green) !important}
+    .button.danger{background:#a32d29 !important;border-color:#a32d29 !important;color:#ffffff !important}
+    .button.danger:hover{background:#841f1c !important}
     .button.small{min-height:34px;padding:.3rem .75rem;font-size:.85rem}
+    button:disabled, .button:disabled, .button[disabled]{background:#d8e2dc !important;border-color:#c4d3cb !important;color:#496359 !important;cursor:not-allowed !important;opacity:0.92 !important}
     
     .portal-layout{display:grid;grid-template-columns:260px 1fr;gap:2.5rem;padding:3rem 0 5rem}
     .sidebar{background:var(--white);border:1px solid var(--line);border-radius:4px;padding:1.5rem}
@@ -68,7 +70,7 @@
       <div class="user-badge">
         <span id="user-display">Loading account...</span>
         <a href="/" class="button secondary small">Visit Public Site</a>
-        <button id="signout-btn" class="button small">Sign Out</button>
+        <button id="signout-btn" class="button secondary small">Sign Out</button>
       </div>
     </div>
   </header>

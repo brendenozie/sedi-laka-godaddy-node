@@ -9,6 +9,7 @@
     :root{--green:#123e32;--green2:#28594c;--ivory:#faf8f2;--white:#fffefa;--sage:#dbe7d8;--gold:#b68b3a;--ink:#20382f;--muted:#536a60;--line:#d9dfd5}
     *{box-sizing:border-box}
     body{margin:0;background:var(--ivory);color:var(--ink);font:400 1rem/1.6 system-ui,-apple-system,sans-serif}
+    button,input,select,textarea{font-family:inherit;font-size:inherit}
     h1,h2,h3{font-family:Georgia,serif;font-weight:400;color:var(--green);margin-top:0}
     .wrap{width:min(640px,calc(100% - 2.5rem));margin:3rem auto}
     .card{background:var(--white);border:1px solid var(--line);border-radius:4px;padding:2.5rem;box-shadow:0 4px 15px rgba(18,62,50,0.04)}
@@ -16,10 +17,11 @@
     .brand img{width:160px;height:auto}
     .price-box{background:#f7f4eb;border-left:4px solid var(--gold);padding:1.2rem 1.5rem;margin:1.5rem 0;border-radius:2px}
     .price{font:2.2rem Georgia,serif;color:var(--green);margin:.2rem 0}
-    .btn{display:inline-flex;align-items:center;justify-content:center;width:100%;min-height:48px;padding:.7rem 1.25rem;border:1px solid var(--green);border-radius:3px;background:var(--green);color:white;text-decoration:none;font-weight:650;font-size:1rem;cursor:pointer}
-    .btn:hover{background:#215545}
-    .btn.secondary{background:transparent;color:var(--green);margin-top:.8rem}
-    .btn.secondary:hover{background:#edf2e9}
+    .btn{display:inline-flex;align-items:center;justify-content:center;width:100%;min-height:48px;padding:.7rem 1.25rem;border:1px solid var(--green);border-radius:3px;background:var(--green);color:#ffffff !important;text-decoration:none;font-weight:650;font-size:1rem;cursor:pointer;transition:all .15s ease}
+    .btn:hover{background:#215545 !important}
+    .btn.secondary{background:transparent !important;color:var(--green) !important;border:1px solid var(--green) !important;margin-top:.8rem}
+    .btn.secondary:hover{background:#edf2e9 !important;color:var(--green) !important}
+    button:disabled, .btn:disabled, .btn[disabled]{background:#d8e2dc !important;border-color:#c4d3cb !important;color:#496359 !important;cursor:not-allowed !important;opacity:0.92 !important}
     .status-msg{margin-top:1.2rem;padding:1rem;border-radius:3px;display:none;font-size:.92rem}
     .status-success{background:#dbe7d8;color:#123e32;border:1px solid #c2d8bc}
     .status-error{background:#fbeae8;color:#8a251e;border:1px solid #f2c7c3}

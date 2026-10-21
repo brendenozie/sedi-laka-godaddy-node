@@ -9,6 +9,7 @@
     :root{--green:#123e32;--green2:#28594c;--ivory:#faf8f2;--white:#fffefa;--sage:#dbe7d8;--gold:#b68b3a;--ink:#20382f;--muted:#536a60;--line:#d9dfd5}
     *{box-sizing:border-box}
     body{margin:0;background:var(--ivory);color:var(--ink);font:400 1rem/1.6 system-ui,-apple-system,sans-serif}
+    button,input,select,textarea{font-family:inherit;font-size:inherit}
     h1,h2,h3{font-family:Georgia,serif;font-weight:400;color:var(--green);margin-top:0}
     a{color:var(--green2);text-decoration:none}
     .wrap{width:min(1240px,calc(100% - 2.5rem));margin:auto}
@@ -16,11 +17,13 @@
     .nav{display:flex;align-items:center;justify-content:space-between;gap:2rem}
     .brand img{width:160px;height:auto;display:block}
     .user-badge{display:flex;align-items:center;gap:1.2rem;font-size:.92rem}
-    .btn{display:inline-flex;align-items:center;justify-content:center;min-height:38px;padding:.4rem .9rem;border:1px solid var(--green);border-radius:3px;background:var(--green);color:white;text-decoration:none;font-weight:600;font-size:.88rem;cursor:pointer}
-    .btn:hover{background:#215545}
-    .btn.secondary{background:transparent;color:var(--green)}
-    .btn.secondary:hover{background:#edf2e9}
-    .btn.danger{background:#a32d29;border-color:#a32d29;color:white}
+    .btn{display:inline-flex;align-items:center;justify-content:center;min-height:38px;padding:.4rem .9rem;border:1px solid var(--green);border-radius:3px;background:var(--green);color:#ffffff !important;text-decoration:none;font-weight:600;font-size:.88rem;cursor:pointer;transition:all .15s ease}
+    .btn:hover{background:#215545 !important}
+    .btn.secondary{background:transparent !important;color:var(--green) !important;border:1px solid var(--green) !important}
+    .btn.secondary:hover{background:#edf2e9 !important;color:var(--green) !important}
+    .btn.danger{background:#a32d29 !important;border-color:#a32d29 !important;color:#ffffff !important}
+    .btn.danger:hover{background:#841f1c !important}
+    button:disabled, .btn:disabled, .btn[disabled]{background:#d8e2dc !important;border-color:#c4d3cb !important;color:#496359 !important;cursor:not-allowed !important;opacity:0.92 !important}
     
     .admin-layout{display:grid;grid-template-columns:240px 1fr;gap:2rem;padding:2.5rem 0 5rem}
     .sidebar{background:var(--white);border:1px solid var(--line);border-radius:4px;padding:1.2rem}
